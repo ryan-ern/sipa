@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\authentications\Forgot;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
@@ -12,9 +13,8 @@ use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\pages\AccountSettingsConnections;
 use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\pages\MiscUnderMaintenance;
-use App\Http\Controllers\authentications\LoginBasic;
-use App\Http\Controllers\authentications\RegisterBasic;
-use App\Http\Controllers\authentications\ForgotPasswordBasic;
+use App\Http\Controllers\authentications\Login;
+use App\Http\Controllers\authentications\Register;
 use App\Http\Controllers\cards\CardBasic;
 use App\Http\Controllers\user_interface\Accordion;
 use App\Http\Controllers\user_interface\Alerts;
@@ -59,6 +59,18 @@ Route::group(
   }
 );
 
+Route::get('/auth', function () {
+  return redirect('/auth/login');
+});
+Route::get('/auth/login', [Login::class, 'index'])->name('login');
+Route::post('/auth/login', [Login::class, 'store'])->name('login.store');
+Route::post('/auth/logout', [Login::class, 'logout'])->name('logout');
+Route::get('/auth/forgot', [Forgot::class, 'index'])->name('forgot');
+Route::get('/auth/register', [Register::class, 'index'])->name('register');
+Route::post('/auth/register', [Register::class, 'store'])->name('register.store');
+
+
+
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
@@ -74,11 +86,7 @@ Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-e
 Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name('pages-misc-under-maintenance');
 
 // authentication
-Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('login');
-Route::post('/auth/login-basic', [LoginBasic::class, 'store'])->name('login.store');
-Route::post('/auth/logout', [LoginBasic::class, 'logout'])->name('logout');
-Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
-Route::get('/auth/forgot-password-basic', [ForgotPasswordBasic::class, 'index'])->name('auth-reset-password-basic');
+
 
 // cards
 Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');

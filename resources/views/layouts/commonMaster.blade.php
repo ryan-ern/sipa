@@ -31,7 +31,7 @@
 <body>
 
     <!-- Layout Content -->
-    <div class="toast-container position-fixed top-0 end-0 p-3" id="toast-container" style="z-index: 1055;">
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container">
         @if ($message = Session::get('error'))
             <div class="toast align-items-center text-bg-danger border-0 fade" role="alert" aria-live="assertive"
                 aria-atomic="true" data-bs-delay="5000">
@@ -40,7 +40,7 @@
                     <strong class="me-auto">Error</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body">
+                <div class="toast-body text-capitalize">
                     {{ $message }}
                 </div>
             </div>
@@ -51,15 +51,16 @@
                 aria-atomic="true" data-bs-delay="5000">
                 <div class="toast-header">
                     <i class="ri-checkbox-circle-fill text-success me-2"></i>
-                    <strong class="me-auto">Success</strong>
+                    <strong class="me-auto">Sukses</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body">
+                <div class="toast-body text-capitalize">
                     {{ $message }}
                 </div>
             </div>
         @endif
     </div>
+
 
     @yield('layoutContent')
     <!--/ Layout Content -->

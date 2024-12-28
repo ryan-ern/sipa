@@ -10,7 +10,7 @@
 }
 
 .toast {
-    margin-bottom: 0.5rem;
+    margin-top: 1rem;
     animation: slideInRight 0.5s ease-in-out;
 }
 

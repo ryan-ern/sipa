@@ -17,7 +17,7 @@ class Role
   {
 
     if (!Auth::check()) {
-      return redirect()->route('/auth/login-basic');
+      return redirect()->route('login');
     }
     // dd(Auth::user()->role);
     if (!in_array(Auth::user()->role, $roles)) {

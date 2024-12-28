@@ -16,7 +16,7 @@
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mt-5">
                         <a href="{{ url('/') }}" class="app-brand-link gap-3">
-                            <span class="app-brand-logo demo">@include('_partials.macros', ['height' => 20, 'withbg' => 'fill: #fff;'])</span>
+                            <span class="app-brand-logo demo">@include('_partials.macros', ['height' => 100, 'withbg' => 'fill: #fff;'])</span>
                             <span
                                 class="app-brand-text demo text-heading fw-semibold">{{ config('variables.templateName') }}</span>
                         </a>
@@ -24,20 +24,20 @@
                     <!-- /Logo -->
 
                     <div class="card-body mt-1">
-                        <h4 class="mb-1">Welcome to {{ config('variables.templateName') }}! 👋🏻</h4>
-                        <p class="mb-5">Please sign-in to your account and start the adventure</p>
+                        <p class="mb-5">Selamat datang di {{ config('variables.templateSuffix') }}!</p>
                         <form id="formAuthentication" class="mb-5" action="{{ route('login.store') }}" method="POST">
                             @csrf
                             <div class="form-floating form-floating-outline mb-5">
                                 <input type="text" class="form-control" id="username" name="username"
-                                    placeholder="Enter your username" autofocus>
-                                <label for="username">username</label>
+                                    placeholder="Username terverifikasi" autofocus required>
+                                <label for="username">Username</label>
                             </div>
                             <div class="mb-5">
                                 <div class="form-password-toggle">
                                     <div class="input-group input-group-merge">
                                         <div class="form-floating form-floating-outline">
                                             <input type="password" id="password" class="form-control" name="password"
+                                                required
                                                 placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                                 aria-describedby="password" />
                                             <label for="password">Password</label>
@@ -47,15 +47,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-5 pb-2 d-flex justify-content-between pt-2 align-items-center">
-                                <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" id="remember-me">
-                                    <label class="form-check-label" for="remember-me">
-                                        Remember Me
-                                    </label>
-                                </div>
-                                <a href="{{ url('auth/forgot-password-basic') }}" class="float-end mb-1">
-                                    <span>Forgot Password?</span>
+                            <div class="mb-5 pb-2 d-flex justify-content-end pt-2">
+                                <a href="{{ url('auth/forgot') }}" class="float-end mb-1">
+                                    <span>Lupa Password?</span>
                                 </a>
                             </div>
                             <div class="mb-5">
@@ -64,9 +58,9 @@
                         </form>
 
                         <p class="text-center mb-5">
-                            <span>New on our platform?</span>
-                            <a href="{{ url('auth/register-basic') }}">
-                                <span>Create an account</span>
+                            <span>Belum punya akun?</span>
+                            <a href="{{ url('auth/register') }}">
+                                <span>Buat disini</span>
                             </a>
                         </p>
                     </div>
