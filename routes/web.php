@@ -16,6 +16,8 @@ use App\Http\Controllers\pages\MiscUnderMaintenance;
 use App\Http\Controllers\authentications\Login;
 use App\Http\Controllers\authentications\Register;
 use App\Http\Controllers\cards\CardBasic;
+use App\Http\Controllers\dashboard\Admin;
+use App\Http\Controllers\dashboard\User;
 use App\Http\Controllers\user_interface\Accordion;
 use App\Http\Controllers\user_interface\Alerts;
 use App\Http\Controllers\user_interface\Badges;
@@ -45,29 +47,28 @@ use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 
 // Main Page Route
-Route::group(
-  ['middleware' => ['auth', 'role:admin']],
-  function () {
-    Route::get('/', [Analytics::class, 'index'])->name('dashboard');
-  }
-);
+Route::get('/', [Analytics::class, 'index'])->name('dashboard');
 
-Route::group(
-  ['middleware' => ['auth', 'role:user']],
-  function () {
-    Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard');
-  }
-);
-
-Route::get('/auth', function () {
-  return redirect('/auth/login');
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+  Route::get('/dashboard', [Admin::class, 'index'])->name('dashboard');
 });
-Route::get('/auth/login', [Login::class, 'index'])->name('login');
-Route::post('/auth/login', [Login::class, 'store'])->name('login.store');
+
+Route::group(['middleware' => ['auth', 'role:user']], function () {
+  Route::get('/beranda', [User::class, 'index'])->name('dashboard.user');
+});
+
+Route::group(['middleware' => ['guest']], function () {
+  Route::get('/auth', function () {
+    return redirect('/auth/login');
+  });
+  Route::get('/auth/login', [Login::class, 'index'])->name('login');
+  Route::post('/auth/login', [Login::class, 'store'])->name('login.store');
+  Route::get('/auth/forgot', [Forgot::class, 'index'])->name('forgot');
+  Route::get('/auth/register', [Register::class, 'index'])->name('register');
+  Route::post('/auth/register', [Register::class, 'store'])->name('register.store');
+});
+
 Route::post('/auth/logout', [Login::class, 'logout'])->name('logout');
-Route::get('/auth/forgot', [Forgot::class, 'index'])->name('forgot');
-Route::get('/auth/register', [Register::class, 'index'])->name('register');
-Route::post('/auth/register', [Register::class, 'store'])->name('register.store');
 
 
 
@@ -82,7 +83,7 @@ Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
 Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
 Route::get('/pages/account-settings-connections', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-connections');
-Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
+Route::get('/pages/not-found', [MiscError::class, 'index'])->name('not-found');
 Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name('pages-misc-under-maintenance');
 
 // authentication

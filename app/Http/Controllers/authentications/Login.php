@@ -26,7 +26,9 @@ class Login extends Controller
     if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password'], 'status' => '1'])) {
       $request->session()->forget('count_login');
       $request->session()->regenerate();
-      return redirect()->intended('/')->with('success', 'Selamat datang ' . Auth::user()->nama_lengkap);
+      if (Auth::user()->role == 'admin')
+        return redirect()->intended('/dashboard')->with('success', 'Selamat datang ' . Auth::user()->nama_lengkap);
+      return redirect()->intended('/beranda')->with('success', 'Selamat datang ' . Auth::user()->nama_lengkap);
     }
     if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password'], 'status' => '0'])) {
       $request->session()->invalidate();

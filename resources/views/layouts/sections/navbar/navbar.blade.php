@@ -63,11 +63,10 @@
         </li> --}}
 
         <!-- User -->
-        <li class="nav-item navbar-dropdown dropdown-user dropdown">
-            <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);" data-bs-toggle="dropdown">
-                <button type="button" class="btn btn-primary position-relative">
-                    {{ Auth::user()->nama_lengkap }}
-                </button>
+        <li class="nav-item navbar-dropdown dropdown-user dropdown btn btn-primary ms-3 ">
+            <a class="nav-link dropdown-toggle show-arrow p-0 text-white" href="javascript:void(0);"
+                data-bs-toggle="dropdown">
+                {{ Auth::user()->nama_lengkap }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end mt-3 py-2">
                 <li>

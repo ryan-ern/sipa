@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Guest;
 use App\Http\Middleware\Role;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
   ->withMiddleware(function (Middleware $middleware) {
     $middleware->alias([
       'role' => Role::class,
+      'guest' => Guest::class,
     ]);
   })
   ->withExceptions(function (Exceptions $exceptions) {

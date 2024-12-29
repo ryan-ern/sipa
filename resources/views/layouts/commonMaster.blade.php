@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>@yield('title') | Materio - HTML Laravel Free Admin Template </title>
+    <title>@yield('title') | SIPA - Sistem Informasi Panti Asuhan </title>
     <meta name="description"
         content="{{ config('variables.templateDescription') ? config('variables.templateDescription') : '' }}" />
     <meta name="keywords"
@@ -38,6 +38,20 @@
                 <div class="toast-header">
                     <i class="ri-error-warning-fill text-danger me-2"></i>
                     <strong class="me-auto">Error</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body text-capitalize">
+                    {{ $message }}
+                </div>
+            </div>
+        @endif
+
+        @if ($message = Session::get('info'))
+            <div class="toast align-items-center text-bg-info border-0 fade" role="alert" aria-live="assertive"
+                aria-atomic="true" data-bs-delay="5000">
+                <div class="toast-header">
+                    <i class="ri-information-fill text-info me-2"></i>
+                    <strong class="me-auto">Info</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body text-capitalize">
