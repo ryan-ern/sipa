@@ -2,18 +2,6 @@
 
 @section('title', 'Dashboard')
 
-@section('vendor-style')
-    @vite('resources/assets/vendor/libs/apex-charts/apex-charts.scss')
-@endsection
-
-@section('vendor-script')
-    @vite('resources/assets/vendor/libs/apex-charts/apexcharts.js')
-@endsection
-
-@section('page-script')
-    @vite('resources/assets/js/dashboards-analytics.js')
-@endsection
-
 @section('content')
     <div class="d-none">
         <a href="https://www.freepik.com/free-psd/diverse-people-3d-composition_53059497.htm" target="_blank"

@@ -44,17 +44,25 @@ use App\Http\Controllers\form_elements\BasicInput;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
+use App\Http\Controllers\pages\DataPengguna;
 use App\Http\Controllers\tables\Basic as TablesBasic;
+use Dflydev\DotAccessData\Data;
 
 // Main Page Route
-Route::get('/', [Analytics::class, 'index'])->name('dashboard');
+
+Route::fallback(function () {
+  return redirect('/pages/not-found');
+});
+
+Route::get('/', [Blank::class, 'index'])->name('layouts-blank');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
   Route::get('/dashboard', [Admin::class, 'index'])->name('dashboard');
+  Route::get('/data-pengguna', [DataPengguna::class, 'index'])->name('data-pengguna');
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
-  Route::get('/beranda', [User::class, 'index'])->name('dashboard.user');
+  Route::get('/beranda', [User::class, 'index'])->name('beranda');
 });
 
 Route::group(['middleware' => ['guest']], function () {
@@ -69,8 +77,6 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 Route::post('/auth/logout', [Login::class, 'logout'])->name('logout');
-
-
 
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');

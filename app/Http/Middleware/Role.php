@@ -19,10 +19,9 @@ class Role
       return redirect()->route('login');
     }
     // dd(Auth::user()->role);
-    if (!in_array(Auth::user()->role, $roles)) {
-      return redirect()->route('not-found')->with('error', 'Kamu tidak memiliki akses ke halaman ini!');
+    if (in_array(Auth::user()->role, $roles)) {
+      return $next($request);
     }
-
-    return $next($request);
+    return redirect()->route('not-found')->with('error', 'Kamu tidak memiliki akses ke halaman ini!');
   }
 }
