@@ -40,7 +40,7 @@
 @endif
 
 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-    <!-- Search -->
+    {{-- <!-- Search -->
     <div class="navbar-nav align-items-center">
         <div class="nav-item d-flex align-items-center">
             <i class="ri-search-line ri-22px me-1_5"></i>
@@ -48,78 +48,46 @@
                 aria-label="Search...">
         </div>
     </div>
-    <!-- /Search -->
+    <!-- /Search --> --}}
     <ul class="navbar-nav flex-row align-items-center ms-auto">
 
         <!-- Place this tag where you want the button to render. -->
-        <li class="nav-item lh-1 me-4">
-            <a class="github-button" href="{{ config('variables.repository') }}" data-icon="octicon-star"
-                data-size="large" data-show-count="true"
-                aria-label="Star themeselection/materio-html-laravel-admin-template-free on GitHub">Star</a>
+        <li class="nav-item lh-1" id="greeting">
+            <!-- Greeting text will be updated dynamically -->
         </li>
+        {{-- <li class="nav-item lh-1 me-4">
+            <a href="javascript:void(0);" class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="ri-notification-4-line ri-22px"></i>
+                <span class="badge bg-danger rounded-pill ms-1 small">4</span>
+            </a>
+        </li> --}}
 
         <!-- User -->
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);" data-bs-toggle="dropdown">
-                <div class="avatar avatar-online">
-                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle">
-                </div>
+                <button type="button" class="btn btn-primary position-relative">
+                    {{ Auth::user()->nama_lengkap }}
+                </button>
             </a>
             <ul class="dropdown-menu dropdown-menu-end mt-3 py-2">
                 <li>
                     <a class="dropdown-item" href="javascript:void(0);">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-shrink-0 me-2">
-                                <div class="avatar avatar-online">
-                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt
-                                        class="w-px-40 h-auto rounded-circle">
-                                </div>
-                            </div>
-                            <div class="flex-grow-1">
-                                <h6 class="mb-0 small">John Doe</h6>
-                                <small class="text-muted">Admin</small>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <div class="dropdown-divider"></div>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="javascript:void(0);">
                         <i class="ri-user-3-line ri-22px me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="javascript:void(0);">
-                        <i class='ri-settings-4-line ri-22px me-2'></i>
-                        <span class="align-middle">Settings</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="javascript:void(0);">
-                        <span class="d-flex align-items-center align-middle">
-                            <i class="flex-shrink-0 ri-file-text-line ri-22px me-3"></i>
-                            <span class="flex-grow-1 align-middle">Billing</span>
-                            <span
-                                class="flex-shrink-0 badge badge-center rounded-pill bg-danger h-px-20 d-flex align-items-center justify-content-center">4</span>
-                        </span>
+                        <span class="align-middle">Profil Saya</span>
                     </a>
                 </li>
                 <li>
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>
-                    <div class="d-grid px-4 pt-2 pb-1">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="btn btn-danger d-flex">
-                                <small class="align-middle">Logout</small>
-                                <i class="ri-logout-box-r-line ms-2 ri-16px"></i>
-                            </button>
-                        </form>
-                    </div>
+                    <form method="POST" action="{{ route('logout') }}"
+                        onclick="event.preventDefault(); this.submit();">
+                        @csrf
+                        <a class="dropdown-item text-danger" href="javascript:void(0);">
+                            <i class="ri-logout-box-r-line me-2 ri-22px"></i>
+                            <span class="align-middle">Logout</span>
+                        </a>
+                    </form>
                 </li>
             </ul>
         </li>

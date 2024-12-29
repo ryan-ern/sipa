@@ -34,6 +34,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const toastInstance = new bootstrap.Toast(toastElement);
         toastInstance.show();
     });
+
+    const greetingElement = document.getElementById('greeting');
+    const currentHour = new Date().getHours();
+
+    let greetingText;
+    if (currentHour >= 5 && currentHour < 11) {
+        greetingText = "Selamat Pagi";
+    } else if (currentHour >= 11 && currentHour < 15) {
+      greetingText = "Selamat Siang";
+    } else if (currentHour >= 15 && currentHour < 18) {
+      greetingText = "Selamat Sore";
+    } else {
+        greetingText = "Selamat Malam";
+    }
+
+    greetingElement.innerHTML = `<span class="nav-link">${greetingText},</span>`;
 });
 
   // end costume
