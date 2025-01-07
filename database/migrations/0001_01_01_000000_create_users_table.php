@@ -19,7 +19,7 @@ return new class extends Migration
       $table->enum('role', ['admin', 'user'])->default('user');
       $table->string('password');
       $table->string('no_tel');
-      $table->string('alamat');
+      $table->string('alamat', 255);
       $table->string('jenis_kelamin');
       $table->enum('status', ['1', '0'])->default('0');
       $table->enum('sebagai', ['ortu', 'wali', 'staff'])->default('ortu');

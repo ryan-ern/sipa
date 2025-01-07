@@ -20,7 +20,7 @@ class DataPengguna extends Controller
   public function store(Request $request)
   {
     // Validasi input
-    $validator = $request->validate([
+    $validator = Validator::make($request->all(), [
       'username' => ['required', 'string', 'max:255', 'unique:users'],
       'nama_lengkap' => ['required', 'string', 'max:255'],
       'no_tel' => ['required', 'regex:/^(?:\+62|0)[2-9][0-9]{7,11}$/'],
@@ -46,28 +46,33 @@ class DataPengguna extends Controller
       'role.required' => 'Role harus diisi.',
     ]);
 
-    try {
-      User::create([
-        'username' => $validator['username'],
-        'nama_lengkap' => $validator['nama_lengkap'],
-        'sebagai' => $validator['sebagai'],
-        'no_tel' => $validator['no_tel'],
-        'alamat' => $validator['alamat'],
-        'jenis_kelamin' => $validator['jenis_kelamin'],
-        'role' => $validator['role'],
-        'status' => $validator['status'],
-        'password' => bcrypt($validator['password']),
-      ]);
-    } catch (\Exception $e) {
-      return back()->with('error', 'Data pengguna' . $validator['nama_lengkap'] . ' gagal ditambahkan : ' . $e->getMessage());
+    if ($validator->fails()) {
+      return back()->with('error', 'Data pengguna ' . $request->nama_lengkap . ' gagal diubah: ' . $validator->errors()->first());
     }
 
-    return back()->with('success', 'Data pengguna' . $validator['nama_lengkap'] . ' berhasil ditambahkan');
+    try {
+      $validatedData = $validator->validated();
+      User::create([
+        'username' => $validatedData['username'],
+        'nama_lengkap' => $validatedData['nama_lengkap'],
+        'sebagai' => $validatedData['sebagai'],
+        'no_tel' => $validatedData['no_tel'],
+        'alamat' => $validatedData['alamat'],
+        'jenis_kelamin' => $validatedData['jenis_kelamin'],
+        'role' => $validatedData['role'],
+        'status' => $validatedData['status'],
+        'password' => bcrypt($validatedData['password']),
+      ]);
+    } catch (\Exception $e) {
+      return back()->with('error', 'Data pengguna ' . $validatedData['nama_lengkap'] . ' gagal ditambahkan : ' . $e->getMessage());
+    }
+
+    return back()->with('success', 'Data pengguna ' . $validatedData['nama_lengkap'] . ' berhasil ditambahkan');
   }
 
   public function update(Request $request, $id)
   {
-    $validated = Validator::make($request->all(), [
+    $validator = Validator::make($request->all(), [
       'nama_lengkap' => ['required', 'string', 'max:255'],
       'no_tel' => ['required', 'regex:/^(?:\+62|0)[2-9][0-9]{7,11}$/'],
       'jenis_kelamin' => ['required', 'string', 'in:Laki-laki,Perempuan'],
@@ -88,13 +93,13 @@ class DataPengguna extends Controller
       'password.min' => 'Password minimal harus 3 karakter.',
     ]);
 
-    if ($validated->fails()) {
-      return back()->with('error', 'Data pengguna ' . $request->nama_lengkap . ' gagal diubah: ' . $validated->errors()->first());
+    if ($validator->fails()) {
+      return back()->with('error', 'Data pengguna ' . $request->nama_lengkap . ' gagal diubah: ' . $validator->errors()->first());
     }
 
     try {
       $user = User::findOrFail($id);
-      $validatedData = $validated->validated();
+      $validatedData = $validator->validated();
 
       if ($request->filled('password')) {
         $validatedData['password'] = bcrypt($request->password);
@@ -106,7 +111,7 @@ class DataPengguna extends Controller
 
       return back()->with('success', 'Data pengguna ' . $user->nama_lengkap . ' berhasil diubah');
     } catch (\Exception $e) {
-      return back()->with('error', 'Data pengguna' . $user->nama_lengkap . ' gagal diubah: ' . $e->getMessage());
+      return back()->with('error', 'Data pengguna ' . $user->nama_lengkap . ' gagal diubah: ' . $e->getMessage());
     }
   }
 
@@ -120,12 +125,12 @@ class DataPengguna extends Controller
     }
     try {
       if (Auth::user()->id == $id) {
-        return back()->with('error', 'Data pengguna' . $user->nama_lengkap . ' tidak dapat dihapus');
+        return back()->with('error', 'Data pengguna ' . $user->nama_lengkap . ' tidak dapat dihapus');
       }
       User::findOrFail($id)->delete();
-      return back()->with('success', 'Data pengguna' . $user->nama_lengkap . ' berhasil dihapus');
+      return back()->with('success', 'Data pengguna ' . $user->nama_lengkap . ' berhasil dihapus');
     } catch (\Exception $e) {
-      return back()->with('error', 'Data pengguna' . $user->nama_lengkap . ' gagal dihapus : ' . $e->getMessage());
+      return back()->with('error', 'Data pengguna ' . $user->nama_lengkap . ' gagal dihapus : ' . $e->getMessage());
     }
   }
 }

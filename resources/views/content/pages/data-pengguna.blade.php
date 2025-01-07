@@ -15,7 +15,7 @@
                         <div class="divider-text ms-3 fs-5">Data Pengguna</div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-sm table-bordered" id="userTable">
+                        <table class="table table-sm table-bordered" id="table">
                             <thead>
                                 <tr class="text-center">
                                     <th scope="col">No</th>

@@ -51,7 +51,7 @@ let menu, animate;
 
     greetingElement.innerHTML = `<span class="nav-link">${greetingText},</span>`;
 
-    new DataTable('#userTable', {
+    new DataTable('#table', {
       language: {
         search: '',
         searchPlaceholder: 'Cari Data...',

@@ -44,6 +44,7 @@ use App\Http\Controllers\form_elements\BasicInput;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
+use App\Http\Controllers\pages\DataDonasi;
 use App\Http\Controllers\pages\DataPengguna;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use Dflydev\DotAccessData\Data;
@@ -58,10 +59,18 @@ Route::get('/', [Blank::class, 'index'])->name('layouts-blank');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
   Route::get('/dashboard', [Admin::class, 'index'])->name('dashboard');
+
+  // data pengguna
+  Route::post('/pages/data-pengguna', [DataPengguna::class, 'store'])->name('data-pengguna.store');
   Route::get('/pages/data-pengguna', [DataPengguna::class, 'index'])->name('data-pengguna');
   Route::put('/pages/data-pengguna/{id}', [DataPengguna::class, 'update'])->name('data-pengguna.update');
   Route::delete('/pages/data-pengguna/{id}', [DataPengguna::class, 'destroy'])->name('data-pengguna.destroy');
-  Route::post('/pages/data-pengguna', [DataPengguna::class, 'store'])->name('data-pengguna.store');
+
+  // data donasi
+  Route::post('/pages/data-donasi', [DataDonasi::class, 'store'])->name('data-donasi.store');
+  Route::get('/pages/data-donasi', [DataDonasi::class, 'index'])->name('data-donasi');
+  Route::put('/pages/data-donasi/{id}', [DataDonasi::class, 'update'])->name('data-donasi.update');
+  Route::delete('/pages/data-donasi/{id}', [DataDonasi::class, 'destroy'])->name('data-donasi.destroy');
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
