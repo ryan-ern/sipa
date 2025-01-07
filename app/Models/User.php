@@ -48,8 +48,6 @@ class User extends Authenticatable
    */
   protected $hidden = [
     'password',
-    'role',
-    'status'
   ];
 
   /**

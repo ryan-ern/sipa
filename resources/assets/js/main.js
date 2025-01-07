@@ -25,14 +25,14 @@ let menu, animate;
   }
 
   // costume
-document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function () {
     const toastContainer = document.getElementById('toast-container');
     const toastElements = toastContainer.querySelectorAll('.toast');
 
     // Initialize all toasts
     toastElements.forEach(function (toastElement) {
-        const toastInstance = new bootstrap.Toast(toastElement);
-        toastInstance.show();
+      const toastInstance = new bootstrap.Toast(toastElement);
+      toastInstance.show();
     });
 
     const greetingElement = document.getElementById('greeting');
@@ -40,17 +40,75 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let greetingText;
     if (currentHour >= 5 && currentHour < 11) {
-        greetingText = "Selamat Pagi";
+      greetingText = "Selamat Pagi";
     } else if (currentHour >= 11 && currentHour < 15) {
       greetingText = "Selamat Siang";
     } else if (currentHour >= 15 && currentHour < 18) {
       greetingText = "Selamat Sore";
     } else {
-        greetingText = "Selamat Malam";
+      greetingText = "Selamat Malam";
     }
 
     greetingElement.innerHTML = `<span class="nav-link">${greetingText},</span>`;
-});
+
+    new DataTable('#userTable', {
+      language: {
+        search: '',
+        searchPlaceholder: 'Cari Data...',
+      },
+      layout: {
+        topStart: {
+          buttons: [
+            {
+              extend: 'pageLength',
+              text: function (dt) {
+                const pageLength = dt.page.len();
+                return `<i class="ri-file-list-3-line me-2"></i>${pageLength} Data`;
+              },
+              className: 'btn btn-primary dropdown-toggle me-2',
+            },
+            {
+              text: '<i class="ri-external-link-line me-2"></i>Export Data',
+              extend: 'collection',
+              className: 'btn btn-primary dropdown-toggle me-2',
+              buttons: [
+                {
+                  extend: 'print',
+                  text: '<i class="ri-printer-line me-4" ></i>Print',
+                  className: 'dropdown-item',
+                  exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8] }
+                },
+                {
+                  extend: 'excel',
+                  text: '<i class="ri-file-excel-line me-4"></i>Excel',
+                  className: 'dropdown-item',
+                  exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8] }
+                },
+                {
+                  extend: 'pdf',
+                  text: '<i class="ri-file-pdf-line me-4"></i>Pdf',
+                  className: 'dropdown-item',
+                  exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8] }
+                },
+                {
+                  extend: 'csv',
+                  text: '<i class="ri-file-text-line me-4" ></i>Csv',
+                  className: 'dropdown-item',
+                  exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8] }
+                },
+                {
+                  extend: 'copy',
+                  text: '<i class="ri-file-copy-line me-4" ></i>Copy',
+                  className: 'dropdown-item',
+                  exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8] }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    })
+  });
 
   // end costume
 

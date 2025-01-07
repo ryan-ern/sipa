@@ -29,7 +29,7 @@
                             @csrf
                             <div class="form-floating form-floating-outline mb-5">
                                 <input type="text" class="form-control" id="username" name="username"
-                                    placeholder="Username terverifikasi" autofocus required>
+                                    placeholder="Username terverifikasi" autofocus autocomplete="username" required>
                                 <label for="username">Username</label>
                             </div>
                             <div class="mb-5">
@@ -39,7 +39,7 @@
                                             <input type="password" id="password" class="form-control" name="password"
                                                 required
                                                 placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                                aria-describedby="password" />
+                                                aria-describedby="password" autocomplete="current-password" />
                                             <label for="password">Password</label>
                                         </div>
                                         <span class="input-group-text cursor-pointer"><i

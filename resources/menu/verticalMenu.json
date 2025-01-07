@@ -52,7 +52,7 @@
       "name": "Data Pengguna",
       "icon": "menu-icon tf-icons ri-home-smile-line",
       "slug": "data-pengguna",
-      "url": "data-pengguna"
+      "url": "pages/data-pengguna"
     }
   ],
   "user": [

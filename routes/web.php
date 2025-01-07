@@ -58,7 +58,10 @@ Route::get('/', [Blank::class, 'index'])->name('layouts-blank');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
   Route::get('/dashboard', [Admin::class, 'index'])->name('dashboard');
-  Route::get('/data-pengguna', [DataPengguna::class, 'index'])->name('data-pengguna');
+  Route::get('/pages/data-pengguna', [DataPengguna::class, 'index'])->name('data-pengguna');
+  Route::put('/pages/data-pengguna/{id}', [DataPengguna::class, 'update'])->name('data-pengguna.update');
+  Route::delete('/pages/data-pengguna/{id}', [DataPengguna::class, 'destroy'])->name('data-pengguna.destroy');
+  Route::post('/pages/data-pengguna', [DataPengguna::class, 'store'])->name('data-pengguna.store');
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {

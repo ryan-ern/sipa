@@ -16,7 +16,7 @@ class Role
   public function handle(Request $request, Closure $next, ...$roles)
   {
     if (!Auth::check()) {
-      return redirect()->route('login');
+      return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu!');
     }
     // dd(Auth::user()->role);
     if (in_array(Auth::user()->role, $roles)) {

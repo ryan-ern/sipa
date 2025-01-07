@@ -11,7 +11,7 @@
                 ©
                 <script>
                     document.write(new Date().getFullYear())
-                </script>, SIPA - Sistem Informasi Panti Asuhan </span>
+                </script>, SIPA - Sistem Informasi Panti Asuhan
             </div>
         </div>
     </div>

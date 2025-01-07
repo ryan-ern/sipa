@@ -24,9 +24,40 @@
         opacity: 1;
     }
 }
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+.truncate:hover {
+    white-space: normal;
+    max-width: none;
+    overflow: visible;
+}
 
+.dt-buttons {
+  display: flex !important;
+  justify-content: space-between;
+  flex-wrap: nowrap !important;
+}
+
+div.dt-container div.dt-search input {
+    width: 100% !important;
+}
+
+@media screen and (max-width: 767px) {
+  div.dt-buttons {
+    justify-content: center !important;
+    gap: 0.5em;
+    width: 100%;
+    margin-bottom: 0.5em;
+  }
+}
 
 /* end costum */
+
+
 .menu .app-brand.demo {
   height: 64px;
 }

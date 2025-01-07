@@ -35,11 +35,12 @@ class Register extends Controller
       'sebagai.required' => 'Jenis akun harus diisi.',
       'password.required' => 'Password harus diisi.',
       'password.min' => 'Password minimal harus 8 karakter.',
+      'password.confirmed' => 'Password tidak cocok.',
     ]);
 
 
     try {
-      $store = User::create([
+      User::create([
         'nama_lengkap' => $validated['nama_lengkap'],
         'username' => $validated['username'],
         'no_tel' => $validated['no_tel'],

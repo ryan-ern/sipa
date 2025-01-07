@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
    */
   public function run(): void
   {
-    // User::factory(10)->create();
 
     User::factory()->create([
       'nama_lengkap' => 'Test Admin',
@@ -38,5 +37,7 @@ class DatabaseSeeder extends Seeder
       'sebagai' => 'wali',
       'status' => '0',
     ]);
+
+    User::factory(10)->create();
   }
 }
