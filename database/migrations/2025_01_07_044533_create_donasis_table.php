@@ -16,7 +16,7 @@ return new class extends Migration
       $table->string('nama');
       $table->string('no_tel');
       $table->enum('jenis', ['uang', 'barang', 'lainnya']);
-      $table->string('keterangan', 255);
+      $table->text('keterangan');
       $table->timestamps();
     });
   }

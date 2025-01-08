@@ -26,7 +26,7 @@ class DataDonasi extends Controller
     ], [
       'nama.required' => 'Nama harus diisi.',
       'no_tel.required' => 'Nomor telepon harus diisi.',
-      'no_tel.regex' => 'Format nomor telepon tidak valid (gunakan +62 atau 08).',
+      'no_tel.regex' => 'Format nomor telepon tidak valid (gunakan +62xxxxx atau 08xxxxxx).',
       'jenis.required' => 'Jenis donasi harus diisi.',
       'keterangan.required' => 'Keterangan harus diisi.',
     ]);
@@ -53,7 +53,7 @@ class DataDonasi extends Controller
     ], [
       'nama.required' => 'Nama harus diisi.',
       'no_tel.required' => 'Nomor telepon harus diisi.',
-      'no_tel.regex' => 'Format nomor telepon tidak valid (gunakan +62 atau 08).',
+      'no_tel.regex' => 'Format nomor telepon tidak valid (gunakan +62xxxxx atau 08xxxxxx).',
       'jenis.required' => 'Jenis donasi harus diisi.',
       'keterangan.required' => 'Keterangan harus diisi.',
     ]);

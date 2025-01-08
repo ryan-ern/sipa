@@ -31,7 +31,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($data as $user)
+                                @foreach ($data as $user)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="text-capitalize">
@@ -85,11 +85,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="10" class="text-center">Data pengguna tidak ditemukan</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -120,6 +116,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('page-script')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dynamicModal = document.getElementById('dynamicModal');
@@ -372,5 +371,4 @@
             });
         });
     </script>
-
 @endsection

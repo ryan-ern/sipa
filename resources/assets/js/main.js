@@ -55,6 +55,13 @@ let menu, animate;
       language: {
         search: '',
         searchPlaceholder: 'Cari Data...',
+        emptyTable: 'Tidak ada data yang ditemukan',
+        info: 'Menampilkan _START_ hingga _END_ dari _TOTAL_ data',
+        infoEmpty: 'Menampilkan 0 hingga 0 dari 0 data',
+        infoFiltered: '(difilter dari _MAX_ total data)',
+        lengthMenu: 'Menampilkan _MENU_ data',
+        loadingRecords: "Sedang Memuat...",
+        zeroRecords: "Tidak ada data yang sesuai",
       },
       layout: {
         topStart: {

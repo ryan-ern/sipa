@@ -28,7 +28,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($data as $donasi)
+                                @foreach ($data as $donasi)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="text-capitalize">{{ $donasi->nama }}</td>
@@ -65,11 +65,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="7" class="text-center">Data Donasi tidak ditemukan</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -100,6 +96,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('page-script')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dynamicModal = document.getElementById('dynamicModal');
@@ -122,17 +121,17 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                           <div class="form-floating form-floating-outline">
-                            <input type="text" class="form-control" id="nama" name="nama" value="${button.getAttribute('data-nama')}" required>
-                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" value="${button.getAttribute('data-nama')}" required>
+                            <label for="nama" >Nama</label>
                           </div>
                         </div>
                         <div class="col-md-6 mb-3">
                           <div class="form-floating form-floating-outline">
-                            <input type="tel" class="form-control" id="no_tel" name="no_tel" value="${button.getAttribute('data-no_tel')}" required>
-                            <label for="no_tel" class="form-label">Nomor Telepon</label>
+                            <input type="tel" class="form-control" id="no_tel" name="no_tel" placeholder="Nomor Telepon" value="${button.getAttribute('data-no_tel')}" required>
+                            <label for="no_tel" >Nomor Telepon</label>
                           </div>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                           <div class="form-floating form-floating-outline">
                             <select class="form-select" id="jenis" name="jenis" required>
                                 <option value="" disabled selected>Pilih Jenis</option>
@@ -140,14 +139,14 @@
                                 <option value="barang" ${button.getAttribute('data-jenis') === 'barang' ? 'selected' : ''}>Barang</option>
                                 <option value="lainnya" ${button.getAttribute('data-jenis') === 'lainnya' ? 'selected' : ''}>Lainnya</option>
                             </select>
-                            <label for="jenis" class="form-label">Jenis</label>
+                            <label for="jenis" >Jenis</label>
                           </div>
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-md-12 mb-3">
-                          <textarea class="form-control" id="keterangan" name="keterangan" rows="3" required>${button.getAttribute('data-keterangan')}</textarea>
+                          <textarea class="form-control" id="keterangan" name="keterangan" rows="3" placeholder="Keterangan" required>${button.getAttribute('data-keterangan')}</textarea>
                         </div>
                       </div>
                 `;
@@ -171,17 +170,17 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                           <div class="form-floating form-floating-outline">
-                            <input type="text" class="form-control" id="nama" name="nama" required>
-                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required>
+                            <label for="nama">Nama</label>
                           </div>
                         </div>
                         <div class="col-md-6 mb-3">
                           <div class="form-floating form-floating-outline">
-                            <input type="tel" class="form-control" id="no_tel" name="no_tel" required>
-                            <label for="no_tel" class="form-label">Nomor Telepon</label>
+                            <input type="tel" placeholder="Nomor Telepon" class="form-control" id="no_tel" name="no_tel" required>
+                            <label for="no_tel" >Nomor Telepon</label>
                           </div>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                           <div class="form-floating form-floating-outline">
                             <select class="form-select" id="jenis" name="jenis" required>
                                 <option value="" disabled selected>Pilih Jenis</option>
@@ -189,14 +188,14 @@
                                 <option value="barang">Barang</option>
                                 <option value="lainnya">Lainnya</option>
                             </select>
-                            <label for="jenis" class="form-label">Jenis</label>
+                            <label for="jenis" >Jenis</label>
                           </div>
                         </div>
                     </div>
 
                       <div class="row">
                         <div class="col-md-12 mb-3">
-                          <textarea class="form-control" id="keterangan" name="keterangan" rows="3" required></textarea>
+                          <textarea class="form-control" id="keterangan" name="keterangan" rows="3" placeholder="Keterangan" required></textarea>
                         </div>
                       </div>
                 `;
@@ -204,5 +203,4 @@
             });
         });
     </script>
-
 @endsection
