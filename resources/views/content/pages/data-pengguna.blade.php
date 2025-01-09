@@ -93,7 +93,7 @@
             </div>
         </div>
         <!-- Modal Create, Update, Delete -->
-        <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="ModalLabel">
+        <div class="modal fade" id="dynamicModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="ModalLabel">
             <div class="modal-dialog">
                 <form id="dynamicModalForm" method="POST">
                     @csrf

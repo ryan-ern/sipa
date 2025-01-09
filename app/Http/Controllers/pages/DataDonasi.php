@@ -62,8 +62,13 @@ class DataDonasi extends Controller
       return back()->with('error', 'Data Donasi ' . $request->nama . ' gagal diubah: ' . $validator->errors()->first());
     }
 
+    $donasi = Donasi::find($id);
+    if (!$donasi) {
+      return back()->with('error', 'Data Donasi tidak ditemukan.');
+    }
+
     try {
-      Donasi::where('id', $id)->update($validator->validated());
+      $donasi->update($validator->validated());
       return back()->with('success', 'Data Donasi ' . $request->nama . ' berhasil diubah');
     } catch (\Exception $e) {
       return back()->with('error', 'Data Donasi ' . $request->nama . ' gagal diubah: ' . $e->getMessage());
