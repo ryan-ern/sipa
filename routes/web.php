@@ -44,6 +44,7 @@ use App\Http\Controllers\form_elements\BasicInput;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
+use App\Http\Controllers\pages\DataArtikel;
 use App\Http\Controllers\pages\DataDonasi;
 use App\Http\Controllers\pages\DataPengguna;
 use App\Http\Controllers\tables\Basic as TablesBasic;
@@ -71,6 +72,12 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
   Route::get('/pages/data-donasi', [DataDonasi::class, 'index'])->name('data-donasi');
   Route::put('/pages/data-donasi/{id}', [DataDonasi::class, 'update'])->name('data-donasi.update');
   Route::delete('/pages/data-donasi/{id}', [DataDonasi::class, 'destroy'])->name('data-donasi.destroy');
+
+  // data informasi
+  Route::post('/pages/data-informasi', [DataArtikel::class, 'store'])->name('data-informasi.store');
+  Route::get('/pages/data-informasi', [DataArtikel::class, 'index'])->name('data-informasi');
+  Route::put('/pages/data-informasi/{id}', [DataArtikel::class, 'update'])->name('data-informasi.update');
+  Route::delete('/pages/data-informasi/{id}', [DataArtikel::class, 'destroy'])->name('data-informasi.destroy');
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
