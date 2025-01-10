@@ -2,19 +2,13 @@
 
 @section('title', 'Data Informasi')
 
-@section('vendor-style')
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
-@endsection
-
 @section('content')
     <div class="row gy-6">
         <div class="col-md-12 col-lg-12 mb-4">
             <div class="card">
                 <div class="card-body p-7">
-                    <button class="btn btn-primary float-end me-3 mt-3" data-bs-toggle="modal"
-                        data-bs-target="#dynamicModal" data-modal-type="tambah">
+                    <button class="btn btn-primary float-end me-3 mt-3" data-bs-toggle="modal" data-bs-target="#dynamicModal"
+                        data-modal-type="tambah">
                         Tambah Data
                     </button>
                     <div class="divider text-start">
@@ -108,10 +102,6 @@
 @endsection
 
 @section('page-script')
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dynamicModal = document.getElementById('dynamicModal');
