@@ -48,6 +48,7 @@ use App\Http\Controllers\pages\DataArtikel;
 use App\Http\Controllers\pages\DataDonasi;
 use App\Http\Controllers\pages\DataPengguna;
 use App\Http\Controllers\pages\DataSaran;
+use App\Http\Controllers\pages\SyaratMasuk;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use Dflydev\DotAccessData\Data;
 
@@ -85,6 +86,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
   Route::put('/pages/data-saran/{id}', [DataSaran::class, 'update'])->name('data-saran.update');
   Route::get('/pages/data-saran', [DataSaran::class, 'index'])->name('data-saran');
   Route::delete('/pages/data-saran/{id}', [DataSaran::class, 'destroy'])->name('data-saran.destroy');
+
+  // syarat masuk
+  Route::put('/pages/syarat-masuk/{id}', [SyaratMasuk::class, 'update'])->name('syarat-masuk.update');
+  Route::get('/pages/syarat-masuk', [SyaratMasuk::class, 'index'])->name('syarat-masuk');
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
