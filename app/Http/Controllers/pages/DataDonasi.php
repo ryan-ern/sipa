@@ -20,13 +20,13 @@ class DataDonasi extends Controller
   {
     $validated = Validator::make($request->all(), [
       'nama' => ['required', 'string', 'max:255'],
-      'no_tel' => ['required', 'regex:/^(?:\+62|0)[2-9][0-9]{7,11}$/'],
+      'no_tel' => ['required', 'regex:/^\+628\d{9,10}$/'],
       'jenis' => ['required', 'string', 'in:uang,barang,lainnya'],
       'keterangan' => ['required', 'string', 'max:255'],
     ], [
       'nama.required' => 'Nama harus diisi.',
       'no_tel.required' => 'Nomor telepon harus diisi.',
-      'no_tel.regex' => 'Format nomor telepon tidak valid (gunakan +62xxxxx atau 08xxxxxx).',
+      'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-10 digit angka).',
       'jenis.required' => 'Jenis donasi harus diisi.',
       'keterangan.required' => 'Keterangan harus diisi.',
     ]);
@@ -47,13 +47,13 @@ class DataDonasi extends Controller
   {
     $validator = Validator::make($request->all(), [
       'nama' => ['required', 'string', 'max:255'],
-      'no_tel' => ['required', 'regex:/^(?:\+62|0)[2-9][0-9]{7,11}$/'],
+      'no_tel' => ['required', 'regex:/^\+628\d{9,10}$/'],
       'jenis' => ['required', 'string', 'in:uang,barang,lainnya'],
       'keterangan' => ['required', 'string', 'max:255'],
     ], [
       'nama.required' => 'Nama harus diisi.',
       'no_tel.required' => 'Nomor telepon harus diisi.',
-      'no_tel.regex' => 'Format nomor telepon tidak valid (gunakan +62xxxxx atau 08xxxxxx).',
+      'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-10 digit angka).',
       'jenis.required' => 'Jenis donasi harus diisi.',
       'keterangan.required' => 'Keterangan harus diisi.',
     ]);

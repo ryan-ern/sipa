@@ -28,7 +28,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="text-capitalize">{{ $saran->nama }}</td>
                                         <td class="text-truncate">
-                                            <a class="text-primary" href="https://wa.me/{{ $saran->no_tel }}">
+                                            <a class="text-primary" href="https://wa.me/{{ $saran->no_tel }}"
+                                                target="_blank">
                                                 {{ $saran->no_tel }}
                                             </a>
                                         </td>
