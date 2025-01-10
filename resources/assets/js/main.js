@@ -83,31 +83,31 @@ let menu, animate;
                   extend: 'print',
                   text: '<i class="ri-printer-line me-4" ></i>Print',
                   className: 'dropdown-item',
-                  exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8] }
+                  exportOptions: { columns: ':not(:last-child)', stripHtml: false }
                 },
                 {
                   extend: 'excel',
                   text: '<i class="ri-file-excel-line me-4"></i>Excel',
                   className: 'dropdown-item',
-                  exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8] }
+                  exportOptions: { columns: ':not(:last-child)', stripHtml: false }
                 },
                 {
                   extend: 'pdf',
                   text: '<i class="ri-file-pdf-line me-4"></i>Pdf',
                   className: 'dropdown-item',
-                  exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8] }
+                  exportOptions: { columns: ':not(:last-child)', stripHtml: false }
                 },
                 {
                   extend: 'csv',
                   text: '<i class="ri-file-text-line me-4" ></i>Csv',
                   className: 'dropdown-item',
-                  exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8] }
+                  exportOptions: { columns: ':not(:last-child)', stripHtml: false }
                 },
                 {
                   extend: 'copy',
                   text: '<i class="ri-file-copy-line me-4" ></i>Copy',
                   className: 'dropdown-item',
-                  exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8] }
+                  exportOptions: { columns: ':not(:last-child)', stripHtml: false }
                 }
               ]
             }

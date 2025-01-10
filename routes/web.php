@@ -47,6 +47,7 @@ use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\pages\DataArtikel;
 use App\Http\Controllers\pages\DataDonasi;
 use App\Http\Controllers\pages\DataPengguna;
+use App\Http\Controllers\pages\DataSaran;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use Dflydev\DotAccessData\Data;
 
@@ -78,6 +79,12 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
   Route::get('/pages/data-informasi', [DataArtikel::class, 'index'])->name('data-informasi');
   Route::put('/pages/data-informasi/{id}', [DataArtikel::class, 'update'])->name('data-informasi.update');
   Route::delete('/pages/data-informasi/{id}', [DataArtikel::class, 'destroy'])->name('data-informasi.destroy');
+
+  // data saran
+  Route::post('/pages/data-saran', [DataSaran::class, 'store'])->name('data-saran.store');
+  Route::put('/pages/data-saran/{id}', [DataSaran::class, 'update'])->name('data-saran.update');
+  Route::get('/pages/data-saran', [DataSaran::class, 'index'])->name('data-saran');
+  Route::delete('/pages/data-saran/{id}', [DataSaran::class, 'destroy'])->name('data-saran.destroy');
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {

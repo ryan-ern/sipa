@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Saran;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -39,5 +40,7 @@ class DatabaseSeeder extends Seeder
     ]);
 
     User::factory(10)->create();
+
+    Saran::factory(10)->create();
   }
 }
