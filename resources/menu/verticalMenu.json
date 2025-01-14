@@ -21,8 +21,8 @@
     {
       "name": "Kegiatan",
       "icon": "menu-icon tf-icons ri-home-smile-line",
-      "slug": "kegiatan",
-      "url": "kegiatan"
+      "slug": "data-kegiatan",
+      "url": "pages/data-kegiatan"
     },
     {
       "name": "Data Donasi",

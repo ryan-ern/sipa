@@ -53,6 +53,20 @@ div.dt-container div.dt-search input {
     width: 100%;
     margin-bottom: 0.5em;
   }
+   .fc .fc-toolbar.fc-header-toolbar {
+        display: block;
+        text-align: center;
+    }
+
+    .fc-header-toolbar .fc-toolbar-chunk {
+        display: block;
+    }
+}
+
+.fc-button-primary {
+    color: #fff !important;
+    background-color: #8c57ff !important;
+    border-color: #8c57ff !important;
 }
 
 /* end costum */

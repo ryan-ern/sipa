@@ -19,5 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ]);
   })
   ->withExceptions(function (Exceptions $exceptions) {
-    //
+    $exceptions->renderable(function (\Exception $e) {
+      if ($e->getPrevious() instanceof \Illuminate\Session\TokenMismatchException) {
+        return back()->with('info', 'Sesi anda telah habis, silahkan login kembali!');
+      };
+    });
   })->create();

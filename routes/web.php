@@ -46,6 +46,7 @@ use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\pages\DataArtikel;
 use App\Http\Controllers\pages\DataDonasi;
+use App\Http\Controllers\pages\DataKegiatan;
 use App\Http\Controllers\pages\DataPengguna;
 use App\Http\Controllers\pages\DataSaran;
 use App\Http\Controllers\pages\SyaratMasuk;
@@ -90,6 +91,13 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
   // syarat masuk
   Route::put('/pages/syarat-masuk/{id}', [SyaratMasuk::class, 'update'])->name('syarat-masuk.update');
   Route::get('/pages/syarat-masuk', [SyaratMasuk::class, 'index'])->name('syarat-masuk');
+
+  // data kegiatan
+  Route::post('/pages/data-kegiatan', [DataKegiatan::class, 'store'])->name('data-kegiatan.store');
+  Route::get('/pages/data-kegiatan/events', [DataKegiatan::class, 'getEvents'])->name('data-kegiatan.events');
+  Route::get('/pages/data-kegiatan', [DataKegiatan::class, 'index'])->name('data-kegiatan');
+  Route::put('/pages/data-kegiatan/{id}', [DataKegiatan::class, 'update'])->name('data-kegiatan.update');
+  Route::delete('/pages/data-kegiatan/{id}', [DataKegiatan::class, 'destroy'])->name('data-kegiatan.destroy');
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
