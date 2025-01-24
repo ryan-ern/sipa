@@ -49,72 +49,73 @@ let menu, animate;
       greetingText = "Selamat Malam";
     }
 
-    greetingElement.innerHTML = `<span class="nav-link">${greetingText},</span>`;
-
-    new DataTable('#table', {
-      language: {
-        search: '',
-        searchPlaceholder: 'Cari Data...',
-        emptyTable: 'Tidak ada data yang ditemukan',
-        info: 'Menampilkan _START_ hingga _END_ dari _TOTAL_ data',
-        infoEmpty: 'Menampilkan 0 hingga 0 dari 0 data',
-        infoFiltered: '(difilter dari _MAX_ total data)',
-        lengthMenu: 'Menampilkan _MENU_ data',
-        loadingRecords: "Sedang Memuat...",
-        zeroRecords: "Tidak ada data yang sesuai",
-      },
-      layout: {
-        topStart: {
-          buttons: [
-            {
-              extend: 'pageLength',
-              text: function (dt) {
-                const pageLength = dt.page.len();
-                return `<i class="ri-file-list-3-line me-2"></i>${pageLength} Data`;
+    greetingElement ? greetingElement.innerHTML = `<span class="nav-link">${greetingText},</span>` : '';
+    $('.dataTable').each(function () {
+      new DataTable(this, {
+        language: {
+          search: '',
+          searchPlaceholder: 'Cari Data...',
+          emptyTable: 'Tidak ada data yang ditemukan',
+          info: 'Menampilkan _START_ hingga _END_ dari _TOTAL_ data',
+          infoEmpty: 'Menampilkan 0 hingga 0 dari 0 data',
+          infoFiltered: '(difilter dari _MAX_ total data)',
+          lengthMenu: 'Menampilkan _MENU_ data',
+          loadingRecords: "Sedang Memuat...",
+          zeroRecords: "Tidak ada data yang sesuai",
+        },
+        layout: {
+          topStart: {
+            buttons: [
+              {
+                extend: 'pageLength',
+                text: function (dt) {
+                  const pageLength = dt.page.len();
+                  return `<i class="ri-file-list-3-line me-2"></i>${pageLength} Data`;
+                },
+                className: 'btn btn-primary dropdown-toggle me-2',
               },
-              className: 'btn btn-primary dropdown-toggle me-2',
-            },
-            {
-              text: '<i class="ri-external-link-line me-2"></i>Export Data',
-              extend: 'collection',
-              className: 'btn btn-primary dropdown-toggle me-2',
-              buttons: [
-                {
-                  extend: 'print',
-                  text: '<i class="ri-printer-line me-4" ></i>Print',
-                  className: 'dropdown-item',
-                  exportOptions: { columns: ':not(:last-child)', stripHtml: false }
-                },
-                {
-                  extend: 'excel',
-                  text: '<i class="ri-file-excel-line me-4"></i>Excel',
-                  className: 'dropdown-item',
-                  exportOptions: { columns: ':not(:last-child)', stripHtml: false }
-                },
-                {
-                  extend: 'pdf',
-                  text: '<i class="ri-file-pdf-line me-4"></i>Pdf',
-                  className: 'dropdown-item',
-                  exportOptions: { columns: ':not(:last-child)', stripHtml: false }
-                },
-                {
-                  extend: 'csv',
-                  text: '<i class="ri-file-text-line me-4" ></i>Csv',
-                  className: 'dropdown-item',
-                  exportOptions: { columns: ':not(:last-child)', stripHtml: false }
-                },
-                {
-                  extend: 'copy',
-                  text: '<i class="ri-file-copy-line me-4" ></i>Copy',
-                  className: 'dropdown-item',
-                  exportOptions: { columns: ':not(:last-child)', stripHtml: false }
-                }
-              ]
-            }
-          ]
+              {
+                text: '<i class="ri-external-link-line me-2"></i>Export Data',
+                extend: 'collection',
+                className: 'btn btn-primary dropdown-toggle me-2',
+                buttons: [
+                  {
+                    extend: 'print',
+                    text: '<i class="ri-printer-line me-4" ></i>Print',
+                    className: 'dropdown-item',
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
+                  },
+                  {
+                    extend: 'excel',
+                    text: '<i class="ri-file-excel-line me-4"></i>Excel',
+                    className: 'dropdown-item',
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
+                  },
+                  {
+                    extend: 'pdf',
+                    text: '<i class="ri-file-pdf-line me-4"></i>Pdf',
+                    className: 'dropdown-item',
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
+                  },
+                  {
+                    extend: 'csv',
+                    text: '<i class="ri-file-text-line me-4" ></i>Csv',
+                    className: 'dropdown-item',
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
+                  },
+                  {
+                    extend: 'copy',
+                    text: '<i class="ri-file-copy-line me-4" ></i>Copy',
+                    className: 'dropdown-item',
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
+                  }
+                ]
+              }
+            ]
+          }
         }
-      }
-    })
+      })
+    });
   });
 
   // end costume
