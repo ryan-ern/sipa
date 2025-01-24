@@ -58,9 +58,14 @@
 
                 {{-- Menu utama --}}
                 <li class="menu-item {{ $activeClass }}">
+                    @php
+                        $hasAnak = App\Models\Anak::where('user_id', Auth::user()->id)->exists();
+                    @endphp
+
                     <a href="{{ isset($menu['url']) ? url($menu['url']) : 'javascript:void(0);' }}"
                         class="{{ isset($menu['submenu']) ? 'menu-link menu-toggle' : 'menu-link' }}"
-                        @if (isset($menu['target']) and !empty($menu['target'])) target="_blank" @endif>
+                        @if (isset($menu['target']) && !empty($menu['target'])) target="_blank" @endif
+                        @if ($menu['slug'] == 'kondisi-anak' && !$hasAnak) style="display: none;" @endif>
                         @isset($menu['icon'])
                             <i class="{{ $menu['icon'] }}"></i>
                         @endisset
@@ -69,6 +74,7 @@
                             <div class="badge bg-{{ $menu['badge'][0] }} rounded-pill ms-auto">{{ $menu['badge'][1] }}</div>
                         @endisset
                     </a>
+
 
                     {{-- Submenu --}}
                     @isset($menu['submenu'])

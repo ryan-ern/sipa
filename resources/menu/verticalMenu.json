@@ -10,13 +10,13 @@
       "name": "Data Anak",
       "icon": "menu-icon tf-icons ri-home-smile-line",
       "slug": "data-anak",
-      "url": "data-anak"
+      "url": "pages/data-anak"
     },
     {
       "name": "Pendaftaran",
       "icon": "menu-icon tf-icons ri-home-smile-line",
-      "slug": "pendaftaran",
-      "url": "pendaftaran"
+      "slug": "data-pendaftaran",
+      "url": "pages/data-pendaftaran"
     },
     {
       "name": "Kegiatan",
@@ -57,10 +57,16 @@
   ],
   "user": [
     {
-      "name": "Beranda",
+      "name": "Kondisi Anak",
       "icon": "menu-icon tf-icons ri-home-smile-line",
-      "slug": "beranda",
-      "url": "beranda"
+      "slug": "kondisi-anak",
+      "url": "pages/kondisi-anak"
+    },
+    {
+      "name": "Pendaftaran",
+      "icon": "menu-icon tf-icons ri-home-smile-line",
+      "slug": "pendaftaran-anak",
+      "url": "pages/pendaftaran-anak"
     }
   ]
 }

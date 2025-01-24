@@ -44,11 +44,14 @@ use App\Http\Controllers\form_elements\BasicInput;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
+use App\Http\Controllers\pages\DataAnak;
 use App\Http\Controllers\pages\DataArtikel;
 use App\Http\Controllers\pages\DataDonasi;
 use App\Http\Controllers\pages\DataKegiatan;
 use App\Http\Controllers\pages\DataPengguna;
 use App\Http\Controllers\pages\DataSaran;
+use App\Http\Controllers\pages\KondisiAnak;
+use App\Http\Controllers\pages\Pendaftaran;
 use App\Http\Controllers\pages\SyaratMasuk;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use Dflydev\DotAccessData\Data;
@@ -98,14 +101,36 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
   Route::get('/pages/data-kegiatan', [DataKegiatan::class, 'index'])->name('data-kegiatan');
   Route::put('/pages/data-kegiatan/{id}', [DataKegiatan::class, 'update'])->name('data-kegiatan.update');
   Route::delete('/pages/data-kegiatan/{id}', [DataKegiatan::class, 'destroy'])->name('data-kegiatan.destroy');
+
+  // data pendaftaran
+  Route::get('/pages/data-pendaftaran', [Pendaftaran::class, 'index'])->name('data-pendaftaran');
+  Route::put('/pendaftaran-anak/status/{id}', [Pendaftaran::class, 'store'])->name('pendaftaran-anak.status');
+
+  // data anak
+  Route::get('/pages/data-anak', [DataAnak::class, 'index'])->name('data-anak');
+  Route::put('/data-anak/status/{id}', [DataAnak::class, 'store'])->name('data-anak.status');
+
+  // data riwayat
+  Route::post('/pages/data-riwayat', [DataAnak::class, 'riwayat'])->name('data-riwayat.store');
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
   Route::get('/beranda', [User::class, 'index'])->name('beranda');
+
+  Route::get('/pages/pendaftaran-anak', [Pendaftaran::class, 'indexUser'])->name('pendaftaran-anak');
+  Route::post('/pendaftaran-anak', [Pendaftaran::class, 'store'])->name('pendaftaran-anak.store');
+  Route::put('/pendaftaran-anak/{id}', [Pendaftaran::class, 'store'])->name('pendaftaran-anak.update');
+
+  Route::get('/pages/kondisi-anak', [KondisiAnak::class, 'index'])->name('kondisi-anak');
+  Route::post('/kondisi-anak', [KondisiAnak::class, 'index'])->name('kondisi-anak.get');
+  Route::put('/pages/data-anak/{id}', [DataAnak::class, 'store'])->name('data-anak.update');
 });
 
 Route::group(['middleware' => ['guest']], function () {
   Route::get('/auth', function () {
+    return redirect('/auth/login');
+  });
+  Route::get('/login', function () {
     return redirect('/auth/login');
   });
   Route::get('/auth/login', [Login::class, 'index'])->name('login');
