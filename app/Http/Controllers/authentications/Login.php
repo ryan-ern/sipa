@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\authentications;
 
 use App\Http\Controllers\Controller;
+use App\Models\Anak;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -26,9 +27,16 @@ class Login extends Controller
     if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password'], 'status' => '1'])) {
       $request->session()->forget('count_login');
       $request->session()->regenerate();
-      if (Auth::user()->role == 'admin')
+      if (Auth::user()->role == 'admin') {
         return redirect()->intended('/dashboard')->with('success', 'Selamat datang ' . Auth::user()->nama_lengkap);
-      return redirect()->intended('/beranda')->with('success', 'Selamat datang ' . Auth::user()->nama_lengkap);
+      } else {
+        $user = Auth::user();
+        if (Anak::where('user_id', $user->id)->exists()) {
+          return redirect()->intended('/pages/kondisi-anak')->with('success', 'Selamat datang ' . Auth::user()->nama_lengkap);
+        } else {
+          return redirect()->intended('/pages/pendaftaran-anak')->with('success', 'Selamat datang ' . Auth::user()->nama_lengkap);
+        }
+      }
     }
     if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password'], 'status' => '0'])) {
       $request->session()->invalidate();
