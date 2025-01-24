@@ -27,7 +27,7 @@
                         <div class="divider-text ms-3 fs-5">Data Kegiatan</div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-sm table-bordered" id="table">
+                        <table class="table table-sm table-bordered dataTable" id="table">
                             <thead>
                                 <tr class="text-center">
                                     <th scope="col">No</th>

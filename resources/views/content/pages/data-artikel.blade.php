@@ -15,7 +15,7 @@
                         <div class="divider-text ms-3 fs-5">Artikel Informasi</div>
                     </div>
                     <div class="table-responsive text-start">
-                        <table class="table table-sm table-bordered" id="table">
+                        <table class="table table-sm table-bordered dataTable" id="table">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
