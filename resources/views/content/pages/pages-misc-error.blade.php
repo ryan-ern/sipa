@@ -15,7 +15,7 @@
         <h4 class="mb-2">Halaman Tidak Ditemukan 🙄</h4>
         <p class="mb-10 mx-2">Kamu sepertinya berada di jalan yang salah</p>
         <div>
-            <a href="{{ Auth::check() ? (Auth::user()->role == 'admin' ? url('/dashboard') : url('/beranda')) : url('/') }}"
+            <a href="{{ Auth::check() ? (Auth::user()->role == 'admin' ? url('/dashboard') : url('/pages/kondisi-anak')) : url('/') }}"
                 class="btn btn-primary text-center mb-7">
                 <i class="ri-home-4-line me-2"></i>Yuk kembali ke jalan yang benar
             </a>

@@ -1,6 +1,6 @@
 @extends('layouts/blankLayout')
 
-@section('title', 'Register - Halaman')
+@section('title', 'Register')
 
 @section('page-style')
     @vite(['resources/assets/vendor/scss/pages/page-auth.scss'])
@@ -27,7 +27,7 @@
                         <!-- Username -->
                         <div class="form-floating form-floating-outline mb-4">
                             <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                id="username" name="username" placeholder="Enter your username"
+                                id="username" name="username" placeholder="Isi Username anda untuk login"
                                 value="{{ old('username') }}" autofocus>
                             <label for="username">Username</label>
                             @error('username')
