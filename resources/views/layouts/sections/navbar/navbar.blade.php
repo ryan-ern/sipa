@@ -40,57 +40,27 @@
 @endif
 
 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-    {{-- <!-- Search -->
-    <div class="navbar-nav align-items-center">
-        <div class="nav-item d-flex align-items-center">
-            <i class="ri-search-line ri-22px me-1_5"></i>
-            <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2 ms-50" placeholder="Search..."
-                aria-label="Search...">
-        </div>
-    </div>
-    <!-- /Search --> --}}
     <ul class="navbar-nav flex-row align-items-center ms-auto">
 
-        <!-- Place this tag where you want the button to render. -->
         <li class="nav-item lh-1" id="greeting">
             <!-- Greeting text will be updated dynamically -->
         </li>
-        {{-- <li class="nav-item lh-1 me-4">
-            <a href="javascript:void(0);" class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="ri-notification-4-line ri-22px"></i>
-                <span class="badge bg-danger rounded-pill ms-1 small">4</span>
-            </a>
-        </li> --}}
 
-        <!-- User -->
         <li class="nav-item navbar-dropdown dropdown-user dropdown btn btn-primary ms-3 ">
             <a class="nav-link dropdown-toggle show-arrow p-0 text-white" href="javascript:void(0);"
                 data-bs-toggle="dropdown">
                 {{ Auth::user()->nama_lengkap }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end mt-3 py-2">
-                <li>
-                    <a class="dropdown-item" href="javascript:void(0);">
-                        <i class="ri-user-3-line ri-22px me-2"></i>
-                        <span class="align-middle">Profil Saya</span>
+                <form method="POST" action="{{ route('logout') }}" onclick="event.preventDefault(); this.submit();">
+                    @csrf
+                    <a class="dropdown-item text-danger" href="javascript:void(0);">
+                        <i class="ri-logout-box-r-line me-2 ri-22px"></i>
+                        <span class="align-middle">Logout</span>
                     </a>
-                </li>
-                <li>
-                    <div class="dropdown-divider"></div>
-                </li>
-                <li>
-                    <form method="POST" action="{{ route('logout') }}"
-                        onclick="event.preventDefault(); this.submit();">
-                        @csrf
-                        <a class="dropdown-item text-danger" href="javascript:void(0);">
-                            <i class="ri-logout-box-r-line me-2 ri-22px"></i>
-                            <span class="align-middle">Logout</span>
-                        </a>
-                    </form>
-                </li>
+                </form>
             </ul>
         </li>
-        <!--/ User -->
     </ul>
 </div>
 

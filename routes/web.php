@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\authentications\Forgot;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
 use App\Http\Controllers\layouts\WithoutNavbar;
 use App\Http\Controllers\layouts\Fluid;
@@ -16,8 +15,7 @@ use App\Http\Controllers\pages\MiscUnderMaintenance;
 use App\Http\Controllers\authentications\Login;
 use App\Http\Controllers\authentications\Register;
 use App\Http\Controllers\cards\CardBasic;
-use App\Http\Controllers\dashboard\Admin;
-use App\Http\Controllers\dashboard\User;
+use App\Http\Controllers\pages\Admin;
 use App\Http\Controllers\user_interface\Accordion;
 use App\Http\Controllers\user_interface\Alerts;
 use App\Http\Controllers\user_interface\Badges;
@@ -115,7 +113,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
-  Route::get('/beranda', [User::class, 'index'])->name('beranda');
 
   Route::get('/pages/pendaftaran-anak', [Pendaftaran::class, 'indexUser'])->name('pendaftaran-anak');
   Route::post('/pendaftaran-anak', [Pendaftaran::class, 'store'])->name('pendaftaran-anak.store');
