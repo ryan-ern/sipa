@@ -228,7 +228,7 @@ class Pendaftaran extends Controller
       $data['biodata'] = $biodata;
       $data['status'] = $request->status ?? 'berlangsung';
       $data['tahap'] = $request->tahap ?? '1';
-      $data['keterangan'] = $request->keterangan ?? null;
+      $data['keterangan'] = $request->keterangan ?? 'pendaftaran anda sudah masuk dalam antrian, silahkan menunggu info selanjutnya';
 
       if ($id) {
         if ($request->tahap == '3' && $request->status == 'lulus' && !$existingAnak->contains('nik', $request->nik)) {

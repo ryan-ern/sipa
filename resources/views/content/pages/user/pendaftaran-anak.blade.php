@@ -516,22 +516,24 @@
             const saveButton = document.getElementById("saveTemporary");
             const sendData = document.getElementById("sendData");
 
-            sendData.addEventListener("click", function() {
-                localStorage.removeItem("pendaftaranAnak");
-            })
+            if (saveButton) {
+                sendData.addEventListener("click", function() {
+                    localStorage.removeItem("pendaftaranAnak");
+                })
 
-            saveButton.addEventListener("click", function() {
-                const formData = new FormData(form);
-                let tempData = {};
+                saveButton.addEventListener("click", function() {
+                    const formData = new FormData(form);
+                    let tempData = {};
 
-                formData.forEach((value, key) => {
-                    tempData[key] = value;
+                    formData.forEach((value, key) => {
+                        tempData[key] = value;
+                    });
+
+                    localStorage.setItem("pendaftaranAnak", JSON.stringify(tempData));
+                    alert("Data berhasil disimpan sementara.");
                 });
 
-                localStorage.setItem("pendaftaranAnak", JSON.stringify(tempData));
-                alert("Data berhasil disimpan sementara.");
-            });
-
+            }
             const savedData = localStorage.getItem("pendaftaranAnak");
             if (savedData) {
                 const tempData = JSON.parse(savedData);
