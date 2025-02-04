@@ -50,8 +50,34 @@ let menu, animate;
     }
 
     greetingElement ? greetingElement.innerHTML = `<span class="nav-link">${greetingText},</span>` : '';
+
+    let minDate, maxDate;
+
+    DataTable.ext.search.push(function (settings, data, dataIndex) {
+      let min = minDate.val();
+      let max = maxDate.val();
+      let date = new Date(data[5]);
+
+      if (
+        (min === null && max === null) ||
+        (min === null && date <= max) ||
+        (min <= date && max === null) ||
+        (min <= date && date <= max)
+      ) {
+        return true;
+      }
+      return false;
+    });
+
+    minDate = new DateTime('#min', {
+      format: 'YYYY-MM-DD'
+    });
+    maxDate = new DateTime('#max', {
+      format: 'YYYY-MM-DD'
+    });
+
     $('.dataTable').each(function () {
-      new DataTable(this, {
+      let table = new DataTable(this, {
         language: {
           search: '',
           searchPlaceholder: 'Cari Data...',
@@ -115,6 +141,9 @@ let menu, animate;
           }
         }
       })
+      document.querySelectorAll('#min, #max').forEach((el) => {
+        el.addEventListener('change', () => table.draw());
+      });
     });
   });
 

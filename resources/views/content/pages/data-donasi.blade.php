@@ -7,10 +7,29 @@
         <div class="col-md-12 col-lg-12 mb-4">
             <div class="card">
                 <div class="card-body p-7">
-                    <button class="btn btn-primary float-end me-3 mt-3" data-bs-toggle="modal" data-bs-target="#dynamicModal"
-                        data-modal-type="tambah">
-                        Tambah Data
-                    </button>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex gap-3">
+                                <div class="form-floating form-floating-outline ">
+                                    <input type="text" id="min" name="min" class="form-control"
+                                        placeholder="Tanggal Minimal">
+                                    <label for="min">Tanggal Minimal</label>
+                                </div>
+                                <div class="form-floating form-floating-outline ">
+                                    <input type="text" id="max" name="max" class="form-control"
+                                        placeholder="Tanggal Maximal"">
+                                    <label for="max">Tanggal Maximal</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary float-end me-3 mt-3" data-bs-toggle="modal"
+                                data-bs-target="#dynamicModal" data-modal-type="tambah">
+                                Tambah Data
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="divider text-start">
                         <div class="divider-text ms-3 fs-5">Data Donasi</div>
                     </div>
@@ -32,7 +51,11 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="text-capitalize">{{ $donasi->nama }}</td>
-                                        <td>{{ $donasi->no_tel }}</td>
+                                        <td>
+                                            <a class="text-primary" href="https://wa.me/{{ $donasi->no_tel }}"
+                                                target="_blank">{{ $donasi->no_tel }}
+                                            </a>
+                                        </td>
                                         <td>{{ $donasi->jenis }}</td>
                                         <td class="truncate">{{ $donasi->keterangan }}</td>
                                         <td class="text-start">{{ $donasi->created_at->format('Y-m-d H:i') }}</td>

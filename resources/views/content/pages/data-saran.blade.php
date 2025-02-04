@@ -43,7 +43,7 @@
                                                     <i class="ri-pencil-fill"></i>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li>
+                                                    {{-- <li>
                                                         <button class="dropdown-item" data-bs-toggle="modal"
                                                             data-bs-target="#dynamicModal" data-modal-type="edit"
                                                             data-id="{{ $saran->id }}" data-nama="{{ $saran->nama }}"
@@ -51,7 +51,7 @@
                                                             data-keterangan="{{ $saran->keterangan }}">
                                                             <i class="ri-file-edit-line me-1"></i> Edit
                                                         </button>
-                                                    </li>
+                                                    </li> --}}
                                                     <li>
                                                         <button class="dropdown-item" data-bs-toggle="modal"
                                                             data-bs-target="#dynamicModal" data-modal-type="delete"

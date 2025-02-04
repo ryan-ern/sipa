@@ -26,6 +26,7 @@
                                     <th scope="col">Jenis Kelamin</th>
                                     <th scope="col">Role</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Lupa Password</th>
                                     <th scope="col">Diperbarui</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
@@ -38,7 +39,11 @@
                                             {{ $user->nama_lengkap }}
                                         </td>
                                         <td>{{ ucfirst($user->sebagai) }}</td>
-                                        <td>{{ $user->no_tel }}</td>
+                                        <td>
+                                            <a class="text-primary" href="https://wa.me/{{ $user->no_tel }}"
+                                                target="_blank">{{ $user->no_tel }}
+                                            </a>
+                                        </td>
                                         <td class="truncate">{{ $user->alamat }}</td>
                                         <td>{{ $user->jenis_kelamin }}</td>
                                         <td>{{ ucfirst($user->role) }}</td>
@@ -47,6 +52,13 @@
                                                 <span class="badge rounded-pill bg-label-success me-1">Aktif</span>
                                             @else
                                                 <span class="badge rounded-pill bg-label-danger me-1">Nonaktif</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($user->forgot == '1')
+                                                <span class="badge rounded-pill bg-label-danger me-1">Lupa</span>
+                                            @else
+                                                <span class="badge rounded-pill bg-label-info me-1">Tidak</span>
                                             @endif
                                         </td>
                                         <td class="text-start">{{ $user->updated_at->format('Y-m-d H:i') }}</td>
@@ -69,7 +81,8 @@
                                                             data-jenis_kelamin="{{ $user->jenis_kelamin }}"
                                                             data-role="{{ $user->role }}"
                                                             data-sebagai="{{ $user->sebagai }}"
-                                                            data-status="{{ $user->status }}">
+                                                            data-status="{{ $user->status }}"
+                                                            data-forgot="{{ $user->forgot }}">
                                                             <i class="ri-file-edit-line me-1"></i> Edit
                                                         </button>
                                                     </li>
@@ -120,6 +133,34 @@
 
 @section('page-script')
     <script>
+        function handleConfirmation(event) {
+            event.preventDefault();
+
+            const button = event.target;
+
+            const confirmation = confirm('Apakah anda ingin mengabarkan orang tua?');
+            if (confirmation) {
+                const whatsappNumber = button.getAttribute('data-no_tel');
+                const nama = button.getAttribute('data-nama_lengkap');
+
+                const message =
+                    `Halo, saya dari Sistem Informasi Panti Asuhan. Permintaan ubah password atas nama ${nama} telah diterima. berikut password anda yang terbaru yaitu ${button.getAttribute('data-password')}. Silahkan kunjungi hubungi kami untuk informasi lebih lanjut.`;
+
+                console.log(whatsappUrl);
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+                window.open(whatsappUrl, '_blank');
+                const form = button.closest('form');
+                if (form) {
+                    form.submit();
+                }
+            } else {
+                const form = button.closest('form');
+                if (form) {
+                    form.submit();
+                }
+            }
+        }
         document.addEventListener('DOMContentLoaded', function() {
             const dynamicModal = document.getElementById('dynamicModal');
             const modalTitle = dynamicModal.querySelector('.modal-title');
@@ -135,6 +176,7 @@
                     modalTitle.textContent = 'Edit Data';
                     modalForm.action = `/pages/data-pengguna/${userId}`;
                     modalForm.method = 'POST';
+                    modalForm.onsubmit = handleConfirmation;
                     modalContent.innerHTML = `
                     @csrf
                     @method('PUT')
@@ -240,6 +282,7 @@
                             <label for="status">Status</label>
                         </div>
                       </div>
+                      <input type="hidden" name="forgot" value="${button.getAttribute('data-forgot')}">
                       <div class="col-md-4">
                         <!-- Password -->
                         <div class="form-floating form-floating-outline mb-4">

@@ -38,7 +38,8 @@ class User extends Authenticatable
     'alamat',
     'jenis_kelamin',
     'status',
-    'sebagai'
+    'sebagai',
+    'forgot',
   ];
 
   /**

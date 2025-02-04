@@ -38,10 +38,8 @@
         </a>
     </div>
 @endif
-
 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
     <ul class="navbar-nav flex-row align-items-center ms-auto">
-
         <li class="nav-item lh-1" id="greeting">
             <!-- Greeting text will be updated dynamically -->
         </li>

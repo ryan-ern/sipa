@@ -7,6 +7,10 @@
         <div class="col-md-12 col-lg-12 mb-4">
             <div class="card">
                 <div class="card-body p-7">
+                    <button class="btn btn-primary float-end me-3 mt-3" data-bs-toggle="modal" data-bs-target="#dynamicModal"
+                        data-modal-type="tambah">
+                        Tambah Data
+                    </button>
                     <div class="divider text-start">
                         <div class="divider-text ms-3 fs-5">Data Anak</div>
                     </div>
@@ -43,9 +47,12 @@
                                         <tr class="text-center">
                                             <th>No</th>
                                             <th>Nama</th>
+                                            <th>NIK</th>
+                                            <th>TTL</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Status</th>
                                             <th>Pendidikan</th>
+                                            <th>Alamat Asal</th>
                                             <th>Nama Ortu</th>
                                             <th>Pekerjaan</th>
                                             <th>No. Telp</th>
@@ -58,12 +65,26 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $dataAnak->biodata->nama }}</td>
+                                                <td class="truncate">
+                                                    {{ $dataAnak->biodata->nik }}
+                                                </td>
+                                                <td class="truncate">
+                                                    {{ $dataAnak->biodata->ttl }}
+                                                </td>
                                                 <td>{{ $dataAnak->biodata->jk }}</td>
                                                 <td>{{ $dataAnak->biodata->status_anak }}</td>
                                                 <td>{{ $dataAnak->biodata->pendidikan }}</td>
+                                                <td class="truncate">{{ $dataAnak->biodata->alamat }}</td>
                                                 <td>{{ $dataAnak->biodata->ortu }}</td>
                                                 <td>{{ $dataAnak->biodata->pekerjaan }}</td>
-                                                <td>{{ $dataAnak->biodata->no_tel }}</td>
+                                                <td class="text-capitalize">
+                                                    <a class="text-primary"
+                                                        href="https://wa.me/{{ $dataAnak->biodata->no_tel }}"
+                                                        target="_blank">
+                                                        {{ $dataAnak->biodata->no_tel }}
+                                                    </a>
+                                                </td>
+
                                                 <td class="text-capitalize">
                                                     <span
                                                         class="badge rounded-pill bg-{{ $dataAnak->status == 'aktif' ? 'success' : ($dataAnak->status == 'alumni lulus' ? 'primary' : 'danger') }}">
@@ -184,6 +205,19 @@
                                                                         <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
                                                                 </li>
+                                                                <li>
+                                                                    <div class="dropdown-divider"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <button class="dropdown-item text-danger"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#dynamicModal"
+                                                                        data-id="{{ $dataAnak->id }}"
+                                                                        data-nama="{{ $dataAnak->biodata->nama }}"
+                                                                        data-modal-type="hapus">
+                                                                        <i class="ri-delete-bin-line me-1"></i> Hapus Data
+                                                                    </button>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <button type="button" class="btn btn-primary p-2"
@@ -201,6 +235,7 @@
                                                             data-orang_tua="{{ $dataAnak->biodata->ortu }}"
                                                             data-tahap="{{ $dataAnak->tahap }}"
                                                             data-status="{{ $dataAnak->status }}"
+                                                            data-fp_formulir="{{ $dataAnak->fp_formulir }}"
                                                             data-fp_surat_izin="{{ $dataAnak->fp_surat_izin }}"
                                                             data-fp_ktp="{{ $dataAnak->fp_ktp }}"
                                                             data-fp_kk="{{ $dataAnak->fp_kk }}"
@@ -209,7 +244,11 @@
                                                             data-fp_suket_sehat="{{ $dataAnak->fp_suket_sehat }}"
                                                             data-fp_bpjs="{{ $dataAnak->fp_bpjs }}"
                                                             data-fp_akte="{{ $dataAnak->fp_akte }}"
-                                                            data-fp_foto="{{ $dataAnak->fp_foto }}">
+                                                            data-fp_foto="{{ $dataAnak->fp_foto }}"
+                                                            @if (!empty($dataAnak->pendaftaran->files)) @foreach ($dataAnak->pendaftaran->files as $fileName => $filePath)
+                                                        data-file-{{ $fileName }}="{{ $filePath->file_path }}"
+                                                        data-fn{{ $fileName }}="{{ $filePath->file_name }}"
+                                                    @endforeach @endif>
                                                             <i class="ri-search-eye-line"></i>
                                                         </button>
                                                     </div>
@@ -220,7 +259,7 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- Tab Tahap 1 -->
+                        <!-- Tab Aktif -->
                         <div class="tab-pane fade show" id="aktif" role="tabpanel" aria-labelledby="aktif-tab">
                             <div class="table-responsive">
                                 <table class="table table-sm table-bordered dataTable">
@@ -228,9 +267,12 @@
                                         <tr class="text-center">
                                             <th>No</th>
                                             <th>Nama</th>
+                                            <th>NIK</th>
+                                            <th>TTL</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Status</th>
                                             <th>Pendidikan</th>
+                                            <th>Alamat Asal</th>
                                             <th>Nama Ortu</th>
                                             <th>Pekerjaan</th>
                                             <th>No. Telp</th>
@@ -243,12 +285,21 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $dataAnak->biodata->nama }}</td>
+                                                <td class="truncate">{{ $dataAnak->biodata->nik }}</td>
+                                                <td class="truncate">{{ $dataAnak->biodata->ttl }}</td>
                                                 <td>{{ $dataAnak->biodata->jk }}</td>
                                                 <td>{{ $dataAnak->biodata->status_anak }}</td>
                                                 <td>{{ $dataAnak->biodata->pendidikan }}</td>
+                                                <td class="truncate">{{ $dataAnak->biodata->alamat }}</td>
                                                 <td>{{ $dataAnak->biodata->ortu }}</td>
                                                 <td>{{ $dataAnak->biodata->pekerjaan }}</td>
-                                                <td>{{ $dataAnak->biodata->no_tel }}</td>
+                                                <td class="text-capitalize">
+                                                    <a class="text-primary"
+                                                        href="https://wa.me/{{ $dataAnak->biodata->no_tel }}"
+                                                        target="_blank">
+                                                        {{ $dataAnak->biodata->no_tel }}
+                                                    </a>
+                                                </td>
                                                 <td class="text-capitalize">
                                                     <span
                                                         class="badge rounded-pill bg-{{ $dataAnak->status == 'aktif' ? 'success' : ($dataAnak->status == 'alumni lulus' ? 'primary' : 'danger') }}">
@@ -321,6 +372,19 @@
                                                                         <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
                                                                 </li>
+                                                                <li>
+                                                                    <div class="dropdown-divider"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <button class="dropdown-item text-danger"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#dynamicModal"
+                                                                        data-id="{{ $dataAnak->id }}"
+                                                                        data-nama="{{ $dataAnak->biodata->nama }}"
+                                                                        data-modal-type="hapus">
+                                                                        <i class="ri-delete-bin-line me-1"></i> Hapus Data
+                                                                    </button>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <button type="button" class="btn btn-primary p-2"
@@ -338,6 +402,7 @@
                                                             data-orang_tua="{{ $dataAnak->biodata->ortu }}"
                                                             data-tahap="{{ $dataAnak->tahap }}"
                                                             data-status="{{ $dataAnak->status }}"
+                                                            data-fp_formulir="{{ $dataAnak->fp_formulir }}"
                                                             data-fp_surat_izin="{{ $dataAnak->fp_surat_izin }}"
                                                             data-fp_ktp="{{ $dataAnak->fp_ktp }}"
                                                             data-fp_kk="{{ $dataAnak->fp_kk }}"
@@ -346,7 +411,11 @@
                                                             data-fp_suket_sehat="{{ $dataAnak->fp_suket_sehat }}"
                                                             data-fp_bpjs="{{ $dataAnak->fp_bpjs }}"
                                                             data-fp_akte="{{ $dataAnak->fp_akte }}"
-                                                            data-fp_foto="{{ $dataAnak->fp_foto }}">
+                                                            data-fp_foto="{{ $dataAnak->fp_foto }}"
+                                                            @if (!empty($dataAnak->pendaftaran->files)) @foreach ($dataAnak->pendaftaran->files as $fileName => $filePath)
+                                                        data-file-{{ $fileName }}="{{ $filePath->file_path }}"
+                                                        data-fn{{ $fileName }}="{{ $filePath->file_name }}"
+                                                    @endforeach @endif>
                                                             <i class="ri-search-eye-line"></i>
                                                         </button>
                                                     </div>
@@ -358,7 +427,7 @@
                             </div>
                         </div>
 
-                        <!-- Tab Tahap 2 -->
+                        <!-- Tab alumni -->
                         <div class="tab-pane fade" id="alumni" role="tabpanel" aria-labelledby="alumni-tab">
                             <div class="table-responsive">
                                 <table class="table table-sm table-bordered dataTable">
@@ -366,9 +435,12 @@
                                         <tr class="text-center">
                                             <th>No</th>
                                             <th>Nama</th>
+                                            <th>NIK</th>
+                                            <th>TTL</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Status</th>
                                             <th>Pendidikan</th>
+                                            <th>Alamat Asal</th>
                                             <th>Nama Ortu</th>
                                             <th>Pekerjaan</th>
                                             <th>No. Telp</th>
@@ -381,12 +453,21 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $dataAnak->biodata->nama }}</td>
+                                                <td class="truncate">{{ $dataAnak->biodata->nik }}</td>
+                                                <td class="truncate">{{ $dataAnak->biodata->ttl }}</td>
                                                 <td>{{ $dataAnak->biodata->jk }}</td>
                                                 <td>{{ $dataAnak->biodata->status_anak }}</td>
                                                 <td>{{ $dataAnak->biodata->pendidikan }}</td>
+                                                <td class="truncate">{{ $dataAnak->biodata->alamat }}</td>
                                                 <td>{{ $dataAnak->biodata->ortu }}</td>
                                                 <td>{{ $dataAnak->biodata->pekerjaan }}</td>
-                                                <td>{{ $dataAnak->biodata->no_tel }}</td>
+                                                <td class="text-capitalize">
+                                                    <a class="text-primary"
+                                                        href="https://wa.me/{{ $dataAnak->biodata->no_tel }}"
+                                                        target="_blank">
+                                                        {{ $dataAnak->biodata->no_tel }}
+                                                    </a>
+                                                </td>
                                                 <td class="text-capitalize">
                                                     <span
                                                         class="badge rounded-pill bg-{{ $dataAnak->status == 'aktif' ? 'success' : ($dataAnak->status == 'alumni lulus' ? 'primary' : 'danger') }}">
@@ -459,6 +540,19 @@
                                                                         <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
                                                                 </li>
+                                                                <li>
+                                                                    <div class="dropdown-divider"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <button class="dropdown-item text-danger"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#dynamicModal"
+                                                                        data-id="{{ $dataAnak->id }}"
+                                                                        data-nama="{{ $dataAnak->biodata->nama }}"
+                                                                        data-modal-type="hapus">
+                                                                        <i class="ri-delete-bin-line me-1"></i> Hapus Data
+                                                                    </button>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <button type="button" class="btn btn-primary p-2"
@@ -476,6 +570,7 @@
                                                             data-orang_tua="{{ $dataAnak->biodata->ortu }}"
                                                             data-tahap="{{ $dataAnak->tahap }}"
                                                             data-status="{{ $dataAnak->status }}"
+                                                            data-fp_formulir="{{ $dataAnak->fp_formulir }}"
                                                             data-fp_surat_izin="{{ $dataAnak->fp_surat_izin }}"
                                                             data-fp_ktp="{{ $dataAnak->fp_ktp }}"
                                                             data-fp_kk="{{ $dataAnak->fp_kk }}"
@@ -484,7 +579,11 @@
                                                             data-fp_suket_sehat="{{ $dataAnak->fp_suket_sehat }}"
                                                             data-fp_bpjs="{{ $dataAnak->fp_bpjs }}"
                                                             data-fp_akte="{{ $dataAnak->fp_akte }}"
-                                                            data-fp_foto="{{ $dataAnak->fp_foto }}">
+                                                            data-fp_foto="{{ $dataAnak->fp_foto }}"
+                                                            @if (!empty($dataAnak->pendaftaran->files)) @foreach ($dataAnak->pendaftaran->files as $fileName => $filePath)
+                                                        data-file-{{ $fileName }}="{{ $filePath->file_path }}"
+                                                        data-fn{{ $fileName }}="{{ $filePath->file_name }}"
+                                                    @endforeach @endif>
                                                             <i class="ri-search-eye-line"></i>
                                                         </button>
                                                     </div>
@@ -496,7 +595,7 @@
                             </div>
                         </div>
 
-                        <!-- Tab Tahap 3 -->
+                        <!-- Tab alumni masalah-->
                         <div class="tab-pane fade" id="alumniBermasalah" role="tabpanel"
                             aria-labelledby="alumniBermasalah-tab">
                             <div class="table-responsive">
@@ -505,13 +604,17 @@
                                         <tr class="text-center">
                                             <th>No</th>
                                             <th>Nama</th>
+                                            <th>NIK</th>
+                                            <th>TTL</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Status</th>
                                             <th>Pendidikan</th>
+                                            <th>Alamat Asal</th>
                                             <th>Nama Ortu</th>
                                             <th>Pekerjaan</th>
                                             <th>No. Telp</th>
                                             <th>Status</th>
+                                            <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -520,18 +623,28 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $dataAnak->biodata->nama }}</td>
+                                                <td>{{ $dataAnak->biodata->nik }}</td>
+                                                <td>{{ $dataAnak->biodata->ttl }}</td>
                                                 <td>{{ $dataAnak->biodata->jk }}</td>
                                                 <td>{{ $dataAnak->biodata->status_anak }}</td>
                                                 <td>{{ $dataAnak->biodata->pendidikan }}</td>
+                                                <td>{{ $dataAnak->biodata->alamat }}</td>
                                                 <td>{{ $dataAnak->biodata->ortu }}</td>
                                                 <td>{{ $dataAnak->biodata->pekerjaan }}</td>
-                                                <td>{{ $dataAnak->biodata->no_tel }}</td>
+                                                <td class="text-capitalize">
+                                                    <a class="text-primary"
+                                                        href="https://wa.me/{{ $dataAnak->biodata->no_tel }}"
+                                                        target="_blank">
+                                                        {{ $dataAnak->biodata->no_tel }}
+                                                    </a>
+                                                </td>
                                                 <td class="text-capitalize">
                                                     <span
                                                         class="badge rounded-pill bg-{{ $dataAnak->status == 'aktif' ? 'success' : ($dataAnak->status == 'alumni lulus' ? 'primary' : 'danger') }}">
                                                         {{ $dataAnak->status }}
                                                     </span>
                                                 </td>
+                                                <td class="text-capitalize truncate">{{ $dataAnak->keterangan }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-3">
                                                         <div class="dropdown">
@@ -598,6 +711,19 @@
                                                                         <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
                                                                 </li>
+                                                                <li>
+                                                                    <div class="dropdown-divider"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <button class="dropdown-item text-danger"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#dynamicModal"
+                                                                        data-id="{{ $dataAnak->id }}"
+                                                                        data-nama="{{ $dataAnak->biodata->nama }}"
+                                                                        data-modal-type="hapus">
+                                                                        <i class="ri-delete-bin-line me-1"></i> Hapus Data
+                                                                    </button>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <button type="button" class="btn btn-primary p-2"
@@ -615,6 +741,7 @@
                                                             data-orang_tua="{{ $dataAnak->biodata->ortu }}"
                                                             data-tahap="{{ $dataAnak->tahap }}"
                                                             data-status="{{ $dataAnak->status }}"
+                                                            data-fp_formulir="{{ $dataAnak->fp_formulir }}"
                                                             data-fp_surat_izin="{{ $dataAnak->fp_surat_izin }}"
                                                             data-fp_ktp="{{ $dataAnak->fp_ktp }}"
                                                             data-fp_kk="{{ $dataAnak->fp_kk }}"
@@ -623,7 +750,11 @@
                                                             data-fp_suket_sehat="{{ $dataAnak->fp_suket_sehat }}"
                                                             data-fp_bpjs="{{ $dataAnak->fp_bpjs }}"
                                                             data-fp_akte="{{ $dataAnak->fp_akte }}"
-                                                            data-fp_foto="{{ $dataAnak->fp_foto }}">
+                                                            data-fp_foto="{{ $dataAnak->fp_foto }}"
+                                                            @if (!empty($dataAnak->pendaftaran->files)) @foreach ($dataAnak->pendaftaran->files as $fileName => $filePath)
+                                                        data-file-{{ $fileName }}="{{ $filePath->file_path }}"
+                                                        data-fn{{ $fileName }}="{{ $filePath->file_name }}"
+                                                    @endforeach @endif>
                                                             <i class="ri-search-eye-line"></i>
                                                         </button>
                                                     </div>
@@ -668,7 +799,13 @@
                                         <td class="text-capitalize">{{ $riwayatAnak->status }}</td>
                                         <td class="text-capitalize truncate">{{ $riwayatAnak->keterangan }}</td>
                                         <td class="text-capitalize">{{ $riwayatAnak->biodata->ortu }}</td>
-                                        <td class="text-capitalize">{{ $riwayatAnak->biodata->no_tel }}</td>
+                                        <td class="text-capitalize">
+                                            <a class="text-primary"
+                                                href="https://wa.me/{{ $riwayatAnak->biodata->no_tel }}"
+                                                target="_blank">
+                                                {{ $riwayatAnak->biodata->no_tel }}
+                                            </a>
+                                        </td>
                                         <td class="text-capitalize">{{ $riwayatAnak->updated_at->format('Y-m-d H:i') }}
                                         </td>
                                     </tr>
@@ -740,6 +877,7 @@
 
 
                 const documents = [
+                    createDocumentButton(button, 'data-fp_formulir', 'Formulir'),
                     createDocumentButton(button, 'data-fp_surat_izin', 'Surat Izin'),
                     createDocumentButton(button, 'data-fp_suket_tidak_mampu', 'Suket Tidak Mampu'),
                     createDocumentButton(button, 'data-fp_suket_kematian', 'Suket Kematian'),
@@ -748,8 +886,17 @@
                     createDocumentButton(button, 'data-fp_kk', 'KK'),
                     createDocumentButton(button, 'data-fp_bpjs', 'BPJS'),
                     createDocumentButton(button, 'data-fp_akte', 'Akte'),
-                    createDocumentButton(button, 'data-fp_foto', 'Pas Foto')
+                    createDocumentButton(button, 'data-fp_foto', 'Pas Foto'),
                 ];
+
+                for (const [key, value] of Object.entries(button.dataset)) {
+                    if (key.startsWith("file")) {
+                        let num = key.replace('file-', '');
+                        let fileName = 'fn' + num
+                        documents.push(createDocumentButton(button, `data-${key}`, button.dataset[
+                            fileName]));
+                    }
+                }
 
                 const hasDocuments = documents.some(doc => doc !== '');
 
@@ -787,7 +934,7 @@
                         <button type="submit" class="btn btn-primary me-2">Simpan</button>
                     </div>`;
                 } else if (modalType === 'riwayat') {
-                    modalTitle.textContent = `Riwayat Sakit ${button.getAttribute('data-nama')}`;
+                    modalTitle.textContent = `Riwayat Keadaan ${button.getAttribute('data-nama')}`;
                     modalForm.setAttribute('action', `/pages/data-riwayat`);
                     modalForm.setAttribute('method', 'POST');
                     closeModal.replaceWith(
@@ -811,6 +958,22 @@
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary me-2">Simpan</button>
                     </div>`;
+                } else if (modalType === 'hapus') {
+                    modalTitle.textContent = `Hapus Data ${button.getAttribute('data-nama')}`;
+                    modalForm.setAttribute('action', `/data-anak/hapus/${button.getAttribute('data-id')}`);
+                    modalForm.setAttribute('method', 'POST');
+                    closeModal.replaceWith(
+                        ``
+                    )
+                    modalForm.innerHTML = `
+                    @csrf
+                    @method('DELETE')
+                    <p>Apakah Anda yakin ingin menghapus data <strong>${button.getAttribute('data-nama')}</strong>?</p>
+                    <p class="text-danger"><small>Data yang dihapus tidak dapat dikembalikan.</small></p>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-danger me-2">Hapus</button>
+                    </div>
+                `;
                 } else {
                     modalTitle.textContent = `Lihat Data ${button.getAttribute('data-nama')}`;
 
@@ -820,12 +983,7 @@
                         <div class="col-md-12 mb-5">
                             <div class="d-flex align-items-center flex-column">
                                 ${button.getAttribute('data-fp_foto') ?
-                                    `<img src="/storage/${button.getAttribute('data-fp_foto')}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="foto profil"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                onclick="window.open('/storage/${button.getAttribute('data-fp_foto')}', '_blank')"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="img-fluid rounded mb-2"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                width="120">` :
-                                    ''
+                                    `<img src="/storage/${button.getAttribute('data-fp_foto')}" alt="foto profil" onclick="window.open('/storage/${button.getAttribute('data-fp_foto')}', '_blank')" class="img-fluid rounded mb-2" width="120">` : ''
                                 }
                                 <h5 class="mb-0">${button.getAttribute('data-nama')}</h5>
                                 <span class="text-muted">${button.getAttribute('data-pendidikan')}</span>
@@ -840,18 +998,8 @@
 
                         ${['data-nama', 'data-jenis_kelamin', 'data-nik', 'data-status_anak',
                            'data-pendidikan', 'data-orang_tua', 'data-pekerjaan',
-                           'data-no_tel'].map(attr => `
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="col-md-6 mb-3">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="form-floating form-floating-outline">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <input type="text"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="form-control"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                id="${attr}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                placeholder="${attr.replace('data-', '')}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                value="${button.getAttribute(attr)}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                readonly>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <label for="${attr}" class="text-capitalize">${attr.replace('data-', '').replace('_', ' ')}</label>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>`).join('')}
+                           'data-no_tel'].map(attr =>
+                           `<div class="col-md-6 mb-3"><div class="form-floating form-floating-outline"><input type="text" class="form-control" id="${attr}" placeholder="${attr.replace('data-', '')}" value="${button.getAttribute(attr)}" readonly> <label for="${attr}" class="text-capitalize">${attr.replace('data-', '').replace('_', ' ')}</label> </div> </div>`).join('')}
 
                         <div class="row">
                             <div class="col-md-12 mb-3">
@@ -863,17 +1011,7 @@
                         </div>
 
                         ${hasDocuments ?
-                            `<div class="row">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="col-md-12">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="divider text-center">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="divider-text fs-5">Bagian Administrasi</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="row">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ${documents.join('')}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>` : ''}
+                            `<div class="row"><div class="col-md-12"><div class="divider text-center"><div class="divider-text fs-5">Bagian Administrasi</div></div></div></div><div class="row">${documents.join('')}</div>` : ''}
                     </div>`;
                 }
             });

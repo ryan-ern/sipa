@@ -23,6 +23,7 @@ return new class extends Migration
       $table->string('jenis_kelamin');
       $table->enum('status', ['1', '0'])->default('0');
       $table->enum('sebagai', ['ortu', 'wali', 'staff'])->default('ortu');
+      $table->enum('forgot', ['1', '0'])->default('0');
       $table->timestamps();
     });
 

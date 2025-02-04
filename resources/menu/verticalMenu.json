@@ -43,10 +43,10 @@
       "url": "pages/data-saran"
     },
     {
-      "name": "Syarat Masuk",
+      "name": "Persyaratan",
       "icon": "menu-icon tf-icons ri-home-smile-line",
       "slug": "syarat-masuk",
-      "url": "pages/syarat-masuk"
+      "url": "pages/persyaratan"
     },
     {
       "name": "Data Pengguna",

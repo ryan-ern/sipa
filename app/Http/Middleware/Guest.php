@@ -18,7 +18,7 @@ class Guest
     if (Auth::check()) {
       if (Auth::user()->role == 'admin')
         return redirect()->route('dashboard')->with('info', 'Anda sudah login!');
-      return redirect()->route('beranda')->with('info', 'Anda sudah login!');
+      return redirect()->route('kondisi-anak')->with('info', 'Anda sudah login!');
     }
 
     return $next($request);
