@@ -4,6 +4,7 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use App\Models\Anak;
+use App\Models\Pendaftaran;
 use App\Models\Riwayat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,40 +70,44 @@ class DataAnak extends Controller
 
   public function store(Request $request, $id = null)
   {
-    $validator = Validator::make($request->all(), [
-      'user_id' => ['nullable', 'string'],
-      'nama' => ['required', 'string', 'max:255'],
-      'ttl' => ['required', 'string', 'max:255'],
-      'nik' => ['required', 'string', 'max:255'],
-      'jk' => ['required', 'string'],
-      'status_anak' => ['required', 'string'],
-      'pendidikan' => ['required', 'string'],
-      'alamat' => ['required', 'string'],
-      'ortu' => ['required', 'string'],
-      'pekerjaan' => ['required', 'string'],
-      'status' => ['nullable', 'string'],
-      'keterangan' => ['nullable', 'string'],
-      'fp_surat_izin' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
-      'fp_suket_tidak_mampu' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
-      'fp_suket_kematian' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
-      'fp_suket_sehat' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
-      'fp_ktp' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
-      'fp_kk' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
-      'fp_bpjs' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
-      'fp_akte' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
-      'fp_foto' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
-    ], [
-      '*.required' => ':attribute harus diisi.',
-      '*.file' => ':attribute harus berupa file yang valid.',
-      '*.mimes' => 'Format file :attribute harus pdf, jpg, jpeg, atau png.',
-      '*.max' => 'Ukuran file :attribute maksimal 2MB.',
-    ]);
+    if ($id == null) {
+      $validator = Validator::make($request->all(), [
+        'user_id' => ['nullable', 'string'],
+        'nama' => ['required', 'string', 'max:255'],
+        'ttl' => ['required', 'string', 'max:255'],
+        'nik' => ['required', 'string', 'max:255'],
+        'jk' => ['required', 'string'],
+        'status_anak' => ['required', 'string'],
+        'pendidikan' => ['required', 'string'],
+        'alamat' => ['required', 'string'],
+        'ortu' => ['required', 'string'],
+        'pekerjaan' => ['required', 'string'],
+        'status' => ['nullable', 'string'],
+        'keterangan' => ['nullable', 'string'],
+        'fp_formulir' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+        'fp_surat_izin' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+        'fp_suket_tidak_mampu' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+        'fp_suket_kematian' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+        'fp_suket_sehat' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+        'fp_ktp' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+        'fp_kk' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+        'fp_bpjs' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+        'fp_akte' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+        'fp_foto' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+      ], [
+        '*.required' => ':attribute harus diisi.',
+        '*.file' => ':attribute harus berupa file yang valid.',
+        '*.mimes' => 'Format file :attribute harus pdf, jpg, jpeg, atau png.',
+        '*.max' => 'Ukuran file :attribute maksimal 2MB.',
+      ]);
 
-    if ($validator->fails()) {
-      return back()->with('error', 'Pendaftaran anak gagal disimpan: ' . $validator->errors()->first());
+      if ($validator->fails()) {
+        return back()->with('error', 'Pendaftaran anak gagal disimpan: ' . $validator->errors()->first());
+      }
     }
 
     $files = [
+      'fp_formulir',
       'fp_surat_izin',
       'fp_suket_tidak_mampu',
       'fp_suket_kematian',
@@ -116,6 +121,7 @@ class DataAnak extends Controller
 
     $fileNames = [
       'fn_surat_izin',
+      'fn_formulir',
       'fn_suket_tidak_mampu',
       'fn_suket_kematian',
       'fn_suket_sehat',
@@ -174,13 +180,37 @@ class DataAnak extends Controller
     ]);
 
     try {
-      $data['user_id'] = $request->user_id ?? Auth::id();
-      $data['biodata'] = $biodata;
-      $data['status'] = $request->status ?? 'aktif';
-      $data['keterangan'] = $request->keterangan ?? '-';
-
       if ($id) {
-        Anak::where('id', $id)->update($data);
+        $daftar = Pendaftaran::find($id);
+        Anak::where('id', $id)->update([
+          'user_id' => $request->user_id ?? Auth::id(),
+          'biodata' => $biodata,
+          'status' => $request->status ?? 'aktif',
+          'keterangan' => $request->keterangan ?? '-',
+          'fp_formulir' => $request->fp_formulir ?? $daftar->fp_formulir,
+          'fp_surat_izin' => $request->fp_surat_izin ?? $daftar->fp_surat_izin,
+          'fp_suket_tidak_mampu' => $request->fp_suket_tidak_mampu ?? $daftar->fp_suket_tidak_mampu,
+          'fp_suket_kematian' => $request->fp_suket_kematian ?? $daftar->fp_suket_kematian,
+          'fp_suket_sehat' => $request->fp_suket_sehat ?? $daftar->fp_suket_sehat,
+          'fp_ktp' => $request->fp_ktp ?? $daftar->fp_ktp,
+          'fp_kk' => $request->fp_kk ?? $daftar->fp_kk,
+          'fp_bpjs' => $request->fp_bpjs ?? $daftar->fp_bpjs,
+          'fp_akte' => $request->fp_akte ?? $daftar->fp_akte,
+          'fp_foto' => $request->fp_foto ?? $daftar->fp_foto
+        ]);
+        if ($request->hasFile('files')) {
+          foreach ($request->file('files') as $index => $file) {
+            $fileNameOpt = $request->file_name[$index] ?? null;
+            $fileNamePath = time() . '_' . $fileNameOpt . '.' . $file->getClientOriginalExtension();
+            $filePathOpt = $file->storeAs('documents/opsional', $fileNamePath, 'public');
+
+            $daftar->files()->create([
+              'pendaftaran_id' => $id,
+              'file_name' => $fileNameOpt,
+              'file_path' => $filePathOpt,
+            ]);
+          }
+        }
         if (Auth::user()->role == 'admin') {
           return back()->with('success', 'Data anak ' . $request->nama .  ' berhasil diperbarui');
         } else {
@@ -195,6 +225,19 @@ class DataAnak extends Controller
       }
     } catch (\Exception $e) {
       return back()->with('error', 'Data anak gagal disimpan: ' . $e->getMessage());
+    }
+  }
+
+  public function destroy($id)
+  {
+    $anak = Anak::findOrFail($id);
+    $data = $anak->biodata;
+    $splitData = explode('~', $data);
+    try {
+      $anak->delete();
+      return back()->with('success', 'Data ' . $splitData[0] . ' berhasil dihapus');
+    } catch (\Exception $e) {
+      return back()->with('error', 'Data ' . $splitData[0] . ' gagal dihapus: ' . $e->getMessage());
     }
   }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use App\Models\Anak;
+use App\Models\PendaftaranFile;
 use App\Models\Riwayat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class KondisiAnak extends Controller
   {
     $user = Auth::user();
     if (!Anak::where('user_id', $user->id)->exists()) {
-      return redirect('/pages/pendaftaran-anak')->with('error', 'Silahkan daftarkan anak anda terlebih dahulu');
+      return redirect('/pages/pendaftaran-anak')->with('info', 'Silahkan daftarkan anak anda terlebih dahulu');
     }
     $selectedId = $request->id;
 
@@ -75,7 +76,15 @@ class KondisiAnak extends Controller
       'data' => $processData($data),
       'riwayat' => $riwayat ?? null,
       'anak' => $processData($anak),
-      'info' => $infoData ?? null
+      'filesAnak' => $info,
+      'info' => $infoData ?? null,
     ]);
+  }
+
+  public function destroy($id)
+  {
+    $file = PendaftaranFile::where('id', $id)->first();
+    $file->delete();
+    return back()->with('success', 'Berhasil hapus File ' . $file->name);
   }
 }

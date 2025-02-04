@@ -59,10 +59,12 @@
             <div class="card">
                 <div class="card-body">
                     <h5>Informasi Data Anak</h5>
-                    <form id="pendaftaranForm" action="{{ route('data-anak.update', $info->id) }}" method="POST">
+                    <form id="pendaftaranForm" action="{{ route('data-anak.update', $info->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
+                            <input type="hidden" name="id" value="{{ $info->id }}">
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input type="text" class="form-control" id="nama" name="nama"
@@ -110,7 +112,7 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <select class="form-select" id="status_anak" name="status_anak" required>
-                                        <option value="" disabled {{ !$info->status_anak ? 'selected' : '' }}>
+                                        <option value="" disabled {{ $info->status_anak ? 'selected' : '' }}>
                                             Pilih Status Anak
                                         </option>
                                         <option value="Anak Yatim"
@@ -159,6 +161,198 @@
                                 <label for="alamat">Alamat Anak</label>
                                 <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $info->alamat }}</textarea>
                             </div>
+                            <div class="col-md-12">
+                                <div class="divider text-start">
+                                    <div class="divider-text fs-5">Bagian Administrasi</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_formulir"
+                                        id="fp_formulir" class="form-control">
+                                    <label for="fp_formulir">Formulir Pendaftaran</label>
+                                </div>
+                            </div>
+                            @if ($info->fp_formulir != null)
+                                <div class="col-md-6 mb-5">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/{{ $info->fp_formulir }}', '_blank')">
+                                        Formulir Pendaftaran Sebelumnya
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_surat_izin"
+                                        id="fp_surat_izin" class="form-control">
+                                    <label for="fp_surat_izin">Surat Izin</label>
+                                </div>
+                            </div>
+                            @if ($info->fp_surat_izin != null)
+                                <div class="col-md-6 mb-5">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/{{ $info->fp_surat_izin }}', '_blank')">
+                                        Surat
+                                        Izin Sebelumnya
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_suket_tidak_mampu"
+                                        id="fp_suket_tidak_mampu" class="form-control">
+                                    <label for="fp_suket_tidak_mampu">Surat Keterangan Tidak Mampu</label>
+                                </div>
+                            </div>
+                            @if ($info->fp_suket_tidak_mampu != null)
+                                <div class="col-md-6 mb-5">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/{{ $info->fp_suket_tidak_mampu }}', '_blank')">
+                                        Surat
+                                        Keterangan Tidak Mampu Sebelumnya
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_suket_kematian"
+                                        id="fp_suket_kematian" class="form-control">
+                                    <label for="fp_suket_kematian">Surat Keterangan Kematian</label>
+                                </div>
+                            </div>
+                            @if ($info->fp_suket_kematian != null)
+                                <div class="col-md-6 mb-5 ">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/{{ $info->fp_suket_kematian }}', '_blank')">
+                                        Surat
+                                        Keterangan Kematian Sebelumnya
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_suket_sehat"
+                                        id="fp_suket_sehat" class="form-control">
+                                    <label for="fp_suket_sehat">Surat Keterangan Sehat</label>
+                                </div>
+                            </div>
+                            @if ($info->fp_suket_sehat != null)
+                                <div class="col-md-6 mb-5 ">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/{{ $info->fp_suket_sehat }}', '_blank')">
+                                        Surat
+                                        Keterangan Sehat Sebelumnya
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_ktp"
+                                        id="fp_ktp" class="form-control">
+                                    <label for="fp_ktp">KTP</label>
+                                </div>
+                            </div>
+                            @if ($info->fp_ktp != null)
+                                <div class="col-md-6 mb-5 ">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/{{ $info->fp_ktp }}', '_blank')">
+                                        KTP Sebelumnya
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_kk"
+                                        id="fp_kk" class="form-control">
+                                    <label for="fp_kk">KK</label>
+                                </div>
+                            </div>
+                            @if ($info->fp_kk != null)
+                                <div class="col-md-6 mb-5">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/{{ $info->fp_kk }}', '_blank')">
+                                        KK Sebelumnya
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_bpjs"
+                                        id="fp_bpjs" class="form-control">
+                                    <label for="fp_bpjs">BPJS</label>
+                                </div>
+                            </div>
+                            @if ($info->fp_bpjs != null)
+                                <div class="col-md-6 mb-5 ">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/{{ $info->fp_bpjs }}', '_blank')">
+                                        BPJS Sebelumnya
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_akte"
+                                        id="fp_akte" class="form-control">
+                                    <label for="fp_akte">Akte Kelahiran Anak</label>
+                                </div>
+                            </div>
+                            @if ($info->fp_akte != null)
+                                <div class="col-md-6 mb-5 ">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/{{ $info->fp_akte }}', '_blank')">
+                                        Akte Kelahiran Sebelumnya
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_foto"
+                                        id="fp_foto" class="form-control">
+                                    <label for="fp_foto">Pas Foto Anak</label>
+                                </div>
+                            </div>
+                            @if ($info->fp_foto != null)
+                                <div class="col-md-6 mb-5 ">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/{{ $info->fp_foto }}', '_blank')">
+                                        Pas Foto Sebelumnya
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-12">
+                                <div class="divider text-start">
+                                    <div class="divider-text fs-5">
+                                        Dokumen Lainnya
+                                        <span class="text-muted fs-6">(Bagian ini tidak wajib, isi jika
+                                            diperlukan)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="file-container">
+                                <div class="file-item">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-5 mt-2">
+                                            <input type="text" name="file_name[]" class="form-control"
+                                                placeholder="Nama Dokumen lain (tidak wajib)" />
+                                        </div>
+                                        <div class="col-md-6 mb-5 mt-2">
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="file" name="files[]" accept="application/pdf, image/*"
+                                                    class="form-control" />
+                                                <label for="files[]">Upload File</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="add-file" class="btn btn-secondary p-3 mt-3">Tambah
+                                File</button>
+                            <div class="col-md-12 mb-3">
+                                <span class="text-danger">* Format dokumen harus .jpg, .jpeg, .png, .pdf dan
+                                    maksimal
+                                    2MB</span>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 text-end">
@@ -167,6 +361,32 @@
                             </div>
                         </div>
                     </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="divider text-start">
+                                <div class="divider-text fs-5">Bagian Dokumen Lainnya</div>
+                            </div>
+                        </div>
+                        @foreach ($filesAnak->pendaftaran->files as $optionalFile)
+                            <div class="col-md-6 mb-5">
+                                <div class="btn-group w-100">
+                                    <a href="{{ asset('storage/' . $optionalFile->file_path) }}" target="_blank"
+                                        class="btn btn-info">
+                                        {{ $optionalFile->file_name }}
+                                    </a>
+                                    <form action="{{ route('delete-file', $optionalFile->id) }}" method="POST"
+                                        class="btn-group"
+                                        onsubmit="return confirm('Yakin ingin menghapus file {{ $optionalFile->file_name }}?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="ri-delete-bin-line me-2"></i>Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -208,4 +428,27 @@
             </div>
         </div>
     </div>
+@endsection
+@section('page-script')
+    <script>
+        document.getElementById('add-file').addEventListener('click', function() {
+            const container = document.getElementById('file-container');
+            const newItem = document.createElement('div');
+            newItem.className = 'file-item mt-3';
+            newItem.innerHTML = `
+            <div class="row">
+<div class="col-md-6 mb-5 mt-2">
+<input type="text" name="file_name[]" class="form-control" placeholder="Nama Dokumen lain (tidak wajib)" />
+</div>
+<div class="col-md-6 mb-5 mt-2">
+<div class="form-floating form-floating-outline">
+<input type="file" name="files[]" accept="application/pdf, image/*" class="form-control" />
+<label for="files[]">Upload File</label>
+</div>
+</div>
+</div>
+        `;
+            container.appendChild(newItem);
+        });
+    </script>
 @endsection

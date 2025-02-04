@@ -165,9 +165,41 @@
                                 @if ($tahap->status == 'perbaikan' && $tahap->tahap == '1')
                                     <div class="col-md-12">
                                         <div class="divider text-start">
+                                            <div class="divider-text fs-5">Template Administrasi</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-5 ">
+                                        <div class="btn btn-info w-100"
+                                            onclick="window.open('/storage/template/formulir_daftar.pdf', '_blank')">
+                                            Contoh Formulir Pendaftaran
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-5 ">
+                                        <div class="btn btn-info w-100"
+                                            onclick="window.open('/storage/template/surat_izin.pdf', '_blank')">
+                                            Contoh Surat Izin Ortu
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="divider text-start">
                                             <div class="divider-text fs-5">Bagian Administrasi</div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 mb-5 mt-2">
+                                        <div class="form-floating form-floating-outline">
+                                            <input type="file" accept="application/pdf, image/*" name="fp_formulir"
+                                                id="fp_formulir" class="form-control">
+                                            <label for="fp_formulir">Formulir Pendaftaran</label>
+                                        </div>
+                                    </div>
+                                    @if ($tahap->fp_formulir != null)
+                                        <div class="col-md-6 mb-5">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $tahap->fp_formulir }}', '_blank')">
+                                                Formulir Pendaftaran Sebelumnya
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="col-md-6 mb-5 mt-2">
                                         <div class="form-floating form-floating-outline">
                                             <input type="file" accept="application/pdf, image/*" name="fp_surat_izin"
@@ -308,6 +340,42 @@
                                             </div>
                                         </div>
                                     @endif
+                                    <div class="col-md-12">
+                                        <div class="divider text-start">
+                                            <div class="divider-text fs-5">
+                                                Dokumen Lainnya
+                                                <span class="text-muted fs-6">(Bagian ini tidak wajib, isi jika
+                                                    diperlukan)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @foreach ($tahap->files as $optionalFile)
+                                        <div class="col-md-6 mb-5 ">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $optionalFile->file_path }}', '_blank')">
+                                                {{ $optionalFile->file_name }}
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    <div id="file-container">
+                                        <div class="file-item">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-5 mt-2">
+                                                    <input type="text" name="file_name[]" class="form-control"
+                                                        placeholder="Nama Dokumen lain (tidak wajib)" />
+                                                </div>
+                                                <div class="col-md-6 mb-5 mt-2">
+                                                    <div class="form-floating form-floating-outline">
+                                                        <input type="file" name="files[]"
+                                                            accept="application/pdf, image/*" class="form-control" />
+                                                        <label for="files[]">Upload File</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="add-file" class="btn btn-secondary p-3 mt-3">Tambah
+                                        File</button>
                                     <div class="col-md-12 mb-3">
                                         <span class="text-danger">* Format dokumen harus .jpg, .jpeg, .png, .pdf dan
                                             maksimal
@@ -424,14 +492,38 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="divider text-start">
+                                        <div class="divider-text fs-5">Template Administrasi</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-5 ">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/template/formulir_daftar.pdf', '_blank')">
+                                        Contoh Formulir Pendaftaran
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-5 ">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/template/surat_izin.pdf', '_blank')">
+                                        Contoh Surat Izin Ortu
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="divider text-start">
                                         <div class="divider-text fs-5">Bagian Administrasi</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_formulir"
+                                            id="fp_formulir" class="form-control" required>
+                                        <label for="fp_formulir">Formulir Pendaftaran</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-5 mt-2">
                                     <div class="form-floating form-floating-outline">
                                         <input type="file" accept="application/pdf, image/*" name="fp_surat_izin"
                                             id="fp_surat_izin" class="form-control">
-                                        <label for="fp_surat_izin">Surat Izin</label>
+                                        <label for="fp_surat_izin">Surat Izin Ortu</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-5 mt-2">
@@ -490,6 +582,34 @@
                                         <label for="fp_foto">Pas Foto Anak</label>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="divider text-start">
+                                        <div class="divider-text fs-5">
+                                            Dokumen Lainnya
+                                            <span class="text-muted fs-6">(Bagian ini tidak wajib, isi jika
+                                                diperlukan)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="file-container">
+                                    <div class="file-item">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-5 mt-2">
+                                                <input type="text" name="file_name[]" class="form-control"
+                                                    placeholder="Nama Dokumen lain (tidak wajib)" />
+                                            </div>
+                                            <div class="col-md-6 mb-5 mt-2">
+                                                <div class="form-floating form-floating-outline">
+                                                    <input type="file" name="files[]"
+                                                        accept="application/pdf, image/*" class="form-control" />
+                                                    <label for="files[]">Upload File</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" id="add-file" class="btn btn-secondary p-3 mt-3">Tambah
+                                    File</button>
                                 <div class="col-md-12 mb-3">
                                     <span class="text-danger">* Format dokumen harus .jpg, .jpeg, .png, .pdf dan maksimal
                                         2MB</span>
@@ -499,7 +619,7 @@
                                 <div class="col-md-12 text-end">
                                     <button type="button" id="saveTemporary" class="btn btn-info me-5">Simpan
                                         Sementara</button>
-                                    <button type="submit" id="sendData" class="btn btn-primary">Kirim</button>
+                                    <button type="submit" id="sendData" class="btn btn-success">Kirim</button>
                                 </div>
                             </div>
                         </form>
@@ -512,6 +632,27 @@
 @section('page-script')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+
+            document.getElementById('add-file').addEventListener('click', function() {
+                const container = document.getElementById('file-container');
+                const newItem = document.createElement('div');
+                newItem.className = 'file-item mt-3';
+                newItem.innerHTML = `
+            <div class="row">
+<div class="col-md-6 mb-5 mt-2">
+<input type="text" name="file_name[]" class="form-control" placeholder="Nama Dokumen lain (tidak wajib)" />
+</div>
+<div class="col-md-6 mb-5 mt-2">
+<div class="form-floating form-floating-outline">
+<input type="file" name="files[]" accept="application/pdf, image/*" class="form-control" />
+<label for="files[]">Upload File</label>
+</div>
+</div>
+</div>
+        `;
+                container.appendChild(newItem);
+            });
+
             const form = document.getElementById("pendaftaranForm");
             const saveButton = document.getElementById("saveTemporary");
             const sendData = document.getElementById("sendData");

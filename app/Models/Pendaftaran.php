@@ -26,6 +26,7 @@ class Pendaftaran extends Model
   protected $fillable = [
     'id',
     'user_id',
+    'fn_formulir',
     'fn_surat_izin',
     'fn_suket_tidak_mampu',
     'fn_suket_kematian',
@@ -35,6 +36,7 @@ class Pendaftaran extends Model
     'fn_bpjs',
     'fn_akte',
     'fn_foto',
+    'fp_formulir',
     'fp_surat_izin',
     'fp_suket_tidak_mampu',
     'fp_suket_kematian',
@@ -52,5 +54,15 @@ class Pendaftaran extends Model
   public function user()
   {
     return $this->belongsTo(User::class, 'user_id');
+  }
+
+  public function files()
+  {
+    return $this->hasMany(PendaftaranFile::class, 'pendaftaran_id');
+  }
+
+  public function anak()
+  {
+    return $this->hasOne(Anak::class, 'pendaftaran_id');
   }
 }

@@ -117,6 +117,7 @@ class Pendaftaran extends Controller
         'tahap' => ['nullable', 'string'],
         'status' => ['nullable', 'string'],
         'keterangan' => ['nullable', 'string'],
+        'fp_formulir' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
         'fp_surat_izin' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
         'fp_suket_tidak_mampu' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
         'fp_suket_kematian' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
@@ -126,6 +127,8 @@ class Pendaftaran extends Controller
         'fp_bpjs' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
         'fp_akte' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
         'fp_foto' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+        'files.*' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048'],
+        'file_name.*' => ['nullable', 'string', 'max:255'],
       ], [
         '*.required' => ':attribute harus diisi.',
         '*.mimes' => 'Format file :attribute harus pdf, jpg, jpeg, atau png.',
@@ -138,6 +141,7 @@ class Pendaftaran extends Controller
     }
 
     $files = [
+      'fp_formulir',
       'fp_surat_izin',
       'fp_suket_tidak_mampu',
       'fp_suket_kematian',
@@ -150,6 +154,7 @@ class Pendaftaran extends Controller
     ];
 
     $fileNames = [
+      'fn_formulir',
       'fn_surat_izin',
       'fn_suket_tidak_mampu',
       'fn_suket_kematian',
@@ -220,7 +225,7 @@ class Pendaftaran extends Controller
       $request->alamat,
       $request->ortu,
       $request->pekerjaan,
-      Auth::user()->no_tel,
+      $request->no_tel ?? Auth::user()->no_tel,
     ]);
 
     try {
@@ -234,27 +239,79 @@ class Pendaftaran extends Controller
         if ($request->tahap == '3' && $request->status == 'lulus' && !$existingAnak->contains('nik', $request->nik)) {
           $pendaftaran = ModelsPendaftaran::find($id);
           if ($pendaftaran) {
-            ModelsPendaftaran::where('id', $id)->update($data);
+            $daftar = ModelsPendaftaran::where('id', $id)->update($data);
             $data = $pendaftaran->toArray();
             $data['status'] = 'aktif';
             $data['keterangan'] = '-';
+            $data['pendaftarans_id'] = $request->pendaftarans_id;
             Anak::create($data);
+            if ($request->hasFile('files')) {
+              foreach ($request->file('files') as $index => $file) {
+                $fileNameOpt = $request->file_name[$index] ?? null;
+                $fileNamePath = time() . '_' . $fileNameOpt . '.' . $file->getClientOriginalExtension();
+                $filePathOpt = $file->storeAs('documents/opsional', $fileNamePath, 'public');
+
+                $daftar->files()->create([
+                  'pendaftaran_id' => $id,
+                  'file_name' => $fileNameOpt,
+                  'file_path' => $filePathOpt,
+                ]);
+              }
+            }
           } else {
             return back()->with('error', 'Pendaftaran anak gagal ditemukan');
           }
         } else {
           ModelsPendaftaran::where('id', $id)->update($data);
+          $daftar = ModelsPendaftaran::find($id);
+          if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $index => $file) {
+              $fileNameOpt = $request->file_name[$index] ?? null;
+              $fileNamePath = time() . '_' . $fileNameOpt . '.' . $file->getClientOriginalExtension();
+              $filePathOpt = $file->storeAs('documents/opsional', $fileNamePath, 'public');
+
+              $daftar->files()->create([
+                'pendaftaran_id' => $id,
+                'file_name' => $fileNameOpt,
+                'file_path' => $filePathOpt,
+              ]);
+            }
+          }
         }
-        return back()->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil diperbarui');
+        return back()->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil s');
       } else {
         if ($existingData->contains('nik', $request->nik)) {
           return back()->with('error', 'Pendaftaran anak gagal disimpan: NIK sudah terdaftar');
         }
-        ModelsPendaftaran::create($data);
+        $daftar = ModelsPendaftaran::create($data);
+        if ($request->hasFile('files')) {
+          foreach ($request->file('files') as $index => $file) {
+            $fileNameOpt = $request->file_name[$index] ?? null;
+            $fileNamePath = time() . '_' . $fileNameOpt . '.' . $file->getClientOriginalExtension();
+            $filePathOpt = $file->storeAs('documents/opsional', $fileNamePath, 'public');
+
+            $daftar->files()->create([
+              'pendaftaran_id' => $id,
+              'file_name' => $fileNameOpt,
+              'file_path' => $filePathOpt,
+            ]);
+          }
+        }
         return back()->with('success', 'Pendaftaran anak berhasil disimpan');
       }
     } catch (\Exception $e) {
       return back()->with('error', 'Pendaftaran anak gagal disimpan: ' . $e->getMessage());
+    }
+  }
+
+  public function destroy($id)
+  {
+    $pendaftaran = ModelsPendaftaran::findOrFail($id);
+    try {
+      $pendaftaran->delete();
+      return back()->with('success', 'Pendaftaran anak ' . $pendaftaran->nama . ' berhasil dihapus');
+    } catch (\Exception $e) {
+      return back()->with('error', 'Pendaftaran anak ' . $pendaftaran->nama . ' gagal dihapus: ' . $e->getMessage());
     }
   }
 }

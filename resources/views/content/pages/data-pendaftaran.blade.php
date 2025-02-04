@@ -56,7 +56,12 @@
                                                 <td>{{ $daftar->biodata->pendidikan }}</td>
                                                 <td>{{ $daftar->biodata->ortu }}</td>
                                                 <td>{{ $daftar->biodata->pekerjaan }}</td>
-                                                <td>{{ $daftar->biodata->no_tel }}</td>
+                                                <td>
+                                                    <a class="text-primary"
+                                                        href="https://wa.me/{{ $daftar->biodata->no_tel }}"
+                                                        target="_blank">{{ $daftar->biodata->no_tel }}
+                                                    </a>
+                                                </td>
                                                 <td class="text-capitalize">
                                                     <span
                                                         class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'perbaikan' ? 'warning' : 'primary')) }}">
@@ -104,7 +109,11 @@
                                                                         value="berlangsung">
                                                                     <input type="hidden" name="keterangan"
                                                                         value="Pendaftaran telah disetujui lanjut ke tahap 2 - wawancara">
-                                                                    <button type="submit" class="dropdown-item">
+                                                                    <button type="button" class="dropdown-item"
+                                                                        data-no_tel="{{ $daftar->biodata->no_tel }}"
+                                                                        data-nama="{{ $daftar->biodata->nama }}"
+                                                                        data-status="lulus" data-tahap="1"
+                                                                        onclick="handleConfirmation(event)">
                                                                         <i class="ri-check-line me-1"></i> Lulus
                                                                     </button>
                                                                 </form>
@@ -124,7 +133,8 @@
                                                                     data-no_tel="{{ $daftar->biodata->no_tel }}"
                                                                     data-alamat="{{ $daftar->biodata->alamat }}"
                                                                     data-nik="{{ $daftar->biodata->nik }}"
-                                                                    data-status="perbaikan" data-tahap="1">
+                                                                    data-status="perbaikan" data-tahap="1"
+                                                                    onclick="handleConfirmation(event)">
                                                                     <i class="ri-edit-line me-1"></i> Perbaikan
                                                                 </button>
                                                             </li>
@@ -144,8 +154,18 @@
                                                                     data-no_tel="{{ $daftar->biodata->no_tel }}"
                                                                     data-alamat="{{ $daftar->biodata->alamat }}"
                                                                     data-nik="{{ $daftar->biodata->nik }}"
-                                                                    data-status="tidak" data-tahap="1">
+                                                                    data-status="tidak" data-tahap="1"
+                                                                    onclick="handleConfirmation(event)">
                                                                     <i class="ri-close-line me-1"></i> Tidak Lulus
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button type="submit" class="dropdown-item text-danger"
+                                                                    data-bs-toggle="modal" data-bs-target="#dynamicModal"
+                                                                    data-modal-type="delete"
+                                                                    data-id="{{ $daftar->id }}"
+                                                                    data-nama="{{ $daftar->biodata->nama }}">
+                                                                    <i class="ri-delete-bin-line me-1"></i> Hapus
                                                                 </button>
                                                             </li>
                                                         </ul>
@@ -186,7 +206,12 @@
                                                 <td>{{ $daftar->biodata->pendidikan }}</td>
                                                 <td>{{ $daftar->biodata->ortu }}</td>
                                                 <td>{{ $daftar->biodata->pekerjaan }}</td>
-                                                <td>{{ $daftar->biodata->no_tel }}</td>
+                                                <td>
+                                                    <a class="text-primary"
+                                                        href="https://wa.me/{{ $daftar->biodata->no_tel }}"
+                                                        target="_blank">{{ $daftar->biodata->no_tel }}
+                                                    </a>
+                                                </td>
                                                 <td class="text-capitalize">
                                                     <span
                                                         class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'perbaikan' ? 'warning' : 'primary')) }}">
@@ -234,7 +259,11 @@
                                                                         value="berlangsung">
                                                                     <input type="hidden" name="keterangan"
                                                                         value="Wawancara telah lulus lanjut ke tahap 3 - Survey">
-                                                                    <button type="submit" class="dropdown-item">
+                                                                    <button type="button" class="dropdown-item"
+                                                                        data-no_tel="{{ $daftar->biodata->no_tel }}"
+                                                                        data-nama="{{ $daftar->biodata->nama }}"
+                                                                        data-status="lulus" data-tahap="1"
+                                                                        onclick="handleConfirmation(event)">
                                                                         <i class="ri-check-line me-1"></i> Lulus
                                                                     </button>
                                                                 </form>
@@ -254,7 +283,8 @@
                                                                     data-no_tel="{{ $daftar->biodata->no_tel }}"
                                                                     data-alamat="{{ $daftar->biodata->alamat }}"
                                                                     data-nik="{{ $daftar->biodata->nik }}"
-                                                                    data-status="perbaikan" data-tahap="2">
+                                                                    data-status="perbaikan" data-tahap="2"
+                                                                    onclick="handleConfirmation(event)">
                                                                     <i class="ri-edit-line me-1"></i> Perbaikan
                                                                 </button>
                                                             </li>
@@ -274,8 +304,18 @@
                                                                     data-no_tel="{{ $daftar->biodata->no_tel }}"
                                                                     data-alamat="{{ $daftar->biodata->alamat }}"
                                                                     data-nik="{{ $daftar->biodata->nik }}"
-                                                                    data-status="tidak" data-tahap="2">
+                                                                    data-status="tidak" data-tahap="2"
+                                                                    onclick="handleConfirmation(event)">
                                                                     <i class="ri-close-line me-1"></i> Tidak Lulus
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button type="submit" class="dropdown-item text-danger"
+                                                                    data-bs-toggle="modal" data-bs-target="#dynamicModal"
+                                                                    data-modal-type="delete"
+                                                                    data-id="{{ $daftar->id }}"
+                                                                    data-nama="{{ $daftar->biodata->nama }}">
+                                                                    <i class="ri-delete-bin-line me-1"></i> Hapus
                                                                 </button>
                                                             </li>
                                                         </ul>
@@ -316,7 +356,12 @@
                                                 <td>{{ $daftar->biodata->pendidikan }}</td>
                                                 <td>{{ $daftar->biodata->ortu }}</td>
                                                 <td>{{ $daftar->biodata->pekerjaan }}</td>
-                                                <td>{{ $daftar->biodata->no_tel }}</td>
+                                                <td>
+                                                    <a class="text-primary"
+                                                        href="https://wa.me/{{ $daftar->biodata->no_tel }}"
+                                                        target="_blank">{{ $daftar->biodata->no_tel }}
+                                                    </a>
+                                                </td>
                                                 <td class="text-capitalize">
                                                     <span
                                                         class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'perbaikan' ? 'warning' : 'primary')) }}">
@@ -337,6 +382,8 @@
                                                                     method="POST" class="d-inline">
                                                                     @csrf
                                                                     @method('PUT')
+                                                                    <input type="hidden" name="pendaftarans_id"
+                                                                        value="{{ $daftar->id }}">
                                                                     <input type="hidden" name="user_id"
                                                                         value="{{ $daftar->user_id }}">
                                                                     <input type="hidden" name="nama"
@@ -399,7 +446,11 @@
                                                                     <input type="hidden" name="status" value="lulus">
                                                                     <input type="hidden" name="keterangan"
                                                                         value="Survey telah lulus Anda Diterima">
-                                                                    <button type="submit" class="dropdown-item">
+                                                                    <button type="button" class="dropdown-item"
+                                                                        data-no_tel="{{ $daftar->biodata->no_tel }}"
+                                                                        data-nama="{{ $daftar->biodata->nama }}"
+                                                                        data-status="lulus" data-tahap="3"
+                                                                        onclick="handleConfirmation(event)">
                                                                         <i class="ri-check-line me-1"></i> Lulus
                                                                     </button>
                                                                 </form>
@@ -419,7 +470,8 @@
                                                                     data-no_tel="{{ $daftar->biodata->no_tel }}"
                                                                     data-alamat="{{ $daftar->biodata->alamat }}"
                                                                     data-nik="{{ $daftar->biodata->nik }}"
-                                                                    data-status="perbaikan" data-tahap="3">
+                                                                    data-status="perbaikan" data-tahap="3"
+                                                                    onclick="handleConfirmation(event)">
                                                                     <i class="ri-edit-line me-1"></i> Perbaikan
                                                                 </button>
                                                             </li>
@@ -439,8 +491,18 @@
                                                                     data-no_tel="{{ $daftar->biodata->no_tel }}"
                                                                     data-alamat="{{ $daftar->biodata->alamat }}"
                                                                     data-nik="{{ $daftar->biodata->nik }}"
-                                                                    data-status="tidak" data-tahap="3">
+                                                                    data-status="tidak" data-tahap="3"
+                                                                    onclick="handleConfirmation(event)">
                                                                     <i class="ri-close-line me-1"></i> Tidak Lulus
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button type="submit" class="dropdown-item text-danger"
+                                                                    data-bs-toggle="modal" data-bs-target="#dynamicModal"
+                                                                    data-modal-type="delete"
+                                                                    data-id="{{ $daftar->id }}"
+                                                                    data-nama="{{ $daftar->biodata->nama }}">
+                                                                    <i class="ri-delete-bin-line me-1"></i> Hapus
                                                                 </button>
                                                             </li>
                                                         </ul>
@@ -489,7 +551,11 @@
                                         <td class="text-capitalize text-truncate">{{ $daftar->biodata->status_anak }}
                                         </td>
                                         <td class="text-capitalize text-truncate">{{ $daftar->biodata->ortu }}</td>
-                                        <td class="text-capitalize">{{ $daftar->biodata->no_tel }}</td>
+                                        <td>
+                                            <a class="text-primary" href="https://wa.me/{{ $daftar->biodata->no_tel }}"
+                                                target="_blank">{{ $daftar->biodata->no_tel }}
+                                            </a>
+                                        </td>
                                         <td class="text-capitalize">
                                             <span
                                                 class="badge rounded-pill bg-{{ $daftar->tahap == 1 ? 'info' : ($daftar->tahap == 2 ? 'primary' : 'success') }}">
@@ -519,6 +585,7 @@
                                                     data-orang_tua="{{ $daftar->biodata->ortu }}"
                                                     data-tahap="{{ $daftar->tahap }}"
                                                     data-status="{{ $daftar->status }}"
+                                                    data-fp_formulir="{{ $daftar->fp_formulir }}"
                                                     data-fp_surat_izin="{{ $daftar->fp_surat_izin }}"
                                                     data-fp_ktp="{{ $daftar->fp_ktp }}"
                                                     data-fp_kk="{{ $daftar->fp_kk }}"
@@ -527,7 +594,11 @@
                                                     data-fp_suket_sehat="{{ $daftar->fp_suket_sehat }}"
                                                     data-fp_bpjs="{{ $daftar->fp_bpjs }}"
                                                     data-fp_akte="{{ $daftar->fp_akte }}"
-                                                    data-fp_foto="{{ $daftar->fp_foto }}">
+                                                    data-fp_foto="{{ $daftar->fp_foto }}"
+                                                    @if (!empty($daftar->files)) @foreach ($daftar->files as $fileName => $filePath)
+                                                        data-file-{{ $fileName }}="{{ $filePath->file_path }}"
+                                                        data-fn{{ $fileName }}="{{ $filePath->file_name }}"
+                                                    @endforeach @endif>
                                                     <i class="ri-search-eye-line me-2"></i> Lihat
                                                 </button>
                                             </div>
@@ -569,12 +640,45 @@
 
 @section('page-script')
     <script>
+        function handleConfirmation(event) {
+            event.preventDefault();
+
+            const button = event.target;
+
+            const confirmation = confirm('Apakah anda ingin mengabarkan orang tua?');
+            if (confirmation) {
+                const whatsappNumber = button.getAttribute('data-no_tel');
+                const id = button.getAttribute('data-id');
+                const nama = button.getAttribute('data-nama');
+                const tahap = button.getAttribute('data-tahap');
+                const status = button.getAttribute('data-status');
+
+                const message =
+                    `Halo, saya dari Sistem Informasi Panti Asuhan. Pendaftaran anak anda atas nama ${nama} berada di tahap ${tahap} dengan status ${status === 'tidak' ? 'tidak lulus' : status}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
+
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+                window.open(whatsappUrl, '_blank');
+                const form = button.closest('form');
+                if (form) {
+                    form.submit();
+                }
+            } else {
+                const form = button.closest('form');
+                if (form) {
+                    form.submit();
+                }
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const dynamicModal = document.getElementById('dynamicModal');
             const modalTitle = dynamicModal.querySelector('.modal-title');
             const modalContent = document.getElementById('modalContent');
             const modalForm = document.getElementById('dynamicModalForm');
             const closeModal = document.getElementById('closeModal');
+
+
 
             function createDocumentButton(button, attribute, label) {
                 const filePath = button.getAttribute(attribute);
@@ -599,8 +703,8 @@
                 const modalStats = button.getAttribute('data-status');
                 const modalTahap = button.getAttribute('data-tahap');
 
-
                 const documents = [
+                    createDocumentButton(button, 'data-fp_formulir', 'Formulir'),
                     createDocumentButton(button, 'data-fp_surat_izin', 'Surat Izin'),
                     createDocumentButton(button, 'data-fp_suket_tidak_mampu', 'Suket Tidak Mampu'),
                     createDocumentButton(button, 'data-fp_suket_kematian', 'Suket Kematian'),
@@ -609,8 +713,17 @@
                     createDocumentButton(button, 'data-fp_kk', 'KK'),
                     createDocumentButton(button, 'data-fp_bpjs', 'BPJS'),
                     createDocumentButton(button, 'data-fp_akte', 'Akte'),
-                    createDocumentButton(button, 'data-fp_foto', 'Pas Foto')
+                    createDocumentButton(button, 'data-fp_foto', 'Pas Foto'),
                 ];
+
+                for (const [key, value] of Object.entries(button.dataset)) {
+                    if (key.startsWith("file")) {
+                        let num = key.replace('file-', '');
+                        let fileName = 'fn' + num
+                        documents.push(createDocumentButton(button, `data-${key}`, button.dataset[
+                            fileName]));
+                    }
+                }
 
                 const hasDocuments = documents.some(doc => doc !== '');
 
@@ -651,18 +764,14 @@
                     </div>`;
                 } else if (modalType == 'detail') {
                     modalTitle.textContent = `Lihat Data ${button.getAttribute('data-nama')}`;
-                    modalForm.innerHTML = `
+                    modalForm.innerHTML =
+                        `
                     @csrf
                     <div class="row">
                         <div class="col-md-12 mb-5">
                             <div class="d-flex align-items-center flex-column">
                                 ${button.getAttribute('data-fp_foto') ?
-                                    `<img src="/storage/${button.getAttribute('data-fp_foto')}"
-                                                                                                                                                                                                                    alt="foto profil"
-                                                                                                                                                                                                                    onclick="window.open('/storage/${button.getAttribute('data-fp_foto')}', '_blank')"
-                                                                                                                                                                                                                    class="img-fluid rounded mb-2"
-                                                                                                                                                                                                                    width="120">` :
-                                    ''
+                                    `<img src="/storage/${button.getAttribute('data-fp_foto')}" alt="foto profil" onclick="window.open('/storage/${button.getAttribute('data-fp_foto')}', '_blank')" class="img-fluid rounded mb-2" width="120">` : ''
                                 }
                                 <h5 class="mb-0">${button.getAttribute('data-nama')}</h5>
                                 <span class="text-muted">${button.getAttribute('data-pendidikan')}</span>
@@ -677,19 +786,8 @@
 
                         ${['data-nama', 'data-jenis_kelamin', 'data-nik', 'data-status_anak',
                            'data-pendidikan', 'data-orang_tua', 'data-pekerjaan',
-                           'data-no_tel'].map(attr => `
-                                                                                                                                                                                                        <div class="col-md-6 mb-3">
-                                                                                                                                                                                                            <div class="form-floating form-floating-outline">
-                                                                                                                                                                                                                <input type="text"
-                                                                                                                                                                                                                    class="form-control"
-                                                                                                                                                                                                                    id="${attr}"
-                                                                                                                                                                                                                    placeholder="${attr.replace('data-', '')}"
-                                                                                                                                                                                                                    value="${button.getAttribute(attr)}"
-                                                                                                                                                                                                                    readonly>
-                                                                                                                                                                                                                <label for="${attr}" class="text-capitalize">${attr.replace('data-', '').replace('_', ' ')}</label>
-                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                        </div>`).join('')}
-
+                           'data-no_tel'].map(attr =>
+`<div class="col-md-6 mb-3"><div class="form-floating form-floating-outline"><input type="text" class="form-control" id="${attr}" placeholder="${attr.replace('data-', '')}" value="${button.getAttribute(attr)}" readonly> <label for="${attr}" class="text-capitalize">${attr.replace('data-', '').replace('_', ' ')}</label></div></div>`).join('')}
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="alamat">Alamat</label>
@@ -698,20 +796,24 @@
                                 </textarea>
                             </div>
                         </div>
-
                         ${hasDocuments ?
-                            `<div class="row">
-                                                                                                                                                                                                                <div class="col-md-12">
-                                                                                                                                                                                                                    <div class="divider text-center">
-                                                                                                                                                                                                                        <div class="divider-text fs-5">Bagian Administrasi</div>
-                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                            </div>
-
-                                                                                                                                                                                                            <div class="row">
-                                                                                                                                                                                                                ${documents.join('')}
-                                                                                                                                                                                                            </div>` : ''}
-                    </div>`;
+`<div class="row"><div class="col-md-12"><div class="divider text-center"><div class="divider-text fs-5">Bagian Administrasi</div></div></div></div><div class="row">${documents.join('')}</div>` : ''}</div>`;
+                } else if (modalType === 'delete') {
+                    modalTitle.textContent = 'Hapus Data';
+                    modalForm.action = `/pages/pendaftaran-anak/delete/${modalId}`;
+                    modalForm.method = 'POST';
+                    closeModal.replaceWith(
+                        ``
+                    )
+                    modalForm.innerHTML = `
+                    @csrf
+                    @method('DELETE')
+                    <p>Apakah Anda yakin ingin menghapus data <strong>${button.getAttribute('data-nama')}</strong>?</p>
+                    <p class="text-danger"><small>Data yang dihapus tidak dapat dikembalikan.</small></p>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-danger me-2">Hapus</button>
+                    </div>
+                `;
                 }
             });
         });

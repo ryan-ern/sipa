@@ -15,6 +15,10 @@ return new class extends Migration
       $table->uuid('id')->primary();
       $table->uuid('user_id');
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+      $table->uuid('pendaftarans_id');
+      $table->foreign('pendaftarans_id')->references('id')->on('pendaftarans')->onDelete('cascade');
+      $table->string('fn_formulir')->nullable();
+      $table->string('fp_formulir')->nullable();
       $table->string('fn_surat_izin')->nullable();
       $table->string('fp_surat_izin')->nullable();
       $table->string('fn_suket_tidak_mampu')->nullable();

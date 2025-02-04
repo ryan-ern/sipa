@@ -91,7 +91,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
   // syarat masuk
   Route::put('/pages/syarat-masuk/{id}', [SyaratMasuk::class, 'update'])->name('syarat-masuk.update');
-  Route::get('/pages/syarat-masuk', [SyaratMasuk::class, 'index'])->name('syarat-masuk');
+  Route::get('pages/persyaratan', [SyaratMasuk::class, 'index'])->name('syarat-masuk');
 
   // data kegiatan
   Route::post('/pages/data-kegiatan', [DataKegiatan::class, 'store'])->name('data-kegiatan.store');
@@ -103,10 +103,12 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
   // data pendaftaran
   Route::get('/pages/data-pendaftaran', [Pendaftaran::class, 'index'])->name('data-pendaftaran');
   Route::put('/pendaftaran-anak/status/{id}', [Pendaftaran::class, 'store'])->name('pendaftaran-anak.status');
+  Route::delete('/pages/pendaftaran-anak/delete/{id}', [Pendaftaran::class, 'destroy'])->name('pendaftaran-anak.destroy');
 
   // data anak
   Route::get('/pages/data-anak', [DataAnak::class, 'index'])->name('data-anak');
   Route::put('/data-anak/status/{id}', [DataAnak::class, 'store'])->name('data-anak.status');
+  Route::delete('/data-anak/hapus/{id}', [DataAnak::class, 'destroy'])->name('data-anak.destroy');
 
   // data riwayat
   Route::post('/pages/data-riwayat', [DataAnak::class, 'riwayat'])->name('data-riwayat.store');
@@ -121,6 +123,8 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
   Route::get('/pages/kondisi-anak', [KondisiAnak::class, 'index'])->name('kondisi-anak');
   Route::post('/kondisi-anak', [KondisiAnak::class, 'index'])->name('kondisi-anak.get');
   Route::put('/pages/data-anak/{id}', [DataAnak::class, 'store'])->name('data-anak.update');
+
+  Route::delete('delete-fie/{id}', [KondisiAnak::class, 'destroy'])->name('delete-file');
 });
 
 Route::group(['middleware' => ['guest']], function () {
