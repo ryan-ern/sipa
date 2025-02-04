@@ -31,19 +31,14 @@ class DataPengguna extends Controller
       'password' => ['required', 'string', 'min:3', 'confirmed'],
       'status' => ['required', 'string', 'in:1,0'],
     ], [
-      'username.required' => 'Username harus diisi.',
-      'username.unique' => 'Username sudah terdaftar.',
-      'nama_lengkap.required' => 'Nama lengkap harus diisi.',
-      'no_tel.required' => 'Nomor telepon harus diisi.',
-      'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-10 digit angka).',
-      'jenis_kelamin.required' => 'Jenis kelamin harus diisi.',
-      'alamat.required' => 'Alamat harus diisi.',
-      'sebagai.required' => 'Jenis akun harus diisi.',
-      'password.required' => 'Password harus diisi.',
-      'password.min' => 'Password minimal harus 8 karakter.',
-      'password.confirmed' => 'Password tidak cocok.',
-      'status.required' => 'Status harus diisi.',
-      'role.required' => 'Role harus diisi.',
+      '*.required' => ':attribute harus diisi.',
+      '*.string' => ':attribute harus berupa teks.',
+      '*.max' => ':attribute maksimal :max karakter.',
+      '*.unique' => ':attribute sudah digunakan.',
+      '*.regex' => ':attribute harus berupa nomor telepon yang valid (+628xxxxxxxxxx).',
+      '*.in' => ':attribute harus memiliki nilai yang valid.',
+      '*.min' => ':attribute minimal :min karakter.',
+      '*.confirmed' => ':attribute tidak cocok dengan konfirmasi password.',
     ]);
 
     if ($validator->fails()) {
@@ -80,17 +75,15 @@ class DataPengguna extends Controller
       'sebagai' => ['required', 'string', 'in:ortu,wali,staff'],
       'role' => ['required', 'string', 'in:admin,user'],
       'status' => ['required', 'string', 'in:1,0'],
+      'forgot' => ['required', 'string', 'in:1,0'],
       'password' => ['nullable', 'string', 'min:3'],
     ], [
-      'nama_lengkap.required' => 'Nama lengkap harus diisi.',
-      'no_tel.required' => 'Nomor telepon harus diisi.',
-      'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-10 digit angka).',
-      'jenis_kelamin.required' => 'Jenis kelamin harus diisi.',
-      'alamat.required' => 'Alamat harus diisi.',
-      'sebagai.required' => 'Jenis akun harus diisi.',
-      'status.required' => 'Status harus diisi.',
-      'role.required' => 'Role harus diisi.',
-      'password.min' => 'Password minimal harus 3 karakter.',
+      '*.required' => ':attribute harus diisi.',
+      '*.string' => ':attribute harus berupa teks.',
+      '*.max' => ':attribute maksimal :max karakter.',
+      '*.regex' => ':attribute harus berupa nomor telepon yang valid (+628xxxxxxxxxx).',
+      '*.in' => ':attribute harus memiliki nilai yang valid.',
+      '*.min' => ':attribute minimal :min karakter.',
     ]);
 
     if ($validator->fails()) {
@@ -102,6 +95,7 @@ class DataPengguna extends Controller
       $validatedData = $validator->validated();
 
       if ($request->filled('password')) {
+        $validatedData['forgot'] = 0;
         $validatedData['password'] = bcrypt($request->password);
       } else {
         unset($validatedData['password']);

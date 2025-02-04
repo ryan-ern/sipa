@@ -26,6 +26,8 @@ class Anak extends Model
   protected $fillable = [
     'id',
     'user_id',
+    'pendaftarans_id',
+    'fn_formulir',
     'fn_surat_izin',
     'fn_suket_tidak_mampu',
     'fn_suket_kematian',
@@ -35,6 +37,7 @@ class Anak extends Model
     'fn_bpjs',
     'fn_akte',
     'fn_foto',
+    'fp_formulir',
     'fp_surat_izin',
     'fp_suket_tidak_mampu',
     'fp_suket_kematian',
@@ -57,5 +60,10 @@ class Anak extends Model
   public function riwayat()
   {
     return $this->hasMany(Riwayat::class, 'anaks_id', 'id');
+  }
+
+  public function pendaftaran()
+  {
+    return $this->belongsTo(Pendaftaran::class, 'pendaftarans_id');
   }
 }
