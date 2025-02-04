@@ -974,6 +974,71 @@
                         <button type="submit" class="btn btn-danger me-2">Hapus</button>
                     </div>
                 `;
+                } else if (modalType === 'tambah') {
+                    modalTitle.textContent = `Tambah Data Anak`;
+                    modalForm.setAttribute('action', `/pages/data-anak`);
+                    modalForm.setAttribute('method', 'POST');
+                    closeModal.replaceWith(
+                        ``
+                    )
+                    modalForm.innerHTML = `
+                    @csrf
+                    @method('POST')
+                    <div class="row">
+                        <div class="col-md-12 mb-5">
+                          <select name="user_id" class="form-select mb-3" required>
+                            <option value="" disabled selected>Pilih Orang Tua</option>
+                            @foreach ($user as $ortu)
+                            <option value="{{ $ortu->id }}" data-ortu="{{ $ortu->nama_lengkap }}">{{ $ortu->nama_lengkap }}</option>
+                            @endforeach
+                          </select>
+                          <div class="form-floating mb-3 form-floating-outline">
+                            <input type="text" name="ortu" class="form-control" placeholder="Nama Ortu/Wali" required>
+                            <label for="ortu">Nama Ortu/Wali</label>
+                          </div>
+                          <div class="form-floating mb-3 form-floating-outline">
+                            <input type="text" name="nama" class="form-control" placeholder="Nama Anak" required>
+                            <label for="nama">Nama Anak</label>
+                          </div>
+                          <div class="form-floating mb-3 form-floating-outline">
+                            <input type="number" name="nik" class="form-control" placeholder="NIK" required>
+                            <label for="nik">NIK</label>
+                          </div>
+                          <div class="form-floating mb-3 form-floating-outline">
+                            <input type="text" name="ttl" class="form-control" placeholder="Tempat, Tanggal Lahir" required>
+                            <label for="ttl">Tempat, Tanggal Lahir</label>
+                          </div>
+                          <div class="form-floating mb-3 form-floating-outline">
+                            <input type="text" name="pekerjaan" class="form-control" placeholder="Pekerjaan" required>
+                            <label for="pekerjaan">Pekerjaan</label>
+                          </div>
+                          <select name="jk" class="form-select mb-3" required>
+                            <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                          </select>
+                          <select name="status_anak" class="form-select mb-3" required>
+                            <option value="" disabled selected>Pilih Status Anak</option>
+                            <option value="Anak Yatim">Anak Yatim</option>
+                            <option value="Anak Piatu">Anak Piatu</option>
+                            <option value="Anak Yatim Piatu">Anak Yatim Piatu</option>
+                            <option value="Anak Tidak Mampu">Anak Tidak Mampu</option>
+                            <option value="Lainnya">Lainnya</option>
+                          </select>
+                          <div class="form-floating mb-3 form-floating-outline">
+                            <input type="text" name="pendidikan" class="form-control" placeholder="Pendidikan" required>
+                            <label for="pendidikan">Pendidikan</label>
+                          </div>
+                          <div class="mb-3">
+                            <label for="alamat">Alamat Anak</label>
+                            <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                    </div>
+                    `;
                 } else {
                     modalTitle.textContent = `Lihat Data ${button.getAttribute('data-nama')}`;
 

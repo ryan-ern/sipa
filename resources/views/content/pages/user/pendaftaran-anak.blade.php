@@ -522,7 +522,7 @@
                                 <div class="col-md-6 mb-5 mt-2">
                                     <div class="form-floating form-floating-outline">
                                         <input type="file" accept="application/pdf, image/*" name="fp_surat_izin"
-                                            id="fp_surat_izin" class="form-control">
+                                            id="fp_surat_izin" class="form-control" required>
                                         <label for="fp_surat_izin">Surat Izin Ortu</label>
                                     </div>
                                 </div>
@@ -550,14 +550,14 @@
                                 <div class="col-md-6 mb-5 mt-2">
                                     <div class="form-floating form-floating-outline">
                                         <input type="file" accept="application/pdf, image/*" name="fp_ktp"
-                                            id="fp_ktp" class="form-control">
+                                            id="fp_ktp" class="form-control" required>
                                         <label for="fp_ktp">KTP</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-5 mt-2">
                                     <div class="form-floating form-floating-outline">
                                         <input type="file" accept="application/pdf, image/*" name="fp_kk"
-                                            id="fp_kk" class="form-control">
+                                            id="fp_kk" class="form-control" required>
                                         <label for="fp_kk">KK</label>
                                     </div>
                                 </div>
@@ -571,14 +571,14 @@
                                 <div class="col-md-6 mb-5 mt-2">
                                     <div class="form-floating form-floating-outline">
                                         <input type="file" accept="application/pdf, image/*" name="fp_akte"
-                                            id="fp_akte" class="form-control">
+                                            id="fp_akte" class="form-control" required>
                                         <label for="fp_akte">Akte Kelahiran Anak</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-5 mt-2">
                                     <div class="form-floating form-floating-outline">
                                         <input type="file" accept="application/pdf, image/*" name="fp_foto"
-                                            id="fp_foto" class="form-control">
+                                            id="fp_foto" class="form-control" required>
                                         <label for="fp_foto">Pas Foto Anak</label>
                                     </div>
                                 </div>

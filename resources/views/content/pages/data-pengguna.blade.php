@@ -133,34 +133,6 @@
 
 @section('page-script')
     <script>
-        function handleConfirmation(event) {
-            event.preventDefault();
-
-            const button = event.target;
-
-            const confirmation = confirm('Apakah anda ingin mengabarkan orang tua?');
-            if (confirmation) {
-                const whatsappNumber = button.getAttribute('data-no_tel');
-                const nama = button.getAttribute('data-nama_lengkap');
-
-                const message =
-                    `Halo, saya dari Sistem Informasi Panti Asuhan. Permintaan ubah password atas nama ${nama} telah diterima. berikut password anda yang terbaru yaitu ${button.getAttribute('data-password')}. Silahkan kunjungi hubungi kami untuk informasi lebih lanjut.`;
-
-                console.log(whatsappUrl);
-                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-                window.open(whatsappUrl, '_blank');
-                const form = button.closest('form');
-                if (form) {
-                    form.submit();
-                }
-            } else {
-                const form = button.closest('form');
-                if (form) {
-                    form.submit();
-                }
-            }
-        }
         document.addEventListener('DOMContentLoaded', function() {
             const dynamicModal = document.getElementById('dynamicModal');
             const modalTitle = dynamicModal.querySelector('.modal-title');
@@ -176,7 +148,6 @@
                     modalTitle.textContent = 'Edit Data';
                     modalForm.action = `/pages/data-pengguna/${userId}`;
                     modalForm.method = 'POST';
-                    modalForm.onsubmit = handleConfirmation;
                     modalContent.innerHTML = `
                     @csrf
                     @method('PUT')
@@ -254,7 +225,7 @@
                         <div class="divider-text text-danger">Kolom ini Sensitif, Mohon Diperhatikan</div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <!-- role -->
                         <div class="form-floating form-floating-outline mb-4">
                             <select class="form-select @error('role') is-invalid @enderror" id="role" name="role">
@@ -268,7 +239,7 @@
                             <label for="role">Role</label>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <!-- Status -->
                         <div class="form-floating form-floating-outline mb-4">
                             <select class="form-select @error('status') is-invalid @enderror" id="status" name="status">
@@ -283,16 +254,24 @@
                         </div>
                       </div>
                       <input type="hidden" name="forgot" value="${button.getAttribute('data-forgot')}">
-                      <div class="col-md-4">
+                      <div class="col-md-12">
                         <!-- Password -->
-                        <div class="form-floating form-floating-outline mb-4">
-                            <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Password">
+                        <div class="form-floating form-floating-outline mb-4 position-relative">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                             <label for="password">Password</label>
+                            <button type="button" id="togglePassword" class="btn btn-outline-info position-absolute end-0 top-50 translate-middle-y me-2">
+                                👁️
+                            </button>
                         </div>
                       </div>
                     </div>
                 `;
+                setTimeout(() => {
+                    document.getElementById('togglePassword').addEventListener('click', function () {
+                        let passwordInput = document.getElementById('password');
+                        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+                    });
+                }, 100);
                 } else if (modalType === 'delete') {
                     modalTitle.textContent = 'Hapus Data';
                     modalForm.action = `/pages/data-pengguna/${userId}`;

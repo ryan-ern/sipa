@@ -26,13 +26,15 @@
                         <h4 class="mb-1">Lupa Password? 🔒</h4>
                         <p class="mb-5 text-capitalize">masukkan username anda dan kami akan mengirimkan password baru untuk
                             anda</p>
-                        <form id="formAuthentication" class="mb-5" action="{{ url('/') }}" method="GET">
+                        <form id="formAuthentication" class="mb-5" action="{{ route('forgot.update') }}" method="POST">
+                          @csrf
+                          @method('PUT')
                             <div class="form-floating form-floating-outline mb-5">
-                                <input type="text" class="form-control" id="email" name="email"
+                                <input type="text" class="form-control" id="username" name="username"
                                     placeholder="Masukkan username terdaftar" autofocus>
                                 <label>Username</label>
                             </div>
-                            <button class="btn btn-primary d-grid w-100 mb-5">Kirim</button>
+                            <button type="submit" class="btn btn-primary d-grid w-100 mb-5">Kirim</button>
                         </form>
                         <div class="text-center">
                             <a href="{{ url('auth/login') }}" class="d-flex align-items-center justify-content-center">

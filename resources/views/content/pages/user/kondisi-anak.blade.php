@@ -161,18 +161,50 @@
                                 <label for="alamat">Alamat Anak</label>
                                 <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $info->alamat }}</textarea>
                             </div>
+                            @if ($info->fp_formulir != null)
                             <div class="col-md-12">
                                 <div class="divider text-start">
                                     <div class="divider-text fs-5">Bagian Administrasi</div>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-5 mt-2">
+                              <div class="form-floating form-floating-outline">
+                                <input type="file" accept="application/pdf, image/*" name="fp_formulir"
+                                id="fp_formulir" class="form-control">
+                                <label for="fp_formulir">Formulir Pendaftaran</label>
+                              </div>
+                            </div>
+                            @else
+                            <div class="col-md-12">
+                              <div class="divider text-start">
+                                        <div class="divider-text fs-5">Template Administrasi</div>
+                                    </div>
+                            </div>
+                                <div class="col-md-6 mb-5 ">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/template/formulir_daftar.pdf', '_blank')">
+                                        Contoh Formulir Pendaftaran
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-5 ">
+                                    <div class="btn btn-info w-100"
+                                        onclick="window.open('/storage/template/surat_izin.pdf', '_blank')">
+                                        Contoh Surat Izin Ortu
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="divider text-start">
+                                        <div class="divider-text fs-5">Bagian Administrasi</div>
+                                    </div>
+                                </div>
+                            <div class="col-md-6 mb-5 mt-2">
                                 <div class="form-floating form-floating-outline">
                                     <input type="file" accept="application/pdf, image/*" name="fp_formulir"
-                                        id="fp_formulir" class="form-control">
+                                        id="fp_formulir" class="form-control" required>
                                     <label for="fp_formulir">Formulir Pendaftaran</label>
                                 </div>
                             </div>
+                            @endif
                             @if ($info->fp_formulir != null)
                                 <div class="col-md-6 mb-5">
                                     <div class="btn btn-info w-100"
@@ -362,6 +394,7 @@
                         </div>
                     </form>
                     <div class="row">
+                      @if($filesAnak->pendaftaran->files->count() > 0)
                         <div class="col-md-12">
                             <div class="divider text-start">
                                 <div class="divider-text fs-5">Bagian Dokumen Lainnya</div>
@@ -386,6 +419,7 @@
                                 </div>
                             </div>
                         @endforeach
+                      @endif
                     </div>
                 </div>
             </div>

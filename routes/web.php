@@ -107,6 +107,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
   // data anak
   Route::get('/pages/data-anak', [DataAnak::class, 'index'])->name('data-anak');
+  Route::post('/pages/data-anak', [DataAnak::class, 'store'])->name('data-anak.store');
   Route::put('/data-anak/status/{id}', [DataAnak::class, 'store'])->name('data-anak.status');
   Route::delete('/data-anak/hapus/{id}', [DataAnak::class, 'destroy'])->name('data-anak.destroy');
 
@@ -137,6 +138,7 @@ Route::group(['middleware' => ['guest']], function () {
   Route::get('/auth/login', [Login::class, 'index'])->name('login');
   Route::post('/auth/login', [Login::class, 'store'])->name('login.store');
   Route::get('/auth/forgot', [Forgot::class, 'index'])->name('forgot');
+  Route::put('/auth/forgot-password', [Forgot::class, 'update'])->name('forgot.update');
   Route::get('/auth/register', [Register::class, 'index'])->name('register');
   Route::post('/auth/register', [Register::class, 'store'])->name('register.store');
 });

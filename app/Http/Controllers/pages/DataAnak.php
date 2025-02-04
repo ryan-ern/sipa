@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Anak;
 use App\Models\Pendaftaran;
 use App\Models\Riwayat;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class DataAnak extends Controller
 {
@@ -19,6 +21,10 @@ class DataAnak extends Controller
     $aktif = Anak::select('*')->where('status', 'aktif')->get();
     $alumni = Anak::select('*')->where('status', 'alumni lulus')->get();
     $alumniBermasalah = Anak::select('*')->where('status', 'alumni bermasalah')->get();
+    $user = User::where('role', 'user')
+      ->whereIn('sebagai', ['ortu', 'wali'])
+      ->where('status', '1')
+      ->get();
     $riwayat = Riwayat::select('riwayats.*', 'anaks.biodata')
       ->join('anaks', 'riwayats.anaks_id', '=', 'anaks.id')
       ->orderBy('riwayats.updated_at', 'DESC')
@@ -38,6 +44,21 @@ class DataAnak extends Controller
         'no_tel' => $splitData[9] ?? '-',
       ];
       return $item;
+    });
+    $existingData = Anak::all()->map(function ($item) {
+      $splitData = explode('~', $item->biodata);
+      return (object) [
+        'nama' => $splitData[0] ?? '-',
+        'ttl' => $splitData[1] ?? '-',
+        'nik' => $splitData[2] ?? '-',
+        'jk' => $splitData[3] ?? '-',
+        'status_anak' => $splitData[4] ?? '-',
+        'pendidikan' => $splitData[5] ?? '-',
+        'alamat' => $splitData[6] ?? '-',
+        'ortu' => $splitData[7] ?? '-',
+        'pekerjaan' => $splitData[8] ?? '-',
+        'no_tel' => $splitData[9] ?? '-',
+      ];
     });
 
     $processData = function ($data) {
@@ -64,6 +85,7 @@ class DataAnak extends Controller
       'aktif' => $processData($aktif),
       'alumni' => $processData($alumni),
       'alumniBermasalah' => $processData($alumniBermasalah),
+      'user' => $user
     ]);
   }
 
@@ -174,9 +196,9 @@ class DataAnak extends Controller
       $request->status_anak,
       $request->pendidikan,
       $request->alamat,
-      $request->ortu,
+      $request->ortu ?? $existingData->where('ortu', $request->ortu)->first()->ortu ?? '-',
       $request->pekerjaan,
-      $request->no_tel
+      $request->no_tel ?? $existingData->where('ortu', $request->ortu)->first()->no_tel ?? '-',
     ]);
 
     try {
@@ -220,7 +242,24 @@ class DataAnak extends Controller
         if ($existingData->contains('nik', $request->nik)) {
           return back()->with('error', 'Data anak gagal disimpan: NIK sudah terdaftar');
         }
-        Anak::create($data);
+        $daftarBaru = Pendaftaran::create([
+          'id' => Str::uuid(),
+          'user_id' => $request->user_id,
+          'biodata' => $biodata,
+          'status' => 'lulus',
+          'keterangan' => '-',
+          'tahap' => '3',
+        ]);
+        if ($daftarBaru) {
+          Anak::create([
+            'user_id' => $request->user_id,
+            'pendaftarans_id' => $daftarBaru->id,
+            'biodata' => $biodata,
+            'status' => 'aktif',
+            'keterangan' => '-',
+          ]);
+          dd($daftarBaru->tahap);
+        }
         return back()->with('success', 'Data anak berhasil disimpan');
       }
     } catch (\Exception $e) {

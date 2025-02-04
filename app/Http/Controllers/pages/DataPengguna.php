@@ -75,7 +75,7 @@ class DataPengguna extends Controller
       'sebagai' => ['required', 'string', 'in:ortu,wali,staff'],
       'role' => ['required', 'string', 'in:admin,user'],
       'status' => ['required', 'string', 'in:1,0'],
-      'forgot' => ['required', 'string', 'in:1,0'],
+      'forgot' => ['required', 'in:1,0'],
       'password' => ['nullable', 'string', 'min:3'],
     ], [
       '*.required' => ':attribute harus diisi.',
@@ -95,12 +95,11 @@ class DataPengguna extends Controller
       $validatedData = $validator->validated();
 
       if ($request->filled('password')) {
-        $validatedData['forgot'] = 0;
+        $validatedData['forgot'] = '0';
         $validatedData['password'] = bcrypt($request->password);
       } else {
         unset($validatedData['password']);
       }
-
       $user->update($validatedData);
 
       return back()->with('success', 'Data pengguna ' . $user->nama_lengkap . ' berhasil diubah');

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Anak;
 use App\Models\Artikel;
 use App\Models\Donasi;
+use App\Models\Pendaftaran;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class Admin extends Controller
@@ -60,6 +62,11 @@ class Admin extends Controller
       ->whereYear('created_at', $tahun)
       ->count();
 
+    $countPendaftaran = Pendaftaran::where('status', '!=', 'lulus')
+      ->count();
+
+    $countForgotPass = User::where('forgot', 1)->count();
+
     // Return ke view dengan data yang difilter
     return view('content.pages.admin', [
       'countAnakAktif' => $countAnakAktif ?? 0,
@@ -72,6 +79,8 @@ class Admin extends Controller
       'countDataArtikel' => $countDataArtikel ?? 0,
       'countAnakLaki' => $countAnakLaki ?? 0,
       'countAnakPerempuan' => $countAnakPerempuan ?? 0,
+      'countPendaftaran' => $countPendaftaran ?? 0,
+      'countForgotPass' => $countForgotPass ?? 0,
       'bulan' => $bulan,
       'tahun' => $tahun,
     ]);
