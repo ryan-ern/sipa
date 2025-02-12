@@ -456,13 +456,14 @@
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered dataTable" id="table">
                             <thead>
-                                <tr class="text-center">
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Keterangan</th>
-                                    <th scope="col">Tanggal</th>
-                                </tr>
+                              <tr class="text-center">
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">File Pendukung</th>
+                                <th scope="col">Tanggal</th>
+                            </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $riwayatAnak)
@@ -471,6 +472,15 @@
                                         <td class="text-capitalize">{{ $riwayatAnak->biodata->nama }}</td>
                                         <td class="text-capitalize">{{ $riwayatAnak->status }}</td>
                                         <td class="text-capitalize truncate">{{ $riwayatAnak->keterangan }}</td>
+                                        <td>
+                                          @if (!empty($riwayatAnak->fp_riwayat))
+                                                  <a href="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}" target="_blank">
+                                                      {{ $riwayatAnak->fn_riwayat }}
+                                                  </a>
+                                              @else
+                                              -
+                                          @endif
+                                      </td>
                                         <td class="text-capitalize text-truncate">
                                             {{ $riwayatAnak->updated_at->format('l, d-m-Y H:i') }}
                                         </td>
