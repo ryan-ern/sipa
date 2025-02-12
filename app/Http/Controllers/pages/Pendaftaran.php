@@ -169,12 +169,6 @@ class Pendaftaran extends Controller
     $data = [];
     foreach ($files as $fileKey) {
       if ($request->hasFile($fileKey)) {
-        if ($id) {
-          $existingFile = ModelsPendaftaran::find($id)->$fileKey;
-          if ($existingFile && Storage::disk('public')->exists($existingFile)) {
-            Storage::disk('public')->delete($existingFile);
-          }
-        }
         $file = $request->file($fileKey);
         $originalFileName = $file->getClientOriginalName();
         $fileName = str_replace('fn_', '', $fileNames[array_search($fileKey, $files)]) . '_' . $request->nik . '_' . preg_replace('/\s+/', '_', $originalFileName);

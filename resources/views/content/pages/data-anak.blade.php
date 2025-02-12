@@ -107,7 +107,8 @@
                                                                             data-modal-type="riwayat"
                                                                             data-nama="{{ $dataAnak->biodata->nama }}"
                                                                             data-userid="{{ $dataAnak->user_id }}"
-                                                                            data-id="{{ $dataAnak->id }}">
+                                                                            data-id="{{ $dataAnak->id }}"
+                                                                            data-no_tel="{{ $dataAnak->biodata->no_tel }}">
                                                                             <i class="ri-pulse-line me-2"></i>Keadaan
                                                                             Anak
                                                                         </button>
@@ -875,6 +876,24 @@
 
 @section('page-script')
     <script>
+        function handleConfirmation(event, number) {
+            event.preventDefault();
+            const button = event.target;
+
+            if (confirm('Apakah anda ingin mengabarkan orang tua?')) {
+                const nama = button.getAttribute('data-nama');
+
+                const message = `Halo, saya dari Sistem Informasi Panti Asuhan. Ada update terbaru atas kondisi anak anda ${nama}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
+
+                const whatsappUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            }
+
+            const form = button.closest('form');
+            if (form) {
+                form.submit();
+            }
+        }
         document.addEventListener('DOMContentLoaded', function() {
             const dynamicModal = document.getElementById('dynamicModal');
             const modalTitle = dynamicModal.querySelector('.modal-title');
@@ -965,6 +984,7 @@
                     </div>`;
                 } else if (modalType === 'riwayat') {
                     modalTitle.textContent = `Riwayat Keadaan ${button.getAttribute('data-nama')}`;
+                    const number = button.getAttribute("data-no_tel");
                     modalForm.setAttribute('action', `/pages/data-riwayat`);
                     modalForm.setAttribute('method', 'POST');
                     modalForm.setAttribute('enctype', 'multipart/form-data');
@@ -996,6 +1016,8 @@
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary me-2">Simpan</button>
                     </div>`;
+                    modalForm.removeEventListener("submit", handleConfirmation);
+                    modalForm.addEventListener("submit", (event) => handleConfirmation(event, number));
                 } else if (modalType === 'hapus') {
                     modalTitle.textContent = `Hapus Data ${button.getAttribute('data-nama')}`;
                     modalForm.setAttribute('action', `/data-anak/hapus/${button.getAttribute('data-id')}`);

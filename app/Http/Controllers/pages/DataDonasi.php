@@ -90,10 +90,6 @@ class DataDonasi extends Controller
     try {
       $data = $validator->validated();
       if ($request->hasFile('fp_donasi')) {
-        if ($donasi->fp_donasi && Storage::disk('public')->exists($donasi->fp_donasi)) {
-          Storage::disk('public')->delete($donasi->fp_donasi);
-        }
-
         $file = $request->file('fp_donasi');
         $originalFileName = $file->getClientOriginalName();
         $fileName = time() . '_' . preg_replace('/\s+/', '_', $originalFileName);

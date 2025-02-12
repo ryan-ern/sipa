@@ -91,10 +91,6 @@ class DataArtikel extends Controller
     $data['user_id'] = Auth::user()->id;
 
     if ($request->hasFile('fp_cover')) {
-      if ($artikel->fp_cover && Storage::disk('public')->exists($artikel->fp_cover)) {
-        Storage::disk('public')->delete($artikel->fp_cover);
-      }
-
       $file = $request->file('fp_cover');
       $originalFileName = $file->getClientOriginalName();
       $fileName = time() . '_' . preg_replace('/\s+/', '_', $originalFileName);

@@ -81,7 +81,7 @@
                 <img src="{{ asset('assets/img/illustrations/nakal.png') }}" class="position-absolute bottom-0 start-0 ms-5"
                     width="80" alt="view sales">
                 <div class="card-body text-nowrap text-end">
-                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Jumlah Alumni Bermasalah</h5>
+                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Jumlah Alumni Keluar</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakBermasalah }}</h3>
                 </div>
             </div>

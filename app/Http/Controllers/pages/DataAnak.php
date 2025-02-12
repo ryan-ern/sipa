@@ -247,6 +247,34 @@ class DataAnak extends Controller
           'fp_foto' => $data['fp_foto'] ?? $daftar->fp_foto,
           'fn_foto' => $data['fn_foto'] ?? $daftar->fn_foto,
         ]);
+        $anakBaru = Anak::find($id);
+        if ($anakBaru) {
+          Pendaftaran::where('id', $id)->update([
+            'biodata' => $anakBaru->biodata,
+            'status' => $anakBaru->status,
+            'keterangan' => $anakBaru->keterangan,
+            'fp_formulir' => $anakBaru->fp_formulir,
+            'fn_formulir' => $anakBaru->fn_formulir,
+            'fp_surat_izin' => $anakBaru->fp_surat_izin,
+            'fn_surat_izin' => $anakBaru->fn_surat_izin,
+            'fp_suket_tidak_mampu' => $anakBaru->fp_suket_tidak_mampu,
+            'fn_suket_tidak_mampu' => $anakBaru->fn_suket_tidak_mampu,
+            'fp_suket_kematian' => $anakBaru->fp_suket_kematian,
+            'fn_suket_kematian' => $anakBaru->fn_suket_kematian,
+            'fp_suket_sehat' => $anakBaru->fp_suket_sehat,
+            'fn_suket_sehat' => $anakBaru->fn_suket_sehat,
+            'fp_ktp' => $anakBaru->fp_ktp,
+            'fn_ktp' => $anakBaru->fn_ktp,
+            'fp_kk' => $anakBaru->fp_kk,
+            'fn_kk' => $anakBaru->fn_kk,
+            'fp_bpjs' => $anakBaru->fp_bpjs,
+            'fn_bpjs' => $anakBaru->fn_bpjs,
+            'fp_akte' => $anakBaru->fp_akte,
+            'fn_akte' => $anakBaru->fn_akte,
+            'fp_foto' => $anakBaru->fp_foto,
+            'fn_foto' => $anakBaru->fn_foto,
+          ]);
+        }
         if ($request->hasFile('files')) {
           foreach ($request->file('files') as $index => $file) {
             $fileNameOpt = $request->file_name[$index] ?? null;
