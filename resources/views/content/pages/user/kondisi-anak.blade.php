@@ -46,28 +46,26 @@
 
     @if ($riwayat)
     <div class="row gy-6">
-            <div class="@if($riwayat->fp_riwayat) col-md-6 @else col-md-12 @endif col-sm-12 mb-4">
-                <div class="card">
-                    <div class="card-body text-capitalize text-wrap">
-                        {{ $riwayat ? $riwayat->keterangan : '-' }}
-                    </div>
+        <div class="col-md-12 col-sm-12 mb-4">
+            <div class="card">
+                @if($riwayat->fp_riwayat)
+                    <img src="{{ asset('storage/' . $riwayat->fp_riwayat) }}"
+                         alt="Gambar Riwayat"
+                          class="card-img-top img-fluid"
+                          style="height: 200px; object-fit: cover;"
+                         data-bs-toggle="modal"
+                         data-bs-target="#imageModal{{ $riwayat->fn_riwayat }}">
+                         <marquee class="text-info mt-2">Klik gambar untuk melihat lebih jelas</marquee>
+                @endif
+                <div class="card-body text-capitalize text-wrap">
+                    {{ $riwayat ? $riwayat->keterangan : '-' }}
                 </div>
             </div>
-    @endif
-    @if (!empty($riwayat->fp_riwayat))
-            <div class="col-md-6 col-sm-12 mb-4">
-                <div class="card">
-                    <div class="card-body text-capitalize text-wrap">
-                      <a href="{{ asset('storage/' . $riwayat->fp_riwayat) }}" target="_blank">
-                        {{ $riwayat->fn_riwayat }}
-                    </a>
-                    </div>
-                </div>
-            </div>
+        </div>
     </div>
-    @elseif($riwayat)
-  </div>
-    @endif
+@endif
+
+
     <div class="row">
         <div class="col md-12 sm-12 mb-4">
             <div class="card">
@@ -473,12 +471,15 @@
                                         <td class="text-capitalize">{{ $riwayatAnak->status }}</td>
                                         <td class="text-capitalize truncate">{{ $riwayatAnak->keterangan }}</td>
                                         <td>
-                                          @if (!empty($riwayatAnak->fp_riwayat))
-                                                  <a href="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}" target="_blank">
-                                                      {{ $riwayatAnak->fn_riwayat }}
-                                                  </a>
-                                              @else
-                                              -
+                                          @if(!empty($riwayatAnak->fp_riwayat))
+                                          <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}"
+                                          alt="Gambar Riwayat"
+                                          width="100"
+                                          class="rounded img-thumbnail"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#imageModal{{ $riwayatAnak->fn_riwayat }}">
+                                          @else
+                                          -
                                           @endif
                                       </td>
                                         <td class="text-capitalize text-truncate">
@@ -493,6 +494,16 @@
             </div>
         </div>
     </div>
+    @if(!empty($riwayatAnak->fp_riwayat))
+    <div class="modal fade" id="imageModal{{ $riwayatAnak->fn_riwayat }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-body text-center">
+                  <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}" class="img-fluid rounded" alt="Gambar Riwayat Anak">
+              </div>
+          </div>
+      </div>
+    @endif
     @endif
 @endsection
 @section('page-script')

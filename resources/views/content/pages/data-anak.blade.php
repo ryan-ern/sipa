@@ -829,13 +829,16 @@
                                             </a>
                                         </td>
                                         <td>
-                                            @if (!empty($riwayatAnak->fp_riwayat))
-                                                    <a href="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}" target="_blank">
-                                                        {{ $riwayatAnak->fn_riwayat }}
-                                                    </a>
-                                                @else
-                                                -
-                                            @endif
+                                          @if(!empty($riwayatAnak->fp_riwayat))
+                                          <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}"
+                                          alt="Gambar Riwayat Anak"
+                                          width="100"
+                                          class="rounded img-thumbnail"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#imageModal{{ $riwayatAnak->fn_riwayat }}">
+                                          @else
+                                          -
+                                          @endif
                                         </td>
                                         <td class="text-capitalize">{{ $riwayatAnak->updated_at->format('Y-m-d H:i') }}
                                         </td>
@@ -848,7 +851,16 @@
             </div>
         </div>
     </div>
-
+    @if(!empty($riwayatAnak->fp_riwayat))
+    <div class="modal fade" id="imageModal{{ $riwayatAnak->fn_riwayat }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-body text-center">
+                  <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}" class="img-fluid rounded" alt="Gambar Riwayat Anak">
+              </div>
+          </div>
+      </div>
+    @endif
     <!-- Modal Detail -->
     <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -876,14 +888,13 @@
 
 @section('page-script')
     <script>
-        function handleConfirmation(event, number) {
+        function handleConfirmation(event, number, anak) {
             event.preventDefault();
             const button = event.target;
 
             if (confirm('Apakah anda ingin mengabarkan orang tua?')) {
-                const nama = button.getAttribute('data-nama');
 
-                const message = `Halo, saya dari Sistem Informasi Panti Asuhan. Ada update terbaru atas kondisi anak anda ${nama}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
+                const message = `Halo, saya dari Sistem Informasi Panti Asuhan. Ada update terbaru atas kondisi anak anda ${anak}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
 
                 const whatsappUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
@@ -985,6 +996,7 @@
                 } else if (modalType === 'riwayat') {
                     modalTitle.textContent = `Riwayat Keadaan ${button.getAttribute('data-nama')}`;
                     const number = button.getAttribute("data-no_tel");
+                    const anak = button.getAttribute("data-nama");
                     modalForm.setAttribute('action', `/pages/data-riwayat`);
                     modalForm.setAttribute('method', 'POST');
                     modalForm.setAttribute('enctype', 'multipart/form-data');
@@ -1017,7 +1029,7 @@
                         <button type="submit" class="btn btn-primary me-2">Simpan</button>
                     </div>`;
                     modalForm.removeEventListener("submit", handleConfirmation);
-                    modalForm.addEventListener("submit", (event) => handleConfirmation(event, number));
+                    modalForm.addEventListener("submit", (event) => handleConfirmation(event, number, anak));
                 } else if (modalType === 'hapus') {
                     modalTitle.textContent = `Hapus Data ${button.getAttribute('data-nama')}`;
                     modalForm.setAttribute('action', `/data-anak/hapus/${button.getAttribute('data-id')}`);

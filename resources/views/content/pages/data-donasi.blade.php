@@ -60,12 +60,16 @@
                                         <td class="truncate">{{ $donasi->keterangan }}</td>
                                         <td class="truncate">{{ $donasi->kegunaan }}</td>
                                         <td>
+                                          @if(!empty($donasi->fp_donasi))
                                           <img src="{{ asset('storage/' . $donasi->fp_donasi) }}"
                                           alt="Gambar Donasi"
                                           width="100"
                                           class="rounded img-thumbnail"
                                           data-bs-toggle="modal"
                                           data-bs-target="#imageModal{{ $donasi->id }}">
+                                          @else
+                                          -
+                                          @endif
                                         </td>
                                         <td class="text-start">{{ $donasi->created_at->format('Y-m-d H:i') }}</td>
                                         <td>

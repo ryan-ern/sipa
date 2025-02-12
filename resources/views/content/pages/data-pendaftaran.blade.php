@@ -262,7 +262,7 @@
                                                                     <button type="button" class="dropdown-item"
                                                                         data-no_tel="{{ $daftar->biodata->no_tel }}"
                                                                         data-nama="{{ $daftar->biodata->nama }}"
-                                                                        data-status="lulus" data-tahap="1"
+                                                                        data-status="lulus" data-tahap="2"
                                                                         onclick="handleConfirmation(event)">
                                                                         <i class="ri-check-line me-1"></i> Lulus
                                                                     </button>
