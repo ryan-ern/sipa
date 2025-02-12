@@ -109,7 +109,7 @@ let menu, animate;
                     extend: 'print',
                     text: '<i class="ri-printer-line me-4"></i>Print',
                     className: 'dropdown-item',
-                    exportOptions: { columns: ':not(:last-child)', stripHtml: true }
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
                   },
                   {
                     extend: 'excel',
