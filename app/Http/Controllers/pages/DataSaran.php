@@ -20,12 +20,12 @@ class DataSaran extends Controller
     {
         $validated = Validator::make($request->all(), [
             'nama' => ['required', 'string', 'max:255'],
-            'no_tel' => ['required', 'regex:/^\+628\d{9,10}$/'],
+            'no_tel' => ['required', 'regex:/^\+628\d{9,15}$/'],
             'keterangan' => ['required', 'string', 'max:255'],
         ], [
             'nama.required' => 'Nama harus diisi.',
             'no_tel.required' => 'Nomor telepon harus diisi.',
-            'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-10 digit angka).',
+            'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-15 digit angka).',
             'keterangan.required' => 'Keterangan harus diisi.',
         ]);
 
@@ -45,12 +45,12 @@ class DataSaran extends Controller
     {
         $validated = Validator::make($request->all(), [
             'nama' => ['required', 'string', 'max:255'],
-            'no_tel' => ['required', 'regex:/^\+628\d{9,10}$/'],
+            'no_tel' => ['required', 'regex:/^\+628\d{9,15}$/'],
             'keterangan' => ['required', 'string', 'max:255'],
         ], [
             'nama.required' => 'Nama harus diisi.',
             'no_tel.required' => 'Nomor telepon harus diisi.',
-            'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-10 digit angka).',
+            'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-15 digit angka).',
             'keterangan.required' => 'Keterangan harus diisi.',
         ]);
 

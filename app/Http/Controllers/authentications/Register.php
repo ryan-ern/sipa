@@ -19,7 +19,7 @@ class Register extends Controller
         $validated = $request->validate([
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'nama_lengkap' => ['required', 'string', 'max:255'],
-            'no_tel' => ['required', 'regex:/^\+628\d{9,10}$/'],
+            'no_tel' => ['required', 'regex:/^\+628\d{9,15}$/'],
             'jenis_kelamin' => ['required', 'string', 'in:Laki-laki,Perempuan'],
             'alamat' => ['required', 'string'],
             'sebagai' => ['required', 'string', 'in:ortu,wali'],
@@ -29,7 +29,7 @@ class Register extends Controller
             'username.unique' => 'Username sudah terdaftar.',
             'nama_lengkap.required' => 'Nama lengkap harus diisi.',
             'no_tel.required' => 'Nomor telepon harus diisi.',
-            'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-10 digit angka).',
+            'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-15 digit angka).',
             'jenis_kelamin.required' => 'Jenis kelamin harus diisi.',
             'alamat.required' => 'Alamat harus diisi.',
             'sebagai.required' => 'Jenis akun harus diisi.',
