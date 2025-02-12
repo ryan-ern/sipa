@@ -31,9 +31,9 @@
                                 Lulus</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="alumniKeluar-tab" data-bs-toggle="tab"
-                                data-bs-target="#alumniKeluar" type="button" role="tab"
-                                aria-controls="alumniKeluar" aria-selected="false">Alumni Keluar</button>
+                            <button class="nav-link" id="alumniBermasalah-tab" data-bs-toggle="tab"
+                                data-bs-target="#alumniBermasalah" type="button" role="tab"
+                                aria-controls="alumniBermasalah" aria-selected="false">Alumni Keluar</button>
                         </li>
                     </ul>
 
@@ -201,8 +201,8 @@
                                                                         data-no_tel="{{ $dataAnak->biodata->no_tel }}"
                                                                         data-alamat="{{ $dataAnak->biodata->alamat }}"
                                                                         data-nik="{{ $dataAnak->biodata->nik }}"
-                                                                        data-status="alumni Keluar">
-                                                                        <i class="ri-edit-line me-1"></i> Alumni Keluar
+                                                                        data-status="alumni bermasalah">
+                                                                        <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
                                                                 </li>
                                                               <li>
@@ -373,8 +373,8 @@
                                                                         data-no_tel="{{ $dataAnak->biodata->no_tel }}"
                                                                         data-alamat="{{ $dataAnak->biodata->alamat }}"
                                                                         data-nik="{{ $dataAnak->biodata->nik }}"
-                                                                        data-status="alumni Keluar">
-                                                                        <i class="ri-edit-line me-1"></i> Alumni Keluar
+                                                                        data-status="alumni bermasalah">
+                                                                        <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
                                                                 </li>
                                                               <li>
@@ -546,8 +546,8 @@
                                                                         data-no_tel="{{ $dataAnak->biodata->no_tel }}"
                                                                         data-alamat="{{ $dataAnak->biodata->alamat }}"
                                                                         data-nik="{{ $dataAnak->biodata->nik }}"
-                                                                        data-status="alumni Keluar">
-                                                                        <i class="ri-edit-line me-1"></i> Alumni Keluar
+                                                                        data-status="alumni bermasalah">
+                                                                        <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
                                                                 </li>
                                                               <li>
@@ -611,8 +611,8 @@
                         </div>
 
                         <!-- Tab alumni masalah-->
-                        <div class="tab-pane fade" id="alumniKeluar" role="tabpanel"
-                            aria-labelledby="alumniKeluar-tab">
+                        <div class="tab-pane fade" id="alumniBermasalah" role="tabpanel"
+                            aria-labelledby="alumniBermasalah-tab">
                             <div class="table-responsive">
                                 <table class="table table-sm table-bordered dataTable">
                                     <thead>
@@ -634,7 +634,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($alumniKeluar as $dataAnak)
+                                        @foreach ($alumniBermasalah as $dataAnak)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $dataAnak->biodata->nama }}</td>
@@ -722,8 +722,8 @@
                                                                         data-no_tel="{{ $dataAnak->biodata->no_tel }}"
                                                                         data-alamat="{{ $dataAnak->biodata->alamat }}"
                                                                         data-nik="{{ $dataAnak->biodata->nik }}"
-                                                                        data-status="alumni Keluar">
-                                                                        <i class="ri-edit-line me-1"></i> Alumni Keluar
+                                                                        data-status="alumni bermasalah">
+                                                                        <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
                                                                 </li>
                                                               <li>

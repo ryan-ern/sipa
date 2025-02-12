@@ -107,33 +107,33 @@ let menu, animate;
                 buttons: [
                   {
                     extend: 'print',
-                    text: '<i class="ri-printer-line me-4" ></i>Print',
+                    text: '<i class="ri-printer-line me-4"></i>Print',
                     className: 'dropdown-item',
-                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: true }
                   },
                   {
                     extend: 'excel',
                     text: '<i class="ri-file-excel-line me-4"></i>Excel',
                     className: 'dropdown-item',
-                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: true }
                   },
                   {
                     extend: 'pdf',
                     text: '<i class="ri-file-pdf-line me-4"></i>Pdf',
                     className: 'dropdown-item',
-                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: true }
                   },
                   {
                     extend: 'csv',
-                    text: '<i class="ri-file-text-line me-4" ></i>Csv',
+                    text: '<i class="ri-file-text-line me-4"></i>Csv',
                     className: 'dropdown-item',
-                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: true }
                   },
                   {
                     extend: 'copy',
-                    text: '<i class="ri-file-copy-line me-4" ></i>Copy',
+                    text: '<i class="ri-file-copy-line me-4"></i>Copy',
                     className: 'dropdown-item',
-                    exportOptions: { columns: ':not(:last-child)', stripHtml: false }
+                    exportOptions: { columns: ':not(:last-child)', stripHtml: true }
                   }
                 ]
               }
