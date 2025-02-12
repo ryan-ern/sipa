@@ -132,6 +132,7 @@
                 </form>
             </div>
         </div>
+        @if(!empty($donasi->fp_donasi))
         <div class="modal fade" id="imageModal{{ $donasi->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
@@ -140,6 +141,7 @@
                   </div>
               </div>
           </div>
+          @endif
       </div>
     </div>
 @endsection
