@@ -285,7 +285,6 @@ class DataAnak extends Controller
             'status' => 'aktif',
             'keterangan' => '-',
           ]);
-          dd($daftarBaru->tahap);
         }
         return back()->with('success', 'Data anak berhasil disimpan');
       }
