@@ -89,6 +89,29 @@ class DataAnak extends Controller
     ]);
   }
 
+  public function detail($id)
+  {
+    $info = Anak::where('id', $id)->first();
+    if ($info) {
+      $splitData = explode('~', $info->biodata);
+      $info->biodata = (object) [
+        'nama' => $splitData[0] ?? '-',
+        'ttl' => $splitData[1] ?? '-',
+        'nik' => $splitData[2] ?? '-',
+        'jk' => $splitData[3] ?? '-',
+        'status_anak' => $splitData[4] ?? '-',
+        'pendidikan' => $splitData[5] ?? '-',
+        'alamat' => $splitData[6] ?? '-',
+        'ortu' => $splitData[7] ?? '-',
+        'pekerjaan' => $splitData[8] ?? '-',
+        'no_tel' => $splitData[9] ?? '-',
+      ];
+    }
+    return view('content.pages.data-anak-detail',  [
+      'filesAnak' => $info,
+      'info' => $info,
+    ]);
+  }
 
   public function store(Request $request, $id = null)
   {
@@ -157,12 +180,6 @@ class DataAnak extends Controller
     $data = [];
     foreach ($files as $fileKey) {
       if ($request->hasFile($fileKey)) {
-        if ($id) {
-          $existingFile = Anak::find($id)->$fileKey;
-          if ($existingFile && Storage::disk('public')->exists($existingFile)) {
-            Storage::disk('public')->delete($existingFile);
-          }
-        }
         $file = $request->file($fileKey);
         $originalFileName = $file->getClientOriginalName();
         $fileName = str_replace('fn_', '', $fileNames[array_search($fileKey, $files)]) . '_' . $request->nik . '_' . preg_replace('/\s+/', '_', $originalFileName);
@@ -209,16 +226,26 @@ class DataAnak extends Controller
           'biodata' => $biodata,
           'status' => $request->status ?? 'aktif',
           'keterangan' => $request->keterangan ?? '-',
-          'fp_formulir' => $request->fp_formulir ?? $daftar->fp_formulir,
-          'fp_surat_izin' => $request->fp_surat_izin ?? $daftar->fp_surat_izin,
-          'fp_suket_tidak_mampu' => $request->fp_suket_tidak_mampu ?? $daftar->fp_suket_tidak_mampu,
-          'fp_suket_kematian' => $request->fp_suket_kematian ?? $daftar->fp_suket_kematian,
-          'fp_suket_sehat' => $request->fp_suket_sehat ?? $daftar->fp_suket_sehat,
-          'fp_ktp' => $request->fp_ktp ?? $daftar->fp_ktp,
-          'fp_kk' => $request->fp_kk ?? $daftar->fp_kk,
-          'fp_bpjs' => $request->fp_bpjs ?? $daftar->fp_bpjs,
-          'fp_akte' => $request->fp_akte ?? $daftar->fp_akte,
-          'fp_foto' => $request->fp_foto ?? $daftar->fp_foto
+          'fp_formulir' => $data['fp_formulir'] ?? $daftar->fp_formulir,
+          'fn_formulir' => $data['fn_formulir'] ?? $daftar->fn_formulir,
+          'fp_surat_izin' => $data['fp_surat_izin'] ?? $daftar->fp_surat_izin,
+          'fn_surat_izin' => $data['fn_surat_izin'] ?? $daftar->fn_surat_izin,
+          'fp_suket_tidak_mampu' => $data['fp_suket_tidak_mampu'] ?? $daftar->fp_suket_tidak_mampu,
+          'fn_suket_tidak_mampu' => $data['fn_suket_tidak_mampu'] ?? $daftar->fn_suket_tidak_mampu,
+          'fp_suket_kematian' => $data['fp_suket_kematian'] ?? $daftar->fp_suket_kematian,
+          'fn_suket_kematian' => $data['fn_suket_kematian'] ?? $daftar->fn_suket_kematian,
+          'fp_suket_sehat' => $data['fp_suket_sehat'] ?? $daftar->fp_suket_sehat,
+          'fn_suket_sehat' => $data['fn_suket_sehat'] ?? $daftar->fn_suket_sehat,
+          'fp_ktp' => $data['fp_ktp'] ?? $daftar->fp_ktp,
+          'fn_ktp' => $data['fn_ktp'] ?? $daftar->fn_ktp,
+          'fp_kk' => $data['fp_kk'] ?? $daftar->fp_kk,
+          'fn_kk' => $data['fn_kk'] ?? $daftar->fn_kk,
+          'fp_bpjs' => $data['fp_bpjs'] ?? $daftar->fp_bpjs,
+          'fn_bpjs' => $data['fn_bpjs'] ?? $daftar->fn_bpjs,
+          'fp_akte' => $data['fp_akte'] ?? $daftar->fp_akte,
+          'fn_akte' => $data['fn_akte'] ?? $daftar->fn_akte,
+          'fp_foto' => $data['fp_foto'] ?? $daftar->fp_foto,
+          'fn_foto' => $data['fn_foto'] ?? $daftar->fn_foto,
         ]);
         if ($request->hasFile('files')) {
           foreach ($request->file('files') as $index => $file) {
@@ -289,17 +316,30 @@ class DataAnak extends Controller
         'keterangan' => 'required',
         'user_id' => 'required',
         'anaks_id' => 'required',
+        'fp_riwayat' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
       ],
       [
         '*.required' => ':attribute harus diisi.',
+        '*.file' => ':attribute harus berupa file yang valid.',
+        '*.mimes' => ':attribute harus memiliki ekstensi jpeg, png, pdf atau jpg.',
       ]
     );
+
+
 
     if ($validator->fails()) {
       return back()->with('error', 'Data riwayat gagal disimpan: ' . $validator->errors()->first());
     }
     try {
       $data = $request->all();
+      if ($request->hasFile('fp_riwayat')) {
+        $file = $request->file('fp_riwayat');
+        $originalFileName = $file->getClientOriginalName();
+        $fileName = time() . '_' . preg_replace('/\s+/', '_', $originalFileName);
+        $filePath = $file->storeAs('riwayat', $fileName, 'public');
+        $data['fp_riwayat'] = $filePath;
+        $data['fn_riwayat'] = $fileName;
+      }
       Riwayat::create($data);
       return back()->with('success', 'Data riwayat berhasil disimpan');
     } catch (\Exception $e) {

@@ -239,7 +239,7 @@
                         </div>
                         <div class="col-md-12 mb-3">
                           <div class="form-floating form-floating-outline">
-                            <input type="file" class="form-control" id="cover" name="fp_cover" placeholder="cover" accept="image/*" required>
+                            <input type="file" class="form-control" id="cover" name="fp_cover" placeholder="cover" accept="image/png, image/jpg, image/jpeg" required>
                             <label for="cover">Cover</label>
                           </div>
                         </div>

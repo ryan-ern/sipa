@@ -205,6 +205,11 @@
                                                                         <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
                                                                 </li>
+                                                              <li>
+                                                                    <a class="dropdown-item text-primary" href="{{route('data-anak.detail', $dataAnak->id)}}">
+                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data Anak
+                                                                    </a>
+                                                                </li>
                                                                 <li>
                                                                     <div class="dropdown-divider"></div>
                                                                 </li>
@@ -371,6 +376,11 @@
                                                                         data-status="alumni bermasalah">
                                                                         <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
+                                                                </li>
+                                                              <li>
+                                                                    <a class="dropdown-item text-primary" href="{{route('data-anak.detail', $dataAnak->id)}}">
+                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data Anak
+                                                                    </a>
                                                                 </li>
                                                                 <li>
                                                                     <div class="dropdown-divider"></div>
@@ -539,6 +549,11 @@
                                                                         data-status="alumni bermasalah">
                                                                         <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
+                                                                </li>
+                                                              <li>
+                                                                    <a class="dropdown-item text-primary" href="{{route('data-anak.detail', $dataAnak->id)}}">
+                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data Anak
+                                                                    </a>
                                                                 </li>
                                                                 <li>
                                                                     <div class="dropdown-divider"></div>
@@ -711,6 +726,11 @@
                                                                         <i class="ri-edit-line me-1"></i> Alumni Bermasalah
                                                                     </button>
                                                                 </li>
+                                                              <li>
+                                                                    <a class="dropdown-item text-primary" href="{{route('data-anak.detail', $dataAnak->id)}}">
+                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data Anak
+                                                                    </a>
+                                                                </li>
                                                                 <li>
                                                                     <div class="dropdown-divider"></div>
                                                                 </li>
@@ -788,6 +808,7 @@
                                     <th scope="col">Keterangan</th>
                                     <th scope="col">Nama Ortu / Wali</th>
                                     <th scope="col">No. Telp</th>
+                                    <th scope="col">File Pendukung</th>
                                     <th scope="col">Tanggal</th>
                                 </tr>
                             </thead>
@@ -805,6 +826,15 @@
                                                 target="_blank">
                                                 {{ $riwayatAnak->biodata->no_tel }}
                                             </a>
+                                        </td>
+                                        <td>
+                                            @if (!empty($riwayatAnak->fp_riwayat))
+                                                    <a href="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}" target="_blank">
+                                                        {{ $riwayatAnak->fn_riwayat }}
+                                                    </a>
+                                                @else
+                                                -
+                                            @endif
                                         </td>
                                         <td class="text-capitalize">{{ $riwayatAnak->updated_at->format('Y-m-d H:i') }}
                                         </td>
@@ -937,6 +967,7 @@
                     modalTitle.textContent = `Riwayat Keadaan ${button.getAttribute('data-nama')}`;
                     modalForm.setAttribute('action', `/pages/data-riwayat`);
                     modalForm.setAttribute('method', 'POST');
+                    modalForm.setAttribute('enctype', 'multipart/form-data');
                     closeModal.replaceWith(
                         ``
                     )
@@ -953,6 +984,13 @@
                           </div>
                             <label>Keterangan</label>
                             <textarea name="keterangan" class="form-control" placeholder="Keterangan" required rows="3"></textarea>
+                          <div class="row">
+                            <div class="col-md-12 mb-3">
+                              <label for="fp_riwayat" class="form-label">Riwayat Keadaan</label>
+                              <input type="file" class="form-control" id="fp_riwayat" name="fp_riwayat" accept="image/*, application/pdf">
+                              <small class="text-muted">Format: JPEG, PNG, JPG, PDF. Maksimal: 2MB.</small>
+                            </div>
+                          </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">

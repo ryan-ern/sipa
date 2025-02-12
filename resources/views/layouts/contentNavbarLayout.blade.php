@@ -32,10 +32,14 @@
                 @if ($isNavbar && Auth::check())
                     @include('layouts/sections/navbar/navbar')
                 @else
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <nav class="navbar navbar-expand-lg bg-white">
                         <div class="container">
                             <!-- Brand -->
-                            <a class="navbar-brand" href="#">Navbar</a>
+                                <a href="{{ url('/') }}" class="app-brand-link gap-3 me-10 p-2 rounded">
+                                    <span class="app-brand-logo demo">@include('_partials.macros', ['height' => 500, 'withbg' => 'fill: #fff;'])</span>
+                                    <span
+                                        class="app-brand-text demo text-heading fw-semibold">{{ config('variables.templateName') }}</span>
+                                </a>
 
                             <!-- Toggler Button -->
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -46,39 +50,34 @@
 
                             <!-- Navbar Links -->
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Link</a>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Dropdown
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Disabled</a>
-                                    </li>
-                                </ul>
+                              <ul class="navbar-nav mb-2 mb-lg-0">
+                                  <li class="nav-item">
+                                      <a class="nav-link me-2 px-3 {{ request()->routeIs('beranda-user') ? 'active btn btn-primary' : '' }}"
+                                         href="{{ route('beranda-user') }}">Beranda</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link me-2 px-3 {{ request()->routeIs('kegiatan-user') ? 'active btn btn-primary' : '' }}"
+                                         href="{{ route('kegiatan-user') }}">Kegiatan</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link me-2 px-3 {{ request()->routeIs('syarat-user') ? 'active btn btn-primary' : '' }}"
+                                         href="{{ route('syarat-user') }}">Persyaratan</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link me-2 px-3 {{ request()->routeIs('artikel-user') ? 'active btn btn-primary' : '' }}"
+                                         href="{{ route('artikel-user') }}">Artikel Informasi</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link me-2 px-3 {{ request()->routeIs('hubungi-user') ? 'active btn btn-primary' : '' }}"
+                                         href="{{ route('hubungi-user') }}">Hubungi</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link me-2 px-3 {{ request()->routeIs('login') ? 'active btn btn-primary' : '' }}"
+                                         href="{{ route('login') }}">Login</a>
+                                  </li>
+                              </ul>
+                          </div>
 
-                                <!-- Search Form -->
-                                <form class="d-flex" role="search">
-                                    <input class="form-control me-2" type="search" placeholder="Search"
-                                        aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
-                                </form>
-                            </div>
                         </div>
                     </nav>
                 @endif
@@ -86,7 +85,11 @@
 
 
                 <!-- Content wrapper -->
+                @if (Auth::check())
                 <div class="content-wrapper">
+                @else
+                    <div class="content-wrapper-costume">
+                @endif
 
                     <!-- Content -->
                     @if ($isFlex)

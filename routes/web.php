@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\authentications\Forgot;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\layouts\WithoutMenu;
 use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\authentications\Login;
 use App\Http\Controllers\authentications\Register;
@@ -16,6 +15,8 @@ use App\Http\Controllers\pages\DataSaran;
 use App\Http\Controllers\pages\KondisiAnak;
 use App\Http\Controllers\pages\Pendaftaran;
 use App\Http\Controllers\pages\SyaratMasuk;
+use App\Http\Controllers\pages\Visitor;
+
 // Main Page Route
 
 Route::fallback(function () {
@@ -49,7 +50,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
   Route::delete('/pages/data-informasi/{id}', [DataArtikel::class, 'destroy'])->name('data-informasi.destroy');
 
   // data saran
-  Route::post('/pages/data-saran', [DataSaran::class, 'store'])->name('data-saran.store');
   Route::put('/pages/data-saran/{id}', [DataSaran::class, 'update'])->name('data-saran.update');
   Route::get('/pages/data-saran', [DataSaran::class, 'index'])->name('data-saran');
   Route::delete('/pages/data-saran/{id}', [DataSaran::class, 'destroy'])->name('data-saran.destroy');
@@ -75,6 +75,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
   Route::post('/pages/data-anak', [DataAnak::class, 'store'])->name('data-anak.store');
   Route::put('/data-anak/status/{id}', [DataAnak::class, 'store'])->name('data-anak.status');
   Route::delete('/data-anak/hapus/{id}', [DataAnak::class, 'destroy'])->name('data-anak.destroy');
+  Route::get('/pages/data-anak-detail/{id}', [DataAnak::class, 'detail'])->name('data-anak.detail');
+  Route::put('/pages/data-anak-detail/update/{id}', [DataAnak::class, 'store'])->name('data-anak.detail.update');
+  Route::delete('/pages/data-anak/delete-fie/{id}', [KondisiAnak::class, 'destroy'])->name('data-anak.delete-file');
+
 
   // data riwayat
   Route::post('/pages/data-riwayat', [DataAnak::class, 'riwayat'])->name('data-riwayat.store');
@@ -97,8 +101,14 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 // VISITOR
 Route::group(['middleware' => ['guest']], function () {
   // index
-  Route::get('/', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
-
+  Route::get('/', [Visitor::class, 'BerandaUser'])->name('beranda-user');
+  Route::get('/kegiatan', [Visitor::class, 'Kegiatan'])->name('kegiatan-user');
+  Route::get('/persyaratan', [Visitor::class, 'Persyaratan'])->name('syarat-user');
+  Route::get('/artikel-informasi', [Visitor::class, 'Artikel'])->name('artikel-user');
+  Route::get('/artikel-informasi/{id}', [Visitor::class, 'ArtikelDetail'])->name('artikel-user.detail');
+  Route::get('/hubungi', [Visitor::class, 'Hubungi'])->name('hubungi-user');
+  Route::get('/data-kegiatan/events', [DataKegiatan::class, 'getEvents'])->name('data-kegiatan.events.user');
+  Route::post('/pages/data-saran', [DataSaran::class, 'store'])->name('data-saran.store');
   // auth
   Route::get('/auth', function () {
     return redirect('/auth/login');

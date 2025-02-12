@@ -29,6 +29,8 @@ class Riwayat extends Model
     'user_id',
     'keterangan',
     'status',
+    'fp_riwayat',
+    'fn_riwayat'
   ];
 
   public function user()

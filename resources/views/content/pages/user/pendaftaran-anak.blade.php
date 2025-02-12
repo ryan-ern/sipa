@@ -170,13 +170,13 @@
                                     </div>
                                     <div class="col-md-6 mb-5 ">
                                         <div class="btn btn-info w-100"
-                                            onclick="window.open('/storage/template/formulir_daftar.pdf', '_blank')">
+                                            onclick="window.open('/assets/template/formulir_daftar.pdf', '_blank')">
                                             Contoh Formulir Pendaftaran
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-5 ">
                                         <div class="btn btn-info w-100"
-                                            onclick="window.open('/storage/template/surat_izin.pdf', '_blank')">
+                                            onclick="window.open('/assets/template/surat_izin.pdf', '_blank')">
                                             Contoh Surat Izin Ortu
                                         </div>
                                     </div>
@@ -497,13 +497,13 @@
                                 </div>
                                 <div class="col-md-6 mb-5 ">
                                     <div class="btn btn-info w-100"
-                                        onclick="window.open('/storage/template/formulir_daftar.pdf', '_blank')">
+                                        onclick="window.open('/assets/template/formulir_daftar.pdf', '_blank')">
                                         Contoh Formulir Pendaftaran
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-5 ">
                                     <div class="btn btn-info w-100"
-                                        onclick="window.open('/storage/template/surat_izin.pdf', '_blank')">
+                                        onclick="window.open('/assets/template/surat_izin.pdf', '_blank')">
                                         Contoh Surat Izin Ortu
                                     </div>
                                 </div>
@@ -577,7 +577,7 @@
                                 </div>
                                 <div class="col-md-6 mb-5 mt-2">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="file" accept="application/pdf, image/*" name="fp_foto"
+                                        <input type="file" accept="image/*" name="fp_foto"
                                             id="fp_foto" class="form-control" required>
                                         <label for="fp_foto">Pas Foto Anak</label>
                                     </div>

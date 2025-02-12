@@ -59,6 +59,6 @@ class Login extends Controller
     Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-    return redirect()->route('login')->with('success', 'Logout berhasil');
+    return redirect()->route('beranda-user')->with('success', 'Logout berhasil');
   }
 }

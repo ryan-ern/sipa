@@ -14,9 +14,12 @@ return new class extends Migration
     Schema::create('donasis', function (Blueprint $table) {
       $table->uuid('id')->primary();
       $table->string('nama');
-      $table->string('no_tel');
-      $table->enum('jenis', ['uang', 'barang', 'lainnya']);
+      $table->string('tujuan');
+      $table->enum('jenis', ['makanan', 'barang', 'lainnya']);
       $table->text('keterangan');
+      $table->text('kegunaan');
+      $table->string('fp_donasi')->nullable();
+      $table->string('fn_donasi')->nullable();
       $table->timestamps();
     });
   }

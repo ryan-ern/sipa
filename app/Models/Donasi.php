@@ -23,8 +23,11 @@ class Donasi extends Model
   }
   protected $fillable = [
     'nama',
-    'no_tel',
+    'tujuan',
     'jenis',
+    'kegunaan',
+    'fp_donasi',
+    'fn_donasi',
     'keterangan',
   ];
 }

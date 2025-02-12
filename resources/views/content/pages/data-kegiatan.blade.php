@@ -295,7 +295,6 @@
                 // Klik pada Event untuk Edit atau Delete
                 eventClick: function(info) {
                     const eventId = info.event.id;
-                    console.log(info.event.extendedProps.desc);
                     if (confirm('Apakah Anda ingin mengedit kegiatan ini?')) {
                         modalTitle.textContent = "Edit Kegiatan";
                         modalForm.action = `{{ url('/pages/data-kegiatan') }}/${eventId}`;

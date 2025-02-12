@@ -19,6 +19,8 @@ return new class extends Migration
       $table->foreign('anaks_id')->references('id')->on('anaks')->onDelete('cascade');
       $table->longText('keterangan')->nullable();
       $table->string('status')->nullable();
+      $table->string('fp_riwayat')->nullable();
+      $table->string('fn_riwayat')->nullable();
       $table->timestamps();
     });
   }
