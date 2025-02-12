@@ -54,9 +54,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="text-capitalize">{{ $donasi->nama }}</td>
                                         <td>
-                                            <a class="text-primary" href="https://wa.me/{{ $donasi->tujuan }}"
-                                                target="_blank">{{ $donasi->tujuan }}
-                                            </a>
+                                           {{ $donasi->tujuan }}
                                         </td>
                                         <td>{{ $donasi->jenis }}</td>
                                         <td class="truncate">{{ $donasi->keterangan }}</td>
