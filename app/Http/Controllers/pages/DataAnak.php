@@ -251,8 +251,6 @@ class DataAnak extends Controller
         if ($anakBaru) {
           Pendaftaran::where('id', $id)->update([
             'biodata' => $anakBaru->biodata,
-            'status' => $anakBaru->status,
-            'keterangan' => $anakBaru->keterangan,
             'fp_formulir' => $anakBaru->fp_formulir,
             'fn_formulir' => $anakBaru->fn_formulir,
             'fp_surat_izin' => $anakBaru->fp_surat_izin,
