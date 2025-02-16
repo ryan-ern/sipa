@@ -835,7 +835,7 @@
                                           width="100"
                                           class="rounded img-thumbnail"
                                           data-bs-toggle="modal"
-                                          data-bs-target="#imageModal{{ $riwayatAnak->fn_riwayat }}">
+                                          data-bs-target="#imageModal{{ $riwayatAnak->id }}">
                                           @else
                                           -
                                           @endif
@@ -852,7 +852,7 @@
         </div>
     </div>
     @if(!empty($riwayatAnak->fp_riwayat))
-    <div class="modal fade" id="imageModal{{ $riwayatAnak->fn_riwayat }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal fade" id="imageModal{{ $riwayatAnak->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
               <div class="modal-body text-center">
