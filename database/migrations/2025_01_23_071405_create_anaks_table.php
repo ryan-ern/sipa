@@ -39,7 +39,7 @@ return new class extends Migration
       $table->string('fp_foto')->nullable();
       $table->longText('biodata');
       $table->longText('keterangan')->nullable();
-      $table->enum('status', ['aktif', 'alumni lulus', 'alumni bermasalah'])->default('aktif');
+      $table->enum('status', ['aktif', 'alumni lulus', 'alumni keluar'])->default('aktif');
       $table->timestamps();
     });
   }

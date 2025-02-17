@@ -1,11 +1,11 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
     <!-- ! Hide app brand if navbar-full -->
-    <div class="app-brand demo">
+    <div class="app-brand">
         <a href="{{ url('/') }}" class="app-brand-link">
-            <span class="app-brand-logo demo me-1">
-                @include('_partials.macros', ['height' => 20])
-            </span>
+          <span class="app-brand-logo flex justify-center items-center w-full m-3">
+            <img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo" width="50">
+          </span>
             <span class="app-brand-text demo menu-text fw-semibold ms-2">{{ config('variables.templateName') }}</span>
         </a>
 

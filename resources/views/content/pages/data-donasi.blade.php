@@ -39,7 +39,7 @@
                                 <tr class="text-center">
                                     <th scope="col">No</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Tujuan</th>
+                                    <th scope="col">Alamat</th>
                                     <th scope="col">Jenis</th>
                                     <th scope="col">Keterangan</th>
                                     <th scope="col">Kegunaan</th>
@@ -178,8 +178,8 @@
                         </div>
                         <div class="col-md-6 mb-3">
                           <div class="form-floating form-floating-outline">
-                            <input type="text" class="form-control" id="tujuan" name="tujuan" placeholder="Tujuan" value="${button.getAttribute('data-tujuan')}" required>
-                            <label for="tujuan" >Tujuan</label>
+                            <input type="text" class="form-control" id="tujuan" name="tujuan" placeholder="Alamat" value="${button.getAttribute('data-tujuan')}" required>
+                            <label for="tujuan" >Alamat</label>
                           </div>
                         </div>
                         <div class="col-md-12 mb-3">
@@ -239,8 +239,8 @@
                         </div>
                         <div class="col-md-6 mb-3">
                           <div class="form-floating form-floating-outline">
-                            <input type="text" placeholder="Tujuan" class="form-control" id="tujuan" name="tujuan" required>
-                            <label for="tujuan" >Tujuan</label>
+                            <input type="text" placeholder="Alamat" class="form-control" id="tujuan" name="tujuan" required>
+                            <label for="tujuan" >Alamat</label>
                           </div>
                         </div>
                         <div class="col-md-12 mb-3">

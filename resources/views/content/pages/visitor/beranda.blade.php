@@ -12,7 +12,7 @@
         <div class="col-md-12 col-lg-12 mb-4">
             <div class="card">
                 <div class="card-body p-7">
-                  <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                  <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
                     <div class="carousel-indicators">
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -26,10 +26,16 @@
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="9" aria-label="Slide 10"></button>
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="10" aria-label="Slide 11"></button>
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="11" aria-label="Slide 12"></button>
-                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="12" aria-label="Slide 13"></button>
                     </div>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
+                        <img src="/assets/profil/anak.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5>Selamat Datang di UPTD PSSA Harapan Bangsa</h5>
+                          <p>UPTD Pelayanan Sosial Asuhan Anak (PSAA) Harapan Bangsa merupakan sebuah lembaga yang bergerak di bidang pelayanan sosial dibawah naungan Dinas Sosial Provinsi Lampung yang berlokasi di Jl. Lettu Rohani No.10-B, Way Urang, Kecamatan Kalianda, Kabupaten Lampung Selatan. Lembaga ini memiliki jumlah anak asuh sebanyak 50 orang, yang terdiri dari anak laki-laki berjumlah 22 orang dan perempuan berjumlah 28 orang dari tingkat SD SMP dan SMK.</p>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
                         <img src="/assets/profil/Gerbang.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>Gerbang Depan</h5>
@@ -95,14 +101,7 @@
                       <div class="carousel-item">
                         <img src="/assets/profil/RumahDinas1.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                          <h5>Rumah Dinas 1</h5>
-                          <p>Hunian bagi staf dan tenaga pengajar, memastikan kenyamanan bagi mereka yang bertugas di lingkungan UPTD PSA Harapan Bangsa.</p>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img src="/assets/profil/RumahDinas2.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                          <h5>Rumah Dinas 2</h5>
+                          <h5>Rumah Dinas</h5>
                           <p>Hunian bagi staf dan tenaga pengajar, memastikan kenyamanan bagi mereka yang bertugas di lingkungan UPTD PSA Harapan Bangsa.</p>
                         </div>
                       </div>

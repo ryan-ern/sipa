@@ -64,7 +64,7 @@
                                                 </td>
                                                 <td class="text-capitalize">
                                                     <span
-                                                        class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'perbaikan' ? 'warning' : 'primary')) }}">
+                                                        class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'pemberitahuan' ? 'warning' : 'primary')) }}">
                                                         {{ $daftar->status }}
                                                     </span>
                                                 </td>
@@ -133,9 +133,9 @@
                                                                     data-no_tel="{{ $daftar->biodata->no_tel }}"
                                                                     data-alamat="{{ $daftar->biodata->alamat }}"
                                                                     data-nik="{{ $daftar->biodata->nik }}"
-                                                                    data-status="perbaikan" data-tahap="1"
+                                                                    data-status="pemberitahuan" data-tahap="1"
                                                                     onclick="handleConfirmation(event)">
-                                                                    <i class="ri-edit-line me-1"></i> Perbaikan
+                                                                    <i class="ri-edit-line me-1"></i> pemberitahuan
                                                                 </button>
                                                             </li>
                                                             <li>
@@ -214,7 +214,7 @@
                                                 </td>
                                                 <td class="text-capitalize">
                                                     <span
-                                                        class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'perbaikan' ? 'warning' : 'primary')) }}">
+                                                        class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'pemberitahuan' ? 'warning' : 'primary')) }}">
                                                         {{ $daftar->status }}
                                                     </span>
                                                 </td>
@@ -283,9 +283,9 @@
                                                                     data-no_tel="{{ $daftar->biodata->no_tel }}"
                                                                     data-alamat="{{ $daftar->biodata->alamat }}"
                                                                     data-nik="{{ $daftar->biodata->nik }}"
-                                                                    data-status="perbaikan" data-tahap="2"
+                                                                    data-status="pemberitahuan" data-tahap="2"
                                                                     onclick="handleConfirmation(event)">
-                                                                    <i class="ri-edit-line me-1"></i> Perbaikan
+                                                                    <i class="ri-edit-line me-1"></i> pemberitahuan
                                                                 </button>
                                                             </li>
                                                             <li>
@@ -364,7 +364,7 @@
                                                 </td>
                                                 <td class="text-capitalize">
                                                     <span
-                                                        class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'perbaikan' ? 'warning' : 'primary')) }}">
+                                                        class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'pemberitahuan' ? 'warning' : 'primary')) }}">
                                                         {{ $daftar->status }}
                                                     </span>
                                                 </td>
@@ -470,9 +470,9 @@
                                                                     data-no_tel="{{ $daftar->biodata->no_tel }}"
                                                                     data-alamat="{{ $daftar->biodata->alamat }}"
                                                                     data-nik="{{ $daftar->biodata->nik }}"
-                                                                    data-status="perbaikan" data-tahap="3"
+                                                                    data-status="pemberitahuan" data-tahap="3"
                                                                     onclick="handleConfirmation(event)">
-                                                                    <i class="ri-edit-line me-1"></i> Perbaikan
+                                                                    <i class="ri-edit-line me-1"></i> pemberitahuan
                                                                 </button>
                                                             </li>
                                                             <li>
@@ -564,7 +564,7 @@
                                         </td>
                                         <td class="text-capitalize">
                                             <span
-                                                class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'perbaikan' ? 'warning' : 'primary')) }}">
+                                                class="badge rounded-pill bg-{{ $daftar->status == 'lulus' ? 'success' : ($daftar->status == 'tidak' ? 'danger' : ($daftar->status == 'pemberitahuan' ? 'warning' : 'primary')) }}">
                                                 {{ $daftar->status }}
                                             </span>
                                         </td>
@@ -654,7 +654,7 @@
                 const status = button.getAttribute('data-status');
 
                 const message =
-                    `Halo, saya dari Sistem Informasi Panti Asuhan. Pendaftaran anak anda atas nama ${nama} berada di tahap ${tahap} dengan status ${status === 'tidak' ? 'tidak lulus' : status}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
+                    `Halo, saya dari UPTD PSAA Harapan Bangsa. Pendaftaran anak anda atas nama ${nama} berada di tahap ${tahap} dengan status ${status === 'tidak' ? 'tidak lulus' : status}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
 
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 

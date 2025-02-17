@@ -48,7 +48,8 @@ class Pendaftaran extends Model
     'fp_foto',
     'biodata',
     'keterangan',
-    'status'
+    'status',
+    'tahap',
   ];
 
   public function user()

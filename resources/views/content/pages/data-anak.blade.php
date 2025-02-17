@@ -202,8 +202,8 @@
                                                                         data-no_tel="{{ $dataAnak->biodata->no_tel }}"
                                                                         data-alamat="{{ $dataAnak->biodata->alamat }}"
                                                                         data-nik="{{ $dataAnak->biodata->nik }}"
-                                                                        data-status="alumni bermasalah">
-                                                                        <i class="ri-edit-line me-1"></i> Alumni Bermasalah
+                                                                        data-status="alumni keluar">
+                                                                        <i class="ri-edit-line me-1"></i> Alumni Keluar
                                                                     </button>
                                                                 </li>
                                                               <li>
@@ -374,8 +374,8 @@
                                                                         data-no_tel="{{ $dataAnak->biodata->no_tel }}"
                                                                         data-alamat="{{ $dataAnak->biodata->alamat }}"
                                                                         data-nik="{{ $dataAnak->biodata->nik }}"
-                                                                        data-status="alumni bermasalah">
-                                                                        <i class="ri-edit-line me-1"></i> Alumni Bermasalah
+                                                                        data-status="alumni keluar">
+                                                                        <i class="ri-edit-line me-1"></i> Alumni Keluar
                                                                     </button>
                                                                 </li>
                                                               <li>
@@ -547,8 +547,8 @@
                                                                         data-no_tel="{{ $dataAnak->biodata->no_tel }}"
                                                                         data-alamat="{{ $dataAnak->biodata->alamat }}"
                                                                         data-nik="{{ $dataAnak->biodata->nik }}"
-                                                                        data-status="alumni bermasalah">
-                                                                        <i class="ri-edit-line me-1"></i> Alumni Bermasalah
+                                                                        data-status="alumni keluar">
+                                                                        <i class="ri-edit-line me-1"></i> Alumni Keluar
                                                                     </button>
                                                                 </li>
                                                               <li>
@@ -723,8 +723,8 @@
                                                                         data-no_tel="{{ $dataAnak->biodata->no_tel }}"
                                                                         data-alamat="{{ $dataAnak->biodata->alamat }}"
                                                                         data-nik="{{ $dataAnak->biodata->nik }}"
-                                                                        data-status="alumni bermasalah">
-                                                                        <i class="ri-edit-line me-1"></i> Alumni Bermasalah
+                                                                        data-status="alumni keluar">
+                                                                        <i class="ri-edit-line me-1"></i> Alumni Keluar
                                                                     </button>
                                                                 </li>
                                                               <li>
@@ -834,8 +834,10 @@
                                           alt="Gambar Riwayat Anak"
                                           width="100"
                                           class="rounded img-thumbnail"
-                                          data-bs-toggle="modal"
-                                          data-bs-target="#imageModal{{ $riwayatAnak->id }}">
+                                          data-bs-toggle="modal" data-bs-target="#dynamicModal"
+                                          data-image="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}"
+                                          data-modal-type="imageDetail"
+                                          >
                                           @else
                                           -
                                           @endif
@@ -851,16 +853,7 @@
             </div>
         </div>
     </div>
-    @if(!empty($riwayatAnak->fp_riwayat))
-    <div class="modal fade" id="imageModal{{ $riwayatAnak->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-              <div class="modal-body text-center">
-                  <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}" class="img-fluid rounded" alt="Gambar Riwayat Anak">
-              </div>
-          </div>
-      </div>
-    @endif
+
     <!-- Modal Detail -->
     <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -894,7 +887,7 @@
 
             if (confirm('Apakah anda ingin mengabarkan orang tua?')) {
 
-                const message = `Halo, saya dari Sistem Informasi Panti Asuhan. Ada update terbaru atas kondisi anak anda ${anak}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
+                const message = `Halo, saya dari UPTD PSAA Harapan Bangsa. Ada update terbaru atas kondisi anak anda ${anak}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
 
                 const whatsappUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
@@ -934,7 +927,7 @@
                 const modalId = button.getAttribute('data-id');
                 const modalStats = button.getAttribute('data-status');
                 const modalTahap = button.getAttribute('data-tahap');
-
+                const imageDetail = button.getAttribute('data-image');
 
                 const documents = [
                     createDocumentButton(button, 'data-fp_formulir', 'Formulir'),
@@ -1019,8 +1012,8 @@
                           <div class="row">
                             <div class="col-md-12 mb-3">
                               <label for="fp_riwayat" class="form-label">Riwayat Keadaan</label>
-                              <input type="file" class="form-control" id="fp_riwayat" name="fp_riwayat" accept="image/*, application/pdf">
-                              <small class="text-muted">Format: JPEG, PNG, JPG, PDF. Maksimal: 2MB.</small>
+                              <input type="file" class="form-control" id="fp_riwayat" name="fp_riwayat" accept="image/*">
+                              <small class="text-muted">Format: JPEG, PNG, JPG/ Maksimal: 2MB.</small>
                             </div>
                           </div>
                         </div>
@@ -1111,7 +1104,12 @@
                         <button type="submit" class="btn btn-primary me-2">Simpan</button>
                     </div>
                     `;
-                } else {
+                } else if(modalType === 'imageDetail'){
+                    modalTitle.textContent = `Lihat File Pendukung`;
+                    modalForm.innerHTML = `
+                    <img src="${imageDetail}" alt="File Pendukung" class="img-fluid rounded mb-3">
+                    `;
+                }else {
                     modalTitle.textContent = `Lihat Data ${button.getAttribute('data-nama')}`;
 
                     modalForm.innerHTML = `

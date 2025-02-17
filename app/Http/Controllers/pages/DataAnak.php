@@ -20,7 +20,7 @@ class DataAnak extends Controller
     $data = Anak::select('*')->orderBy('updated_at', 'DESC')->get();
     $aktif = Anak::select('*')->where('status', 'aktif')->get();
     $alumni = Anak::select('*')->where('status', 'alumni lulus')->get();
-    $alumniBermasalah = Anak::select('*')->where('status', 'alumni bermasalah')->get();
+    $alumniBermasalah = Anak::select('*')->where('status', 'alumni keluar')->get();
     $user = User::where('role', 'user')
       ->whereIn('sebagai', ['ortu', 'wali'])
       ->where('status', '1')
@@ -221,31 +221,32 @@ class DataAnak extends Controller
     try {
       if ($id) {
         $daftar = Pendaftaran::find($id);
+        $dataAnakLama = Anak::find($id);
         Anak::where('id', $id)->update([
           'user_id' => $request->user_id ?? Auth::id(),
           'biodata' => $biodata,
           'status' => $request->status ?? 'aktif',
           'keterangan' => $request->keterangan ?? '-',
-          'fp_formulir' => $data['fp_formulir'] ?? $daftar->fp_formulir,
-          'fn_formulir' => $data['fn_formulir'] ?? $daftar->fn_formulir,
-          'fp_surat_izin' => $data['fp_surat_izin'] ?? $daftar->fp_surat_izin,
-          'fn_surat_izin' => $data['fn_surat_izin'] ?? $daftar->fn_surat_izin,
-          'fp_suket_tidak_mampu' => $data['fp_suket_tidak_mampu'] ?? $daftar->fp_suket_tidak_mampu,
-          'fn_suket_tidak_mampu' => $data['fn_suket_tidak_mampu'] ?? $daftar->fn_suket_tidak_mampu,
-          'fp_suket_kematian' => $data['fp_suket_kematian'] ?? $daftar->fp_suket_kematian,
-          'fn_suket_kematian' => $data['fn_suket_kematian'] ?? $daftar->fn_suket_kematian,
-          'fp_suket_sehat' => $data['fp_suket_sehat'] ?? $daftar->fp_suket_sehat,
-          'fn_suket_sehat' => $data['fn_suket_sehat'] ?? $daftar->fn_suket_sehat,
-          'fp_ktp' => $data['fp_ktp'] ?? $daftar->fp_ktp,
-          'fn_ktp' => $data['fn_ktp'] ?? $daftar->fn_ktp,
-          'fp_kk' => $data['fp_kk'] ?? $daftar->fp_kk,
-          'fn_kk' => $data['fn_kk'] ?? $daftar->fn_kk,
-          'fp_bpjs' => $data['fp_bpjs'] ?? $daftar->fp_bpjs,
-          'fn_bpjs' => $data['fn_bpjs'] ?? $daftar->fn_bpjs,
-          'fp_akte' => $data['fp_akte'] ?? $daftar->fp_akte,
-          'fn_akte' => $data['fn_akte'] ?? $daftar->fn_akte,
-          'fp_foto' => $data['fp_foto'] ?? $daftar->fp_foto,
-          'fn_foto' => $data['fn_foto'] ?? $daftar->fn_foto,
+          'fp_formulir' => $data['fp_formulir'] ?? $daftar->fp_formulir ?? $dataAnakLama->fp_formulir,
+          'fn_formulir' => $data['fn_formulir'] ?? $daftar->fn_formulir ?? $dataAnakLama->fn_formulir,
+          'fp_surat_izin' => $data['fp_surat_izin'] ?? $daftar->fp_surat_izin ?? $dataAnakLama->fp_surat_izin,
+          'fn_surat_izin' => $data['fn_surat_izin'] ?? $daftar->fn_surat_izin ?? $dataAnakLama->fn_surat_izin,
+          'fp_suket_tidak_mampu' => $data['fp_suket_tidak_mampu'] ?? $daftar->fp_suket_tidak_mampu ?? $dataAnakLama->fp_suket_tidak_mampu,
+          'fn_suket_tidak_mampu' => $data['fn_suket_tidak_mampu'] ?? $daftar->fn_suket_tidak_mampu ?? $dataAnakLama->fn_suket_tidak_mampu,
+          'fp_suket_kematian' => $data['fp_suket_kematian'] ?? $daftar->fp_suket_kematian ?? $dataAnakLama->fp_suket_kematian,
+          'fn_suket_kematian' => $data['fn_suket_kematian'] ?? $daftar->fn_suket_kematian ?? $dataAnakLama->fn_suket_kematian,
+          'fp_suket_sehat' => $data['fp_suket_sehat'] ?? $daftar->fp_suket_sehat ?? $dataAnakLama->fp_suket_sehat,
+          'fn_suket_sehat' => $data['fn_suket_sehat'] ?? $daftar->fn_suket_sehat ?? $dataAnakLama->fn_suket_sehat,
+          'fp_ktp' => $data['fp_ktp'] ?? $daftar->fp_ktp ?? $dataAnakLama->fp_ktp,
+          'fn_ktp' => $data['fn_ktp'] ?? $daftar->fn_ktp ?? $dataAnakLama->fn_ktp,
+          'fp_kk' => $data['fp_kk'] ?? $daftar->fp_kk ?? $dataAnakLama->fp_kk,
+          'fn_kk' => $data['fn_kk'] ?? $daftar->fn_kk ?? $dataAnakLama->fn_kk,
+          'fp_bpjs' => $data['fp_bpjs'] ?? $daftar->fp_bpjs ?? $dataAnakLama->fp_bpjs,
+          'fn_bpjs' => $data['fn_bpjs'] ?? $daftar->fn_bpjs ?? $dataAnakLama->fn_bpjs,
+          'fp_akte' => $data['fp_akte'] ?? $daftar->fp_akte ?? $dataAnakLama->fp_akte,
+          'fn_akte' => $data['fn_akte'] ?? $daftar->fn_akte ?? $dataAnakLama->fn_akte,
+          'fp_foto' => $data['fp_foto'] ?? $daftar->fp_foto ?? $dataAnakLama->fp_foto,
+          'fn_foto' => $data['fn_foto'] ?? $daftar->fn_foto ?? $dataAnakLama->fn_foto,
         ]);
         $anakBaru = Anak::find($id);
         if ($anakBaru) {
@@ -271,6 +272,7 @@ class DataAnak extends Controller
             'fn_akte' => $anakBaru->fn_akte,
             'fp_foto' => $anakBaru->fp_foto,
             'fn_foto' => $anakBaru->fn_foto,
+            'tahap' => '3',
           ]);
         }
         if ($request->hasFile('files')) {

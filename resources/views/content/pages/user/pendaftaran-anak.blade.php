@@ -11,7 +11,7 @@
                         <div class="divider text-center">
                             <div class="divider-text text-capitalize fs-5 ">
                                 <span
-                                    class="badge  bg-{{ $lulus->status == 'lulus' ? 'success' : ($lulus->status == 'tidak' ? 'danger' : ($lulus->status == 'perbaikan' ? 'warning' : 'primary')) }}">
+                                    class="badge  bg-{{ $lulus->status == 'lulus' ? 'success' : ($lulus->status == 'tidak' ? 'danger' : ($lulus->status == 'pemberitahuan' ? 'warning' : 'primary')) }}">
                                     Anak anda bernama {{ $lulus->biodata->nama }}
                                     {{ $lulus->status == 'tidak' ? 'Tidak Lulus' : 'telah ' . $lulus->status }}
                                 </span>
@@ -24,7 +24,7 @@
                         <div class="divider text-center">
                             <div class="divider-text text-capitalize fs-5 ">
                                 <span
-                                    class="badge  bg-{{ $tahap->status == 'lulus' ? 'success' : ($tahap->status == 'tidak' ? 'danger' : ($tahap->status == 'perbaikan' ? 'warning' : 'primary')) }}">
+                                    class="badge  bg-{{ $tahap->status == 'lulus' ? 'success' : ($tahap->status == 'tidak' ? 'danger' : ($tahap->status == 'pemberitahuan' ? 'warning' : 'primary')) }}">
                                     Status Tahap
                                     {{ $tahap->status == 'tidak' ? $tahap->tahap . ' ' . 'Tidak Lulus' : $tahap->tahap . ' ' . $tahap->status }}
 
@@ -54,7 +54,7 @@
                                     <div class="form-floating form-floating-outline">
                                         <input type="text" class="form-control" id="nama" name="nama"
                                             placeholder="Nama Anak" value="{{ $tahap->biodata->nama }}"
-                                            {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'readonly' : '' }}
+                                            {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}
                                             required>
                                         <label for="nama">Nama Anak</label>
                                     </div>
@@ -63,7 +63,7 @@
                                     <div class="form-floating form-floating-outline">
                                         <input type="text" class="form-control" id="ttl" name="ttl"
                                             placeholder="Tempat, Tanggal Lahir Anak" value="{{ $tahap->biodata->ttl }}"
-                                            {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'readonly' : '' }}
+                                            {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}
                                             required>
                                         <label for="ttl">Tempat, Tanggal Lahir Anak</label>
                                     </div>
@@ -72,7 +72,7 @@
                                     <div class="form-floating form-floating-outline">
                                         <input type="number" class="form-control" id="nik" name="nik"
                                             placeholder="NIK Anak" value="{{ $tahap->biodata->nik }}"
-                                            {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'readonly' : '' }}
+                                            {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}
                                             required>
                                         <label for="nik">NIK Anak</label>
                                     </div>
@@ -84,12 +84,12 @@
                                                 Pilih Jenis Kelamin</option>
                                             <option value="Laki-laki"
                                                 {{ $tahap->biodata->jk == 'Laki-laki' ? 'selected' : '' }}
-                                                {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
+                                                {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
                                                 Laki-laki
                                             </option>
                                             <option value="Perempuan"
                                                 {{ $tahap->biodata->jk == 'Perempuan' ? 'selected' : '' }}
-                                                {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
+                                                {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
                                                 Perempuan
                                             </option>
                                         </select>
@@ -101,7 +101,7 @@
                                         <input type="text" class="form-control" id="pendidikan" name="pendidikan"
                                             placeholder="Pendidikan/ Kelas Anak"
                                             value="{{ $tahap->biodata->pendidikan ?? '' }}" required
-                                            {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'readonly' : '' }}>
+                                            {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}>
                                         <label for="pendidikan">Pendidikan/ Kelas Anak</label>
                                     </div>
                                 </div>
@@ -110,30 +110,30 @@
                                         <select class="form-select" id="status_anak" name="status_anak" required>
                                             <option value="" disabled
                                                 {{ !$tahap->biodata->status_anak ? 'selected' : '' }}
-                                                {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
+                                                {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
                                                 Pilih Status Anak
                                             </option>
                                             <option value="Anak Yatim"
                                                 {{ $tahap->biodata->status_anak == 'Anak Yatim' ? 'selected' : '' }}
-                                                {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
+                                                {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
                                                 Anak
                                                 Yatim</option>
                                             <option value="Anak Piatu"
                                                 {{ $tahap->biodata->status_anak == 'Anak Piatu' ? 'selected' : '' }}
-                                                {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
+                                                {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
                                                 Anak
                                                 Piatu</option>
                                             <option value="Anak Yatim Piatu"
                                                 {{ $tahap->biodata->status_anak == 'Anak Yatim Piatu' ? 'selected' : '' }}
-                                                {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
+                                                {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
                                                 Anak Yatim Piatu</option>
                                             <option value="Anak Tidak Mampu"
                                                 {{ $tahap->biodata->status_anak == 'Anak Tidak Mampu' ? 'selected' : '' }}
-                                                {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
+                                                {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
                                                 Anak Tidak Mampu</option>
                                             <option value="Lainnya"
                                                 {{ $tahap->biodata->status_anak == 'Lainnya' ? 'selected' : '' }}
-                                                {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
+                                                {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
                                                 Lainnya
                                             </option>
                                         </select>
@@ -143,7 +143,7 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating form-floating-outline">
                                         <input type="text" class="form-control" id="ortu" name="ortu"
-                                            {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'readonly' : '' }}
+                                            {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}
                                             value="{{ $tahap->biodata->ortu }}" placeholder="Nama Orang Tua/ Wali">
                                         <label for="ortu">Nama Orang Tua/ Wali</label>
                                     </div>
@@ -151,7 +151,7 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating form-floating-outline">
                                         <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
-                                            {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'readonly' : '' }}
+                                            {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}
                                             placeholder="Pekerjaan Orang Tua/ Wali"
                                             value="{{ $tahap->biodata->pekerjaan }}">
                                         <label for="pekerjaan">Pekerjaan Orang Tua/ Wali</label>
@@ -160,9 +160,9 @@
                                 <div class="col-md-12 mb-3">
                                     <label for="alamat">Alamat Anak</label>
                                     <textarea class="form-control" id="alamat" name="alamat" rows="3"
-                                        {{ $tahap->status != 'perbaikan' || $tahap->tahap != '1' ? 'readonly' : '' }} required>{{ $tahap->biodata->alamat }}</textarea>
+                                        {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }} required>{{ $tahap->biodata->alamat }}</textarea>
                                 </div>
-                                @if ($tahap->status == 'perbaikan' && $tahap->tahap == '1')
+                                @if ($tahap->status == 'pemberitahuan' && $tahap->tahap == '1')
                                     <div class="col-md-12">
                                         <div class="divider text-start">
                                             <div class="divider-text fs-5">Template Administrasi</div>
@@ -383,7 +383,7 @@
                                     </div>
                                 @endif
                             </div>
-                            @if ($tahap->status == 'perbaikan' && $tahap->tahap == '1')
+                            @if ($tahap->status == 'pemberitahuan' && $tahap->tahap == '1')
                                 <div class="row">
                                     <div class="col-md-12 text-end">
                                         <button type="button" id="saveTemporary" class="btn btn-info me-5">Simpan

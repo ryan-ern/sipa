@@ -54,7 +54,7 @@ class Admin extends Controller
       return strtolower($item->jk) === 'perempuan';
     })->count();
     $countAnakLulus = $filteredData->where('status', 'alumni lulus')->count();
-    $countAnakBermasalah = $filteredData->where('status', 'alumni bermasalah')->count();
+    $countAnakBermasalah = $filteredData->where('status', 'alumni keluar')->count();
     $countDataDonasi = Donasi::whereMonth('created_at', $bulan)
       ->whereYear('created_at', $tahun)
       ->count();

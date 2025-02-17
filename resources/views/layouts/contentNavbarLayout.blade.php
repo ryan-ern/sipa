@@ -36,9 +36,9 @@
                         <div class="container">
                             <!-- Brand -->
                                 <a href="{{ url('/') }}" class="app-brand-link gap-3 me-10 p-2 rounded">
-                                    <span class="app-brand-logo demo">@include('_partials.macros', ['height' => 500, 'withbg' => 'fill: #fff;'])</span>
-                                    <span
-                                        class="app-brand-text demo text-heading fw-semibold">{{ config('variables.templateName') }}</span>
+                                  <span class="app-brand-logo flex justify-center items-center w-full">
+                                    <img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo" width="50">
+                                  </span>
                                 </a>
 
                             <!-- Toggler Button -->

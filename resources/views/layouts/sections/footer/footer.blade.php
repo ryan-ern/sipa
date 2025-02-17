@@ -11,7 +11,7 @@
                 ©
                 <script>
                     document.write(new Date().getFullYear())
-                </script>, SIPA - Sistem Informasi Panti Asuhan
+                </script>, SIPA - UPTD PSAA Harapan Bangsa
             </div>
         </div>
     </div>

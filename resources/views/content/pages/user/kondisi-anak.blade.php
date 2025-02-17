@@ -26,44 +26,46 @@
             </div>
         </div>
     </div>
-    <div class="row gy-6">
-        <div class="col-md-6 col-sm-12 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    {{ $riwayat ? $riwayat->created_at->translatedFormat('l, d-m-Y') : now()->translatedFormat('l, d-m-Y') }}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-            <div class="card">
-                <div class="card-body text-capitalize">
-                    Anak anda
-                    {{ $riwayat ? ' ' . $riwayat->status : 'Dalam Keadaan Baik' }}
-                </div>
-            </div>
-        </div>
-    </div>
+    @if($info->status == 'aktif')
+      <div class="row gy-6">
+          <div class="col-md-6 col-sm-12 mb-4">
+              <div class="card">
+                  <div class="card-body">
+                      {{ $riwayat ? $riwayat->created_at->translatedFormat('l, d-m-Y') : now()->translatedFormat('l, d-m-Y') }}
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+              <div class="card">
+                  <div class="card-body text-capitalize">
+                      Anak anda
+                      {{ $riwayat ? ' ' . $riwayat->status : 'Dalam Keadaan Baik' }}
+                  </div>
+              </div>
+          </div>
+      </div>
 
-    @if ($riwayat)
-    <div class="row gy-6">
-        <div class="col-md-12 col-sm-12 mb-4">
-            <div class="card">
-                @if($riwayat->fp_riwayat)
-                    <img src="{{ asset('storage/' . $riwayat->fp_riwayat) }}"
-                         alt="Gambar Riwayat"
-                          class="card-img-top img-fluid"
-                          style="height: 200px; object-fit: cover;"
-                         data-bs-toggle="modal"
-                         data-bs-target="#imageModal{{ $riwayat->fn_riwayat }}">
-                         <marquee class="text-info mt-2">Klik gambar untuk melihat lebih jelas</marquee>
-                @endif
-                <div class="card-body text-capitalize text-wrap">
-                    {{ $riwayat ? $riwayat->keterangan : '-' }}
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
+      @if ($riwayat)
+      <div class="row gy-6">
+          <div class="col-md-12 col-sm-12 mb-4">
+              <div class="card">
+                  @if($riwayat->fp_riwayat)
+                      <img src="{{ asset('storage/' . $riwayat->fp_riwayat) }}"
+                          alt="Gambar Riwayat"
+                            class="card-img-top img-fluid"
+                            style="height: 200px; object-fit: cover;"
+                          data-bs-toggle="modal"
+                          data-bs-target="#imageModal{{ $riwayat->fn_riwayat }}">
+                          <marquee class="text-info mt-2">Klik gambar untuk melihat lebih jelas</marquee>
+                  @endif
+                  <div class="card-body text-capitalize text-wrap">
+                      {{ $riwayat ? $riwayat->keterangan : '-' }}
+                  </div>
+              </div>
+          </div>
+      </div>
+      @endif
+    @endif
 
 
     <div class="row">

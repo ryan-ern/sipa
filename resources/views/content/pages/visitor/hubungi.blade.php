@@ -26,10 +26,7 @@
                             <p class="text-muted">jika ingin berdonasi hubungi Wa/ kontak dibawah ini</p>
                             <ul>
                                 <li>
-                                   Whatsapp 1 : <a href="https://wa.me/+6281269790086" target="_blank"> 081269790086  Dina Naulina Marpaung </a>
-                                </li>
-                                <li>
-                                   Whatsapp 2 : <a href="https://wa.me/+6281632247751" target="_blank"> 081632247751 Fikri Pratama </a>
+                                   Whatsapp : <a href="https://wa.me/+6283829751860 " target="_blank"> 083829751860 UPTD PSAA Harapan Bangsa </a>
                                 </li>
                                 <li>
                                    Instagram : <a href="https://www.instagram.com/uptd.psaa_harapanbangsa/" target="_blank"> uptd.psaa_harapanbangsa </a>
