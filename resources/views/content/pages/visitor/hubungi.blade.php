@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-body p-7">
                   <h5>Lokasi Kami</h5>
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.906540077962!2d105.5936248106652!3d-5.7266006565765775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e410e2a5f1d7d97%3A0x5c45cfa3bcd8ad78!2sUPTD%20PELAYANAN%20SOSIAL%20ASUHAN%20ANAK%20HARAPAN%20BANGSA!5e0!3m2!1sid!2sid!4v1739328555142!5m2!1sid!2sid" width="600" height="590" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.906540077962!2d105.5936248106652!3d-5.7266006565765775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e410e2a5f1d7d97%3A0x5c45cfa3bcd8ad78!2sUPTD%20PELAYANAN%20SOSIAL%20ASUHAN%20ANAK%20HARAPAN%20BANGSA!5e0!3m2!1sid!2sid!4v1739328555142!5m2!1sid!2sid" width="100%" height="590" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
                 </div>
             </div>
         </div>

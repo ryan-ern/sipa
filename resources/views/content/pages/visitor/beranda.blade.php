@@ -32,7 +32,8 @@
                         <img src="/assets/profil/anak.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>Selamat Datang di UPTD PSSA Harapan Bangsa</h5>
-                          <p>UPTD Pelayanan Sosial Asuhan Anak (PSAA) Harapan Bangsa merupakan sebuah lembaga yang bergerak di bidang pelayanan sosial dibawah naungan Dinas Sosial Provinsi Lampung yang berlokasi di Jl. Lettu Rohani No.10-B, Way Urang, Kecamatan Kalianda, Kabupaten Lampung Selatan. Lembaga ini memiliki jumlah anak asuh sebanyak 50 orang, yang terdiri dari anak laki-laki berjumlah 22 orang dan perempuan berjumlah 28 orang dari tingkat SD SMP dan SMK.</p>
+                          <p>UPTD Pelayanan Sosial Asuhan Anak Harapan Bangsa Dinas Sosial Provinsi Lampung.
+                            PSAA Harapan Bangsa adalah Unit Pelaksana Teknis Daerah Dinas Sosial Provinsi Lampung yang memiliki Visi "Mewujudkan Kesejahteraan dan Kemandirian Anak Di Masyarakat". PSAA Harapan Bangsa Melayani dan Menyantuni Anak Asuh untuk bisa mendapatkan Pendidikan hingga jenjang SLTA dengan metode pengasuhan dan pengasramaan.</p>
                         </div>
                       </div>
                       <div class="carousel-item">
