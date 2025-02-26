@@ -7,14 +7,14 @@
         <div class="col md-12 sm-12 mb-4">
             <div class="card">
                 <div class="card-body">
-                  <a class="btn btn-primary mb-3" href="{{ route('data-anak') }}">Kembali</a>
+                    <a class="btn btn-primary mb-3" href="{{ route('data-anak') }}">Kembali</a>
                     <h5>Informasi Data Anak</h5>
                     <form id="pendaftaranForm" action="{{ route('data-anak.detail.update', $info->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
-                            <input type="hidden" name="id" value="{{ $info->id }}">
+                            <input type="hidden" name="pendaftarans_id" value="{{ $info->pendaftarans_id }}">
                             <input type="hidden" name="user_id" value="{{ $info->user_id }}">
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
@@ -63,7 +63,8 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <select class="form-select" id="status_anak" name="status_anak" required>
-                                        <option value="" disabled {{ $info->biodata->status_anak ? 'selected' : '' }}>
+                                        <option value="" disabled
+                                            {{ $info->biodata->status_anak ? 'selected' : '' }}>
                                             Pilih Status Anak
                                         </option>
                                         <option value="Anak Yatim"
@@ -80,7 +81,8 @@
                                         <option value="Anak Tidak Mampu"
                                             {{ $info->biodata->status_anak == 'Anak Tidak Mampu' ? 'selected' : '' }}>
                                             Anak Tidak Mampu</option>
-                                        <option value="Lainnya" {{ $info->biodata->status_anak == 'Lainnya' ? 'selected' : '' }}>
+                                        <option value="Lainnya"
+                                            {{ $info->biodata->status_anak == 'Lainnya' ? 'selected' : '' }}>
                                             Lainnya
                                         </option>
                                     </select>
@@ -109,34 +111,37 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                              <div class="form-floating form-floating-outline">
-                                <input type="text" class="form-control text-capitalize text-white @if($info->status == 'aktif') bg-success @elseif($info->status == 'alumni lulus') bg-info @else bg-danger @endif" id="status" name="status" value="{{ $info->status }}" placeholder="Status Keaktifan" readonly>
-                                  <label for="status">Status Keaktifan</label>
-                              </div>
-                          </div>
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text"
+                                        class="form-control text-capitalize text-white @if ($info->status == 'aktif') bg-success @elseif($info->status == 'alumni lulus') bg-info @else bg-danger @endif"
+                                        id="status" name="status" value="{{ $info->status }}"
+                                        placeholder="Status Keaktifan" readonly>
+                                    <label for="status">Status Keaktifan</label>
+                                </div>
+                            </div>
                             <div class="col-md-12 mb-3">
                                 <label for="alamat">Alamat Anak</label>
                                 <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $info->biodata->alamat }}</textarea>
                             </div>
                             @if ($info->fp_formulir != null)
-                            <div class="col-md-12">
-                                <div class="divider text-start">
-                                    <div class="divider-text fs-5">Bagian Administrasi</div>
+                                <div class="col-md-12">
+                                    <div class="divider text-start">
+                                        <div class="divider-text fs-5">Bagian Administrasi</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                              <div class="form-floating form-floating-outline">
-                                <input type="file" accept="application/pdf, image/*" name="fp_formulir"
-                                id="fp_formulir" class="form-control">
-                                <label for="fp_formulir">Formulir Pendaftaran</label>
-                              </div>
-                            </div>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_formulir"
+                                            id="fp_formulir" class="form-control">
+                                        <label for="fp_formulir">Formulir Pendaftaran</label>
+                                    </div>
+                                </div>
                             @else
-                            <div class="col-md-12">
-                              <div class="divider text-start">
+                                <div class="col-md-12">
+                                    <div class="divider text-start">
                                         <div class="divider-text fs-5">Template Administrasi</div>
                                     </div>
-                            </div>
+                                </div>
                                 <div class="col-md-6 mb-5 ">
                                     <div class="btn btn-info w-100"
                                         onclick="window.open('/assets/template/formulir_daftar.pdf', '_blank')">
@@ -154,13 +159,13 @@
                                         <div class="divider-text fs-5">Bagian Administrasi</div>
                                     </div>
                                 </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="file" accept="application/pdf, image/*" name="fp_formulir"
-                                        id="fp_formulir" class="form-control" required>
-                                    <label for="fp_formulir">Formulir Pendaftaran</label>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_formulir"
+                                            id="fp_formulir" class="form-control" required>
+                                        <label for="fp_formulir">Formulir Pendaftaran</label>
+                                    </div>
                                 </div>
-                            </div>
                             @endif
                             @if ($info->fp_formulir != null)
                                 <div class="col-md-6 mb-5">
@@ -274,7 +279,7 @@
                             @if ($info->fp_bpjs != null)
                                 <div class="col-md-6 mb-5 ">
                                     <div class="btn btn-info w-100"
-                                        onclick="window.open('/storage/{{ $info->fp_bpjs }}', '_blank')">
+                                        onclick="window.open('{{ route('storage.serve', ['path' => 'documents/kk/kk_3_logo.jpg']) }}', '_blank')">
                                         BPJS Sebelumnya
                                     </div>
                                 </div>
@@ -295,12 +300,12 @@
                                 </div>
                             @endif
                             <div class="col-md-6 mb-5 mt-2">
-                              <div class="form-floating form-floating-outline">
-                                  <input type="file" accept="image/*" name="fp_foto"
-                                      id="fp_foto" class="form-control">
-                                  <label for="fp_foto">Pas Foto Anak</label>
-                              </div>
-                          </div>
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="image/*" name="fp_foto" id="fp_foto"
+                                        class="form-control">
+                                    <label for="fp_foto">Pas Foto Anak</label>
+                                </div>
+                            </div>
                             @if ($info->fp_foto != null)
                                 <div class="col-md-6 mb-5 ">
                                     <div class="btn btn-info w-100"
@@ -351,32 +356,32 @@
                         </div>
                     </form>
                     <div class="row">
-                      @if($filesAnak->pendaftaran->files->count() > 0)
-                        <div class="col-md-12">
-                            <div class="divider text-start">
-                                <div class="divider-text fs-5">Bagian Dokumen Lainnya</div>
-                            </div>
-                        </div>
-                        @foreach ($filesAnak->pendaftaran->files as $optionalFile)
-                            <div class="col-md-6 mb-5">
-                                <div class="btn-group w-100">
-                                    <a href="{{ asset('storage/' . $optionalFile->file_path) }}" target="_blank"
-                                        class="btn btn-info">
-                                        {{ $optionalFile->file_name }}
-                                    </a>
-                                    <form action="{{ route('data-anak.delete-file', $optionalFile->id) }}" method="POST"
-                                        class="btn-group"
-                                        onsubmit="return confirm('Yakin ingin menghapus file {{ $optionalFile->file_name }}?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="ri-delete-bin-line me-2"></i>Hapus
-                                        </button>
-                                    </form>
+                        @if ($filesAnak->pendaftaran->files->count() > 0)
+                            <div class="col-md-12">
+                                <div class="divider text-start">
+                                    <div class="divider-text fs-5">Bagian Dokumen Lainnya</div>
                                 </div>
                             </div>
-                        @endforeach
-                      @endif
+                            @foreach ($filesAnak->pendaftaran->files as $optionalFile)
+                                <div class="col-md-6 mb-5">
+                                    <div class="btn-group w-100">
+                                        <a href="{{ asset('storage/' . $optionalFile->file_path) }}" target="_blank"
+                                            class="btn btn-info">
+                                            {{ $optionalFile->file_name }}
+                                        </a>
+                                        <form action="{{ route('data-anak.delete-file', $optionalFile->id) }}"
+                                            method="POST" class="btn-group"
+                                            onsubmit="return confirm('Yakin ingin menghapus file {{ $optionalFile->file_name }}?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="ri-delete-bin-line me-2"></i>Hapus
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

@@ -16,6 +16,7 @@ use App\Http\Controllers\pages\KondisiAnak;
 use App\Http\Controllers\pages\Pendaftaran;
 use App\Http\Controllers\pages\SyaratMasuk;
 use App\Http\Controllers\pages\Visitor;
+use App\Http\Controllers\StorageController;
 
 // Main Page Route
 
@@ -26,6 +27,11 @@ Route::fallback(function () {
 Route::get('/pages/not-found', [MiscError::class, 'index'])->name('not-found');
 Route::post('/auth/logout', [Login::class, 'logout'])->name('logout');
 
+// Storage Secure
+Route::get('/storage/{path}', [StorageController::class, 'serve'])
+  ->middleware('auth')
+  ->where('path', '.*')
+  ->name('storage.serve');
 
 // ADMIN
 Route::group(['middleware' => ['auth', 'role:admin']], function () {

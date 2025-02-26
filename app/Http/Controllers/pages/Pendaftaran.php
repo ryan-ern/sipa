@@ -172,7 +172,7 @@ class Pendaftaran extends Controller
         $file = $request->file($fileKey);
         $originalFileName = $file->getClientOriginalName();
         $fileName = str_replace('fn_', '', $fileNames[array_search($fileKey, $files)]) . '_' . $request->nik . '_' . preg_replace('/\s+/', '_', $originalFileName);
-        $filePath = $file->storeAs('documents/' . str_replace('fp_', '', $fileKey), $fileName, 'public');
+        $filePath = $file->storeAs('documents/' . str_replace('fp_', '', $fileKey), $fileName, 'private');
         $data[$fileKey] = $filePath;
         $data[$fileNames[array_search($fileKey, $files)]] = $fileName;
       }
@@ -243,7 +243,7 @@ class Pendaftaran extends Controller
               foreach ($request->file('files') as $index => $file) {
                 $fileNameOpt = $request->file_name[$index] ?? null;
                 $fileNamePath = time() . '_' . $fileNameOpt . '.' . $file->getClientOriginalExtension();
-                $filePathOpt = $file->storeAs('documents/opsional', $fileNamePath, 'public');
+                $filePathOpt = $file->storeAs('documents/opsional', $fileNamePath, 'private');
 
                 $daftar->files()->create([
                   'pendaftaran_id' => $id,
@@ -262,7 +262,7 @@ class Pendaftaran extends Controller
             foreach ($request->file('files') as $index => $file) {
               $fileNameOpt = $request->file_name[$index] ?? null;
               $fileNamePath = time() . '_' . $fileNameOpt . '.' . $file->getClientOriginalExtension();
-              $filePathOpt = $file->storeAs('documents/opsional', $fileNamePath, 'public');
+              $filePathOpt = $file->storeAs('documents/opsional', $fileNamePath, 'private');
 
               $daftar->files()->create([
                 'pendaftaran_id' => $id,
@@ -282,7 +282,7 @@ class Pendaftaran extends Controller
           foreach ($request->file('files') as $index => $file) {
             $fileNameOpt = $request->file_name[$index] ?? null;
             $fileNamePath = time() . '_' . $fileNameOpt . '.' . $file->getClientOriginalExtension();
-            $filePathOpt = $file->storeAs('documents/opsional', $fileNamePath, 'public');
+            $filePathOpt = $file->storeAs('documents/opsional', $fileNamePath, 'private');
 
             $daftar->files()->create([
               'pendaftaran_id' => $id,
