@@ -2,6 +2,14 @@
 
 @section('title', 'Data Anak')
 
+@section('page-style')
+    <style>
+        .buttons-pdf {
+            display: none;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="row gy-6">
         <div class="col-md-12 col-lg-12 mb-4">
@@ -206,9 +214,11 @@
                                                                         <i class="ri-edit-line me-1"></i> Alumni Keluar
                                                                     </button>
                                                                 </li>
-                                                              <li>
-                                                                    <a class="dropdown-item text-primary" href="{{route('data-anak.detail', $dataAnak->id)}}">
-                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data Anak
+                                                                <li>
+                                                                    <a class="dropdown-item text-primary"
+                                                                        href="{{ route('data-anak.detail', $dataAnak->id) }}">
+                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data
+                                                                        Anak
                                                                     </a>
                                                                 </li>
                                                                 <li>
@@ -378,9 +388,11 @@
                                                                         <i class="ri-edit-line me-1"></i> Alumni Keluar
                                                                     </button>
                                                                 </li>
-                                                              <li>
-                                                                    <a class="dropdown-item text-primary" href="{{route('data-anak.detail', $dataAnak->id)}}">
-                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data Anak
+                                                                <li>
+                                                                    <a class="dropdown-item text-primary"
+                                                                        href="{{ route('data-anak.detail', $dataAnak->id) }}">
+                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data
+                                                                        Anak
                                                                     </a>
                                                                 </li>
                                                                 <li>
@@ -551,9 +563,11 @@
                                                                         <i class="ri-edit-line me-1"></i> Alumni Keluar
                                                                     </button>
                                                                 </li>
-                                                              <li>
-                                                                    <a class="dropdown-item text-primary" href="{{route('data-anak.detail', $dataAnak->id)}}">
-                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data Anak
+                                                                <li>
+                                                                    <a class="dropdown-item text-primary"
+                                                                        href="{{ route('data-anak.detail', $dataAnak->id) }}">
+                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data
+                                                                        Anak
                                                                     </a>
                                                                 </li>
                                                                 <li>
@@ -727,9 +741,11 @@
                                                                         <i class="ri-edit-line me-1"></i> Alumni Keluar
                                                                     </button>
                                                                 </li>
-                                                              <li>
-                                                                    <a class="dropdown-item text-primary" href="{{route('data-anak.detail', $dataAnak->id)}}">
-                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data Anak
+                                                                <li>
+                                                                    <a class="dropdown-item text-primary"
+                                                                        href="{{ route('data-anak.detail', $dataAnak->id) }}">
+                                                                        <i class="ri-edit-box-line me-1"></i> Edit Data
+                                                                        Anak
                                                                     </a>
                                                                 </li>
                                                                 <li>
@@ -829,18 +845,16 @@
                                             </a>
                                         </td>
                                         <td>
-                                          @if(!empty($riwayatAnak->fp_riwayat))
-                                          <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}"
-                                          alt="Gambar Riwayat Anak"
-                                          width="100"
-                                          class="rounded img-thumbnail"
-                                          data-bs-toggle="modal" data-bs-target="#dynamicModal"
-                                          data-image="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}"
-                                          data-modal-type="imageDetail"
-                                          >
-                                          @else
-                                          -
-                                          @endif
+                                            @if (!empty($riwayatAnak->fp_riwayat))
+                                                <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}"
+                                                    alt="Gambar Riwayat Anak" width="100"
+                                                    class="rounded img-thumbnail" data-bs-toggle="modal"
+                                                    data-bs-target="#dynamicModal"
+                                                    data-image="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}"
+                                                    data-modal-type="imageDetail">
+                                            @else
+                                                -
+                                            @endif
                                         </td>
                                         <td class="text-capitalize">{{ $riwayatAnak->updated_at->format('Y-m-d H:i') }}
                                         </td>
@@ -887,7 +901,8 @@
 
             if (confirm('Apakah anda ingin mengabarkan orang tua?')) {
 
-                const message = `Halo, saya dari UPTD PSAA Harapan Bangsa. Ada update terbaru atas kondisi anak anda ${anak}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
+                const message =
+                    `Halo, saya dari UPTD PSAA Harapan Bangsa. Ada update terbaru atas kondisi anak anda ${anak}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
 
                 const whatsappUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
@@ -962,7 +977,7 @@
                     )
                     modalForm.innerHTML = `
                     @csrf
-                    @method('PUT')
+                    @extends('layouts/contentNavbarLayout')
                     <div class="row">
                         <div class="col-md-12 mb-5">
                           <input type="hidden" name="id" value="${modalId}">
@@ -998,7 +1013,7 @@
                     )
                     modalForm.innerHTML = `
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-12 mb-5">
                           <input type="hidden" name="anaks_id" value="${modalId}">
@@ -1022,7 +1037,8 @@
                         <button type="submit" class="btn btn-primary me-2">Simpan</button>
                     </div>`;
                     modalForm.removeEventListener("submit", handleConfirmation);
-                    modalForm.addEventListener("submit", (event) => handleConfirmation(event, number, anak));
+                    modalForm.addEventListener("submit", (event) => handleConfirmation(event, number,
+                        anak));
                 } else if (modalType === 'hapus') {
                     modalTitle.textContent = `Hapus Data ${button.getAttribute('data-nama')}`;
                     modalForm.setAttribute('action', `/data-anak/hapus/${button.getAttribute('data-id')}`);
@@ -1032,7 +1048,7 @@
                     )
                     modalForm.innerHTML = `
                     @csrf
-                    @method('DELETE')
+                    @method('PUT')
                     <p>Apakah Anda yakin ingin menghapus data <strong>${button.getAttribute('data-nama')}</strong>?</p>
                     <p class="text-danger"><small>Data yang dihapus tidak dapat dikembalikan.</small></p>
                     <div class="d-flex justify-content-end">
@@ -1048,7 +1064,7 @@
                     )
                     modalForm.innerHTML = `
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-12 mb-5">
                           <select name="user_id" class="form-select mb-3" required>
@@ -1104,12 +1120,12 @@
                         <button type="submit" class="btn btn-primary me-2">Simpan</button>
                     </div>
                     `;
-                } else if(modalType === 'imageDetail'){
+                } else if (modalType === 'imageDetail') {
                     modalTitle.textContent = `Lihat File Pendukung`;
                     modalForm.innerHTML = `
                     <img src="${imageDetail}" alt="File Pendukung" class="img-fluid rounded mb-3">
                     `;
-                }else {
+                } else {
                     modalTitle.textContent = `Lihat Data ${button.getAttribute('data-nama')}`;
 
                     modalForm.innerHTML = `

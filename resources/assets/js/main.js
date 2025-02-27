@@ -123,18 +123,18 @@ let menu, animate;
                     className: 'dropdown-item',
                     exportOptions: { columns: ':not(:last-child)', stripHtml: true }
                   },
-                  {
-                    extend: 'csv',
-                    text: '<i class="ri-file-text-line me-4"></i>Csv',
-                    className: 'dropdown-item',
-                    exportOptions: { columns: ':not(:last-child)', stripHtml: true }
-                  },
-                  {
-                    extend: 'copy',
-                    text: '<i class="ri-file-copy-line me-4"></i>Copy',
-                    className: 'dropdown-item',
-                    exportOptions: { columns: ':not(:last-child)', stripHtml: true }
-                  }
+                  // {
+                  //   extend: 'csv',
+                  //   text: '<i class="ri-file-text-line me-4"></i>Csv',
+                  //   className: 'dropdown-item',
+                  //   exportOptions: { columns: ':not(:last-child)', stripHtml: true }
+                  // },
+                  // {
+                  //   extend: 'copy',
+                  //   text: '<i class="ri-file-copy-line me-4"></i>Copy',
+                  //   className: 'dropdown-item',
+                  //   exportOptions: { columns: ':not(:last-child)', stripHtml: true }
+                  // }
                 ]
               }
             ]
