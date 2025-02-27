@@ -170,6 +170,7 @@
                                     </div>
                                 </div>
                               @endif
+                              @if($info->status == 'aktif')
                                 <div class="col-md-6 mb-5 mt-2">
                                     <div class="form-floating form-floating-outline">
                                         <input type="file" accept="application/pdf, image/*" name="fp_formulir"
@@ -177,74 +178,75 @@
                                         <label for="fp_formulir">Formulir Pendaftaran</label>
                                     </div>
                                 </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="file" accept="application/pdf, image/*" name="fp_surat_izin"
-                                        id="fp_surat_izin" class="form-control">
-                                    <label for="fp_surat_izin">Surat Izin</label>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_surat_izin"
+                                            id="fp_surat_izin" class="form-control">
+                                        <label for="fp_surat_izin">Surat Izin</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="file" accept="application/pdf, image/*" name="fp_suket_tidak_mampu"
-                                        id="fp_suket_tidak_mampu" class="form-control">
-                                    <label for="fp_suket_tidak_mampu">Surat Keterangan Tidak Mampu</label>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_suket_tidak_mampu"
+                                            id="fp_suket_tidak_mampu" class="form-control">
+                                        <label for="fp_suket_tidak_mampu">Surat Keterangan Tidak Mampu</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="file" accept="application/pdf, image/*" name="fp_suket_kematian"
-                                        id="fp_suket_kematian" class="form-control">
-                                    <label for="fp_suket_kematian">Surat Keterangan Kematian</label>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_suket_kematian"
+                                            id="fp_suket_kematian" class="form-control">
+                                        <label for="fp_suket_kematian">Surat Keterangan Kematian</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="file" accept="application/pdf, image/*" name="fp_suket_sehat"
-                                        id="fp_suket_sehat" class="form-control">
-                                    <label for="fp_suket_sehat">Surat Keterangan Sehat</label>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_suket_sehat"
+                                            id="fp_suket_sehat" class="form-control">
+                                        <label for="fp_suket_sehat">Surat Keterangan Sehat</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="file" accept="application/pdf, image/*" name="fp_ktp"
-                                        id="fp_ktp" class="form-control">
-                                    <label for="fp_ktp">KTP</label>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_ktp"
+                                            id="fp_ktp" class="form-control">
+                                        <label for="fp_ktp">KTP</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="file" accept="application/pdf, image/*" name="fp_kk"
-                                        id="fp_kk" class="form-control">
-                                    <label for="fp_kk">KK</label>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_kk"
+                                            id="fp_kk" class="form-control">
+                                        <label for="fp_kk">KK</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="file" accept="application/pdf, image/*" name="fp_bpjs"
-                                        id="fp_bpjs" class="form-control">
-                                    <label for="fp_bpjs">BPJS</label>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_bpjs"
+                                            id="fp_bpjs" class="form-control">
+                                        <label for="fp_bpjs">BPJS</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="file" accept="application/pdf, image/*" name="fp_akte"
-                                        id="fp_akte" class="form-control">
-                                    <label for="fp_akte">Akte Kelahiran Anak</label>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="application/pdf, image/*" name="fp_akte"
+                                            id="fp_akte" class="form-control">
+                                        <label for="fp_akte">Akte Kelahiran Anak</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-5 mt-2">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="file" accept="image/*" name="fp_foto" id="fp_foto"
-                                        class="form-control">
-                                    <label for="fp_foto">Pas Foto Anak</label>
+                                <div class="col-md-6 mb-5 mt-2">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" accept="image/*" name="fp_foto" id="fp_foto"
+                                            class="form-control">
+                                        <label for="fp_foto">Pas Foto Anak</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="divider text-start">
-                                    <div class="divider-text fs-5">Bagian Hasil Upload Administrasi</div>
+                                <div class="col-md-12">
+                                    <div class="divider text-start">
+                                        <div class="divider-text fs-5">Bagian Hasil Upload Administrasi</div>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                             @if ($info->fp_formulir != null)
                                 <div class="col-md-6 mb-5">
                                     <div class="btn btn-info w-100"
@@ -329,46 +331,50 @@
                                     </div>
                                 </div>
                             @endif
-                            <div class="col-md-12">
-                                <div class="divider text-start">
-                                    <div class="divider-text fs-5">
-                                        Dokumen Lainnya
-                                        <span class="text-muted fs-6">(Bagian ini tidak wajib, isi jika
-                                            diperlukan)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="file-container">
-                                <div class="file-item">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-5 mt-2">
-                                            <input type="text" name="file_name[]" class="form-control"
-                                                placeholder="Nama Dokumen lain (tidak wajib)" />
-                                        </div>
-                                        <div class="col-md-6 mb-5 mt-2">
-                                            <div class="form-floating form-floating-outline">
-                                                <input type="file" name="files[]" accept="application/pdf, image/*"
-                                                    class="form-control" />
-                                                <label for="files[]">Upload File</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" id="add-file" class="btn btn-secondary p-3 mt-3">Tambah
-                                File</button>
-                            <div class="col-md-12 mb-3">
-                                <span class="text-danger">* Format dokumen harus .jpg, .jpeg, .png, .pdf dan
-                                    maksimal
-                                    2MB</span>
-                            </div>
+                            @if($info->status == 'aktif')
+                              <div class="col-md-12">
+                                  <div class="divider text-start">
+                                      <div class="divider-text fs-5">
+                                          Dokumen Lainnya
+                                          <span class="text-muted fs-6">(Bagian ini tidak wajib, isi jika
+                                              diperlukan)</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div id="file-container">
+                                  <div class="file-item">
+                                      <div class="row">
+                                          <div class="col-md-6 mb-5 mt-2">
+                                              <input type="text" name="file_name[]" class="form-control"
+                                                  placeholder="Nama Dokumen lain (tidak wajib)" />
+                                          </div>
+                                          <div class="col-md-6 mb-5 mt-2">
+                                              <div class="form-floating form-floating-outline">
+                                                  <input type="file" name="files[]" accept="application/pdf, image/*"
+                                                      class="form-control" />
+                                                  <label for="files[]">Upload File</label>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <button type="button" id="add-file" class="btn btn-secondary p-3 mt-3">Tambah
+                                  File</button>
+                              <div class="col-md-12 mb-3">
+                                  <span class="text-danger">* Format dokumen harus .jpg, .jpeg, .png, .pdf dan
+                                      maksimal
+                                      2MB</span>
+                              </div>
+                            @endif
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 text-end">
-                                <button type="reset" class="btn btn-danger me-5">Batal</button>
-                                <button type="submit" id="sendData" class="btn btn-primary">Perbarui Data</button>
-                            </div>
-                        </div>
+                        @if($info->status != 'alumni keluar')
+                          <div class="row">
+                              <div class="col-md-12 text-end">
+                                  <button type="reset" class="btn btn-danger me-5">Batal</button>
+                                  <button type="submit" id="sendData" class="btn btn-primary">Perbarui Data</button>
+                              </div>
+                          </div>
+                        @endif
                     </form>
                     <div class="row">
                       @if($filesAnak->pendaftaran->files->count() > 0)
@@ -384,6 +390,7 @@
                                         class="btn btn-info">
                                         {{ $optionalFile->file_name }}
                                     </a>
+                                    @if($info->status != 'alumni keluar')
                                     <form action="{{ route('delete-file-info', $optionalFile->id) }}" method="POST"
                                         class="btn-group"
                                         onsubmit="return confirm('Yakin ingin menghapus file {{ $optionalFile->file_name }}?');">
@@ -393,6 +400,7 @@
                                             <i class="ri-delete-bin-line me-2"></i>Hapus
                                         </button>
                                     </form>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
