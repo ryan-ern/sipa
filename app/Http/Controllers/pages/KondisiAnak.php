@@ -19,16 +19,17 @@ class KondisiAnak extends Controller
     }
     $selectedId = $request->id;
 
-    $data = Riwayat::select('riwayats.*', 'anaks.biodata')
-      ->join('anaks', 'riwayats.anaks_id', '=', 'anaks.id')
-      ->orderBy('riwayats.updated_at', 'DESC')
-      ->get();
-
     $anak = Anak::where('user_id', Auth::user()->id)->get();
 
     $info = $selectedId
       ? Anak::where('user_id', Auth::user()->id)->where('id', $selectedId)->first()
       : Anak::where('user_id', Auth::user()->id)->first();
+
+    $data = Riwayat::select('riwayats.*', 'anaks.biodata')
+      ->join('anaks', 'riwayats.anaks_id', '=', 'anaks.id')
+      ->orderBy('riwayats.updated_at', 'DESC')
+      ->where('anaks.id', $selectedId ?? $info->id)
+      ->get();
 
     $riwayat = Riwayat::select('*')
       ->where('user_id', Auth::user()->id)
