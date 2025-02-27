@@ -27,19 +27,19 @@
         </form>
 
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
+            <div class="card" onclick="window.location.href='{{ route('data-pendaftaran') }}'">
                 <div class="card-body text-nowrap">
                     <h6 class="card-title mb-0 flex-wrap text-nowrap">Pendaftar Berlangsung</h6>
                     <h3 class="text-primary mb-0">{{ $countPendaftaran }}</h3>
                 </div>
-                <img src="{{ asset('assets/img/illustrations/daftar.jpg') }}"
-                    class="position-absolute bottom-0 end-0 me-3" width="100" alt="view sales">
+                <img src="{{ asset('assets/img/illustrations/daftar.jpg') }}" class="position-absolute bottom-0 end-0 me-3"
+                    width="100" alt="view sales">
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
-                <img src="{{ asset('assets/img/illustrations/pass.jpg') }}"
-                    class="position-absolute bottom-0 start-0 ms-5" width="100" alt="view sales">
+            <div class="card" onclick="window.location.href='{{ route('data-pengguna') }}'">
+                <img src="{{ asset('assets/img/illustrations/pass.jpg') }}" class="position-absolute bottom-0 start-0 ms-5"
+                    width="100" alt="view sales">
                 <div class="card-body text-nowrap text-end">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap z-1">Lupa Password</h5>
                     <h3 class="text-primary mb-0">{{ $countForgotPass }}</h3>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
+            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap z-1">Data Anak Aktif</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakAktif }}</h3>
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
+            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
                 <img src="{{ asset('assets/img/illustrations/yatimpiatu.png') }}"
                     class="position-absolute bottom-0 start-0 ms-5" width="70" alt="view sales">
                 <div class="card-body text-nowrap text-end">
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
+            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Alumni Lulus</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakLulus }}</h3>
@@ -77,9 +77,9 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
-                <img src="{{ asset('assets/img/illustrations/nakal.png') }}" class="position-absolute bottom-0 start-0 ms-5"
-                    width="80" alt="view sales">
+            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
+                <img src="{{ asset('assets/img/illustrations/nakal.png') }}"
+                    class="position-absolute bottom-0 start-0 ms-5" width="80" alt="view sales">
                 <div class="card-body text-nowrap text-end">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Alumni Keluar</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakBermasalah }}</h3>
@@ -87,7 +87,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
+            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Yatim</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakYatim }}</h3>
@@ -97,7 +97,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
+            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
                 <img src="{{ asset('assets/img/illustrations/piatu.png') }}"
                     class="position-absolute bottom-0 start-0 ms-5" width="90" alt="view sales">
                 <div class="card-body text-nowrap text-end">
@@ -107,17 +107,17 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
+            <div class="card" onclick="window.location.href='{{ route('data-donasi') }}'">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Data Donasi</h5>
                     <h3 class="text-primary mb-0">{{ $countDataDonasi }}</h3>
                 </div>
-                <img src="{{ asset('assets/img/illustrations/donasi.png') }}" class="position-absolute bottom-0 end-0 me-5"
-                    width="150" alt="view sales">
+                <img src="{{ asset('assets/img/illustrations/donasi.png') }}"
+                    class="position-absolute bottom-0 end-0 me-5" width="150" alt="view sales">
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
+            <div class="card" onclick="window.location.href='{{ route('data-informasi') }}'">
                 <img src="{{ asset('assets/img/illustrations/artikel.png') }}"
                     class="position-absolute bottom-0 start-0 ms-5" width="130" alt="view sales">
                 <div class="card-body text-nowrap text-end">
@@ -127,7 +127,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
+            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Laki-laki</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakLaki }}</h3>
@@ -137,7 +137,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card">
+            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
                 <img src="{{ asset('assets/img/illustrations/perempuan.png') }}"
                     class="position-absolute bottom-0 start-0 ms-5" width="83" alt="view sales">
                 <div class="card-body text-nowrap text-end">
