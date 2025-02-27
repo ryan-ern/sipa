@@ -8,24 +8,24 @@
 @section('title', 'Persyaratan')
 
 @section('content')
-        <div class="row gy-6">
-          <div class="col-md-12 col-lg-12 mb-4">
-              <div class="card">
-                  <div class="card-body p-7">
+    <div class="row gy-6">
+        <div class="col-md-12 col-lg-12 mb-4">
+            <div class="card">
+                <div class="card-body p-7">
                     <div id="quill-editor" style="height: 300px;">
-                       {!! $data->isi !!}
+                        {!! $data->isi !!}
                     </div>
-                  </div>
-              </div>
-          </div>
+                </div>
+            </div>
         </div>
+    </div>
 @endsection
 @section('page-script')
-   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const quill = new Quill('#quill-editor', {
-            readOnly: true,
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const quill = new Quill('#quill-editor', {
+                readOnly: true,
+            });
         });
-    });
-</script>
+    </script>
 @endsection
