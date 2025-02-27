@@ -63,6 +63,12 @@
       "url": "pages/kondisi-anak"
     },
     {
+      "name": "Informasi Anak",
+      "icon": "menu-icon tf-icons ri-home-smile-line",
+      "slug": "informasi-anak",
+      "url": "pages/data-informasi-anak"
+    },
+    {
       "name": "Pendaftaran",
       "icon": "menu-icon tf-icons ri-home-smile-line",
       "slug": "pendaftaran-anak",

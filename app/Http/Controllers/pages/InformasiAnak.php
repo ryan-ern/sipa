@@ -5,60 +5,40 @@ namespace App\Http\Controllers\pages;
 use App\Http\Controllers\Controller;
 use App\Models\Anak;
 use App\Models\Pendaftaran;
+use App\Models\PendaftaranFile;
 use App\Models\Riwayat;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class DataAnak extends Controller
+class InformasiAnak extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    $data = Anak::select('*')->orderBy('updated_at', 'DESC')->get();
-    $aktif = Anak::select('*')->where('status', 'aktif')->get();
-    $alumni = Anak::select('*')->where('status', 'alumni lulus')->get();
-    $alumniBermasalah = Anak::select('*')->where('status', 'alumni keluar')->get();
-    $user = User::where('role', 'user')
-      ->whereIn('sebagai', ['ortu', 'wali'])
-      ->where('status', '1')
-      ->get();
-    $riwayat = Riwayat::select('riwayats.*', 'anaks.biodata')
+    $user = Auth::user();
+    if (!Anak::where('user_id', $user->id)->exists()) {
+      return redirect('/pages/pendaftaran-anak')->with('info', 'Silahkan daftarkan anak anda terlebih dahulu');
+    }
+    $selectedId = $request->id;
+
+    $anak = Anak::where('user_id', Auth::user()->id)->get();
+
+    $info = $selectedId
+      ? Anak::where('user_id', Auth::user()->id)->where('id', $selectedId)->first()
+      : Anak::where('user_id', Auth::user()->id)->first();
+
+    $data = Riwayat::select('riwayats.*', 'anaks.biodata')
       ->join('anaks', 'riwayats.anaks_id', '=', 'anaks.id')
       ->orderBy('riwayats.updated_at', 'DESC')
+      ->where('anaks.id', $selectedId ?? $info->id)
       ->get();
-    $data = $data->map(function ($item) {
-      $splitData = explode('~', $item->biodata);
-      $item->biodata = (object)[
-        'nama' => $splitData[0] ?? '-',
-        'ttl' => $splitData[1] ?? '-',
-        'nik' => $splitData[2] ?? '-',
-        'jk' => $splitData[3] ?? '-',
-        'status_anak' => $splitData[4] ?? '-',
-        'pendidikan' => $splitData[5] ?? '-',
-        'alamat' => $splitData[6] ?? '-',
-        'ortu' => $splitData[7] ?? '-',
-        'pekerjaan' => $splitData[8] ?? '-',
-        'no_tel' => $splitData[9] ?? '-',
-      ];
-      return $item;
-    });
-    $existingData = Anak::all()->map(function ($item) {
-      $splitData = explode('~', $item->biodata);
-      return (object) [
-        'nama' => $splitData[0] ?? '-',
-        'ttl' => $splitData[1] ?? '-',
-        'nik' => $splitData[2] ?? '-',
-        'jk' => $splitData[3] ?? '-',
-        'status_anak' => $splitData[4] ?? '-',
-        'pendidikan' => $splitData[5] ?? '-',
-        'alamat' => $splitData[6] ?? '-',
-        'ortu' => $splitData[7] ?? '-',
-        'pekerjaan' => $splitData[8] ?? '-',
-        'no_tel' => $splitData[9] ?? '-',
-      ];
-    });
+
+    $riwayat = Riwayat::select('*')
+      ->where('user_id', Auth::user()->id)
+      ->where('anaks_id', $selectedId ?? $info->id)
+      ->orderBy('updated_at', 'DESC')
+      ->first();
 
     $processData = function ($data) {
       return $data->map(function ($item) {
@@ -78,22 +58,10 @@ class DataAnak extends Controller
         return $item;
       });
     };
-    return view('content.pages.data-anak', [
-      'riwayat' => $processData($riwayat),
-      'data' => $data,
-      'aktif' => $processData($aktif),
-      'alumni' => $processData($alumni),
-      'alumniBermasalah' => $processData($alumniBermasalah),
-      'user' => $user
-    ]);
-  }
 
-  public function detail($id)
-  {
-    $info = Anak::where('id', $id)->first();
     if ($info) {
       $splitData = explode('~', $info->biodata);
-      $info->biodata = (object) [
+      $parsedBiodata = [
         'nama' => $splitData[0] ?? '-',
         'ttl' => $splitData[1] ?? '-',
         'nik' => $splitData[2] ?? '-',
@@ -105,10 +73,15 @@ class DataAnak extends Controller
         'pekerjaan' => $splitData[8] ?? '-',
         'no_tel' => $splitData[9] ?? '-',
       ];
+      $infoData = (object) array_merge($parsedBiodata, $info->toArray());
     }
-    return view('content.pages.data-anak-detail',  [
+
+    return view('content.pages.user.informasi-anak', [
+      'data' => $processData($data),
+      'riwayat' => $riwayat ?? null,
+      'anak' => $processData($anak),
       'filesAnak' => $info,
-      'info' => $info,
+      'info' => $infoData ?? null,
     ]);
   }
 
@@ -293,7 +266,7 @@ class DataAnak extends Controller
         if (Auth::user()->role == 'admin') {
           return back()->with('success', 'Data anak ' . $request->nama .  ' berhasil diperbarui');
         } else {
-          return redirect()->route('kondisi-anak')->with('success', 'Data anak ' . $request->nama . ' berhasil diperbarui');
+          return redirect()->route('informasi-anak')->with('success', 'Data anak ' . $request->nama . ' berhasil diperbarui');
         }
       } else {
         if ($existingData->contains('nik', $request->nik)) {
@@ -325,54 +298,8 @@ class DataAnak extends Controller
 
   public function destroy($id)
   {
-    $anak = Anak::findOrFail($id);
-    $data = $anak->biodata;
-    $splitData = explode('~', $data);
-    try {
-      $anak->delete();
-      return back()->with('success', 'Data ' . $splitData[0] . ' berhasil dihapus');
-    } catch (\Exception $e) {
-      return back()->with('error', 'Data ' . $splitData[0] . ' gagal dihapus: ' . $e->getMessage());
-    }
-  }
-
-  public function riwayat(Request $request)
-  {
-    $validator = Validator::make(
-      $request->all(),
-      [
-        'status' => 'required',
-        'keterangan' => 'required',
-        'user_id' => 'required',
-        'anaks_id' => 'required',
-        'fp_riwayat' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
-      ],
-      [
-        '*.required' => ':attribute harus diisi.',
-        '*.file' => ':attribute harus berupa file yang valid.',
-        '*.mimes' => ':attribute harus memiliki ekstensi jpeg, png, pdf atau jpg.',
-      ]
-    );
-
-
-
-    if ($validator->fails()) {
-      return back()->with('error', 'Data riwayat gagal disimpan: ' . $validator->errors()->first());
-    }
-    try {
-      $data = $request->all();
-      if ($request->hasFile('fp_riwayat')) {
-        $file = $request->file('fp_riwayat');
-        $originalFileName = $file->getClientOriginalName();
-        $fileName = time() . '_' . preg_replace('/\s+/', '_', $originalFileName);
-        $filePath = $file->storeAs('riwayat', $fileName, 'private');
-        $data['fp_riwayat'] = $filePath;
-        $data['fn_riwayat'] = $fileName;
-      }
-      Riwayat::create($data);
-      return back()->with('success', 'Data riwayat berhasil disimpan');
-    } catch (\Exception $e) {
-      return back()->with('error', 'Data riwayat gagal disimpan: ' . $e->getMessage());
-    }
+    $file = PendaftaranFile::where('id', $id)->first();
+    $file->delete();
+    return redirect()->route('informasi-anak')->with('success', 'Berhasil hapus File ' . $file->name);
   }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\pages\DataDonasi;
 use App\Http\Controllers\pages\DataKegiatan;
 use App\Http\Controllers\pages\DataPengguna;
 use App\Http\Controllers\pages\DataSaran;
+use App\Http\Controllers\pages\InformasiAnak;
 use App\Http\Controllers\pages\KondisiAnak;
 use App\Http\Controllers\pages\Pendaftaran;
 use App\Http\Controllers\pages\SyaratMasuk;
@@ -100,8 +101,14 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 
   Route::get('/pages/kondisi-anak', [KondisiAnak::class, 'index'])->name('kondisi-anak');
   Route::post('/kondisi-anak', [KondisiAnak::class, 'index'])->name('kondisi-anak.get');
+
   Route::put('/pages/data-anak/{id}', [DataAnak::class, 'store'])->name('data-anak.update');
 
+  Route::put('/pages/data-informasi-anak/{id}', [InformasiAnak::class, 'store'])->name('data-anak.update');
+  Route::get('/pages/data-informasi-anak', [InformasiAnak::class, 'index'])->name('informasi-anak');
+  Route::post('/data-informasi-anak', [InformasiAnak::class, 'index'])->name('informasi-anak.get');
+
+  Route::delete('delete-file/{id}', [InformasiAnak::class, 'destroy'])->name('delete-file-info');
   Route::delete('delete-fie/{id}', [KondisiAnak::class, 'destroy'])->name('delete-file');
 });
 

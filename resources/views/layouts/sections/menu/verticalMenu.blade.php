@@ -65,7 +65,8 @@
                     <a href="{{ isset($menu['url']) ? url($menu['url']) : 'javascript:void(0);' }}"
                         class="{{ isset($menu['submenu']) ? 'menu-link menu-toggle' : 'menu-link' }}"
                         @if (isset($menu['target']) && !empty($menu['target'])) target="_blank" @endif
-                        @if ($menu['slug'] == 'kondisi-anak' && !$hasAnak) style="display: none;" @endif>
+                        @if ($menu['slug'] == 'kondisi-anak' && !$hasAnak) style="display: none;" @endif
+                        @if ($menu['slug'] == 'informasi-anak' && !$hasAnak) style="display: none;" @endif>
                         @isset($menu['icon'])
                             <i class="{{ $menu['icon'] }}"></i>
                         @endisset

@@ -3,49 +3,71 @@
 @section('title', 'Kondisi Anak')
 
 @section('content')
+    <div class="row gy-6 mb-5">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST" action="{{ route('informasi-anak.get') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="anak" class="form-label">Pilih Anak Anda</label>
+                            <select class="form-select" id="anak" name="id" onchange="this.form.submit()">
+                                <option selected disabled value="">Pilih Anak</option>
+                                @foreach ($anak as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ $info && $info->id === $item->id ? 'selected' : '' }}>
+                                        {{ $item->biodata->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col md-12 sm-12 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <a class="btn btn-primary mb-3" href="{{ route('data-anak') }}">Kembali</a>
                     <h5>Informasi Data Anak</h5>
-                    <form id="pendaftaranForm" action="{{ route('data-anak.detail.update', $info->id) }}" method="POST"
+                    <form id="pendaftaranForm" action="{{ route('data-anak.update', $info->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
-                            <input type="hidden" name="pendaftarans_id" value="{{ $info->pendaftarans_id }}">
-                            <input type="hidden" name="user_id" value="{{ $info->user_id }}">
+                            <input type="hidden" name="id" value="{{ $info->id }}">
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input type="text" class="form-control" id="nama" name="nama"
-                                        placeholder="Nama Anak" value="{{ $info->biodata->nama }}" required>
+                                        placeholder="Nama Anak" value="{{ $info->nama }}" required>
                                     <label for="nama">Nama Anak</label>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input type="text" class="form-control" id="ttl" name="ttl"
-                                        placeholder="Tempat, Tanggal Lahir Anak" value="{{ $info->biodata->ttl }}" required>
+                                        placeholder="Tempat, Tanggal Lahir Anak" value="{{ $info->ttl }}" required>
                                     <label for="ttl">Tempat, Tanggal Lahir Anak</label>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input type="number" class="form-control" id="nik" name="nik"
-                                        placeholder="NIK Anak" value="{{ $info->biodata->nik }}" required>
+                                        placeholder="NIK Anak" value="{{ $info->nik }}" required>
                                     <label for="nik">NIK Anak</label>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <select class="form-select" id="jk" name="jk" required>
-                                        <option value="" {{ !$info->biodata->jk ? 'selected' : '' }}>
+                                        <option value="" {{ !$info->jk ? 'selected' : '' }}>
                                             Pilih Jenis Kelamin</option>
-                                        <option value="Laki-laki" {{ $info->biodata->jk == 'Laki-laki' ? 'selected' : '' }}>
+                                        <option value="Laki-laki" {{ $info->jk == 'Laki-laki' ? 'selected' : '' }}>
                                             Laki-laki
                                         </option>
-                                        <option value="Perempuan" {{ $info->biodata->jk == 'Perempuan' ? 'selected' : '' }}>
+                                        <option value="Perempuan" {{ $info->jk == 'Perempuan' ? 'selected' : '' }}>
                                             Perempuan
                                         </option>
                                     </select>
@@ -55,7 +77,7 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input type="text" class="form-control" id="pendidikan" name="pendidikan"
-                                        placeholder="Pendidikan/ Kelas Anak" value="{{ $info->biodata->pendidikan ?? '' }}"
+                                        placeholder="Pendidikan/ Kelas Anak" value="{{ $info->pendidikan ?? '' }}"
                                         required>
                                     <label for="pendidikan">Pendidikan/ Kelas Anak</label>
                                 </div>
@@ -63,26 +85,24 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <select class="form-select" id="status_anak" name="status_anak" required>
-                                        <option value="" disabled
-                                            {{ $info->biodata->status_anak ? 'selected' : '' }}>
+                                        <option value="" disabled {{ $info->status_anak ? 'selected' : '' }}>
                                             Pilih Status Anak
                                         </option>
                                         <option value="Anak Yatim"
-                                            {{ $info->biodata->status_anak == 'Anak Yatim' ? 'selected' : '' }}>
+                                            {{ $info->status_anak == 'Anak Yatim' ? 'selected' : '' }}>
                                             Anak
                                             Yatim</option>
                                         <option value="Anak Piatu"
-                                            {{ $info->biodata->status_anak == 'Anak Piatu' ? 'selected' : '' }}>
+                                            {{ $info->status_anak == 'Anak Piatu' ? 'selected' : '' }}>
                                             Anak
                                             Piatu</option>
                                         <option value="Anak Yatim Piatu"
-                                            {{ $info->biodata->status_anak == 'Anak Yatim Piatu' ? 'selected' : '' }}>
+                                            {{ $info->status_anak == 'Anak Yatim Piatu' ? 'selected' : '' }}>
                                             Anak Yatim Piatu</option>
                                         <option value="Anak Tidak Mampu"
-                                            {{ $info->biodata->status_anak == 'Anak Tidak Mampu' ? 'selected' : '' }}>
+                                            {{ $info->status_anak == 'Anak Tidak Mampu' ? 'selected' : '' }}>
                                             Anak Tidak Mampu</option>
-                                        <option value="Lainnya"
-                                            {{ $info->biodata->status_anak == 'Lainnya' ? 'selected' : '' }}>
+                                        <option value="Lainnya" {{ $info->status_anak == 'Lainnya' ? 'selected' : '' }}>
                                             Lainnya
                                         </option>
                                     </select>
@@ -92,36 +112,33 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input type="text" class="form-control" id="ortu" name="ortu"
-                                        value="{{ $info->biodata->ortu }}" placeholder="Nama Orang Tua/ Wali">
+                                        value="{{ $info->ortu }}" placeholder="Nama Orang Tua/ Wali">
                                     <label for="ortu">Nama Orang Tua/ Wali</label>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input type="text" class="form-control" id="no_tel" name="no_tel"
-                                        value="{{ $info->biodata->no_tel }}" placeholder="Nama Orang Tua/ Wali">
+                                        value="{{ $info->no_tel }}" placeholder="Nama Orang Tua/ Wali">
                                     <label for="no_tel">Nomor Telepon</label>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
-                                        placeholder="Pekerjaan Orang Tua/ Wali" value="{{ $info->biodata->pekerjaan }}">
+                                        placeholder="Pekerjaan Orang Tua/ Wali" value="{{ $info->pekerjaan }}">
                                     <label for="pekerjaan">Pekerjaan Orang Tua/ Wali</label>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <div class="form-floating form-floating-outline">
-                                    <input type="text"
-                                        class="form-control text-capitalize text-white @if ($info->status == 'aktif') bg-success @elseif($info->status == 'alumni lulus') bg-info @else bg-danger @endif"
-                                        id="status" name="status" value="{{ $info->status }}"
-                                        placeholder="Status Keaktifan" readonly>
-                                    <label for="status">Status Keaktifan</label>
-                                </div>
-                            </div>
+                              <div class="form-floating form-floating-outline">
+                                <input type="text" class="form-control text-capitalize text-white @if($info->status == 'aktif') bg-success @elseif($info->status == 'alumni lulus') bg-info @else bg-danger @endif" id="status" name="status" value="{{ $info->status }}" placeholder="Status Keaktifan" readonly>
+                                  <label for="status">Status Keaktifan</label>
+                              </div>
+                          </div>
                             <div class="col-md-12 mb-3">
                                 <label for="alamat">Alamat Anak</label>
-                                <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $info->biodata->alamat }}</textarea>
+                                <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $info->alamat }}</textarea>
                             </div>
                             @if ($info->fp_formulir != null || $info->fp_izin != null)
                                 <div class="col-md-12">
@@ -354,32 +371,32 @@
                         </div>
                     </form>
                     <div class="row">
-                        @if ($filesAnak->pendaftaran->files->count() > 0)
-                            <div class="col-md-12">
-                                <div class="divider text-start">
-                                    <div class="divider-text fs-5">Bagian Dokumen Lainnya</div>
+                      @if($filesAnak->pendaftaran->files->count() > 0)
+                        <div class="col-md-12">
+                            <div class="divider text-start">
+                                <div class="divider-text fs-5">Bagian Dokumen Lainnya</div>
+                            </div>
+                        </div>
+                        @foreach ($filesAnak->pendaftaran->files as $optionalFile)
+                            <div class="col-md-6 mb-5">
+                                <div class="btn-group w-100">
+                                    <a href="{{ asset('storage/' . $optionalFile->file_path) }}" target="_blank"
+                                        class="btn btn-info">
+                                        {{ $optionalFile->file_name }}
+                                    </a>
+                                    <form action="{{ route('delete-file-info', $optionalFile->id) }}" method="POST"
+                                        class="btn-group"
+                                        onsubmit="return confirm('Yakin ingin menghapus file {{ $optionalFile->file_name }}?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="ri-delete-bin-line me-2"></i>Hapus
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
-                            @foreach ($filesAnak->pendaftaran->files as $optionalFile)
-                                <div class="col-md-6 mb-5">
-                                    <div class="btn-group w-100">
-                                        <a href="{{ asset('storage/' . $optionalFile->file_path) }}" target="_blank"
-                                            class="btn btn-info">
-                                            {{ $optionalFile->file_name }}
-                                        </a>
-                                        <form action="{{ route('data-anak.delete-file', $optionalFile->id) }}"
-                                            method="POST" class="btn-group"
-                                            onsubmit="return confirm('Yakin ingin menghapus file {{ $optionalFile->file_name }}?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="ri-delete-bin-line me-2"></i>Hapus
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
+                        @endforeach
+                      @endif
                     </div>
                 </div>
             </div>
