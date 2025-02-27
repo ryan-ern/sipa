@@ -639,11 +639,13 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-            document.getElementById('add-file').addEventListener('click', function() {
-                const container = document.getElementById('file-container');
-                const newItem = document.createElement('div');
-                newItem.className = 'file-item mt-3';
-                newItem.innerHTML = `
+            if (document.getElementById('add-file')) {
+
+                document.getElementById('add-file').addEventListener('click', function() {
+                    const container = document.getElementById('file-container');
+                    const newItem = document.createElement('div');
+                    newItem.className = 'file-item mt-3';
+                    newItem.innerHTML = `
             <div class="row">
 <div class="col-md-6 mb-5 mt-2">
 <input type="text" name="file_name[]" class="form-control" placeholder="Nama Dokumen lain (tidak wajib)" />
@@ -656,8 +658,9 @@
 </div>
 </div>
         `;
-                container.appendChild(newItem);
-            });
+                    container.appendChild(newItem);
+                });
+            }
 
             const form = document.getElementById("pendaftaranForm");
             const saveButton = document.getElementById("saveTemporary");
