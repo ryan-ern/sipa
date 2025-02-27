@@ -110,7 +110,7 @@
                 <img src="/assets/profil/Gerbang.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h2>Gerbang Depan</h2>
-                    <p>Sebagai simbol keamanan dan ketertiban, memastikan lingkungan yang aman bagi siswa
+                    <p>Sebagai simbol keamanan dan ketertiban, memastikan lingkungan yang aman bagi anak asuh
                         dan pengunjung.</p>
                 </div>
             </div>
@@ -118,14 +118,14 @@
                 <img src="/assets/profil/Kantor.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h2>Kantor</h2>
-                    <p>Sebagai tempat pusat administrasi dan layanan bagi siswa serta tenaga pengajar</p>
+                    <p>Sebagai tempat pusat administrasi dan layanan bagi anak asuh serta staff</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="/assets/profil/Asrama1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h2>Asrama 1</h2>
-                    <p>Tempat tinggal yang nyaman dan bersih, menciptakan suasana kekeluargaan bagi siswa
+                    <p>Tempat tinggal yang nyaman dan bersih, menciptakan suasana kekeluargaan bagi anak asuh
                         dalam menjalani kehidupan sehari-hari.</p>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                 <img src="/assets/profil/Asrama2.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h2>Asrama 2</h2>
-                    <p>Tempat tinggal yang nyaman dan bersih, menciptakan suasana kekeluargaan bagi siswa
+                    <p>Tempat tinggal yang nyaman dan bersih, menciptakan suasana kekeluargaan bagi anak asuh
                         dalam menjalani kehidupan sehari-hari.</p>
                 </div>
             </div>
@@ -150,7 +150,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h2>Lapangan</h2>
                     <p>Area terbuka untuk olahraga dan aktivitas fisik guna menunjang kesehatan dan
-                        kebugaran siswa.</p>
+                        kebugaran anak asuh.</p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -165,7 +165,7 @@
                 <img src="/assets/profil/Dapur.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h2>Dapur</h2>
-                    <p>Tempat penyediaan makanan dengan standar kebersihan, memastikan kebutuhan gizi siswa
+                    <p>Tempat penyediaan makanan dengan standar kebersihan, memastikan kebutuhan gizi anak asuh
                         terpenuhi.</p>
                 </div>
             </div>
@@ -181,7 +181,7 @@
                 <img src="/assets/profil/RumahDinas1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h2>Rumah Dinas</h2>
-                    <p>Hunian bagi staf dan tenaga pengajar, memastikan kenyamanan bagi mereka yang bertugas
+                    <p>Hunian bagi staf dan staff, memastikan kenyamanan bagi mereka yang bertugas
                         di lingkungan UPTD PSA Harapan Bangsa.</p>
                 </div>
             </div>
@@ -190,7 +190,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h2>Mushola</h2>
                     <p>Tempat ibadah yang nyaman dan bersih, mendukung pembinaan spiritual serta kegiatan
-                        keagamaan siswa.</p>
+                        keagamaan anak asuh.</p>
                 </div>
             </div>
         </div>
