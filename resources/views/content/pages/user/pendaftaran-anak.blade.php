@@ -182,7 +182,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="divider text-start">
-                                            <div class="divider-text fs-5">Bagian Administrasi</div>
+                                            <div class="divider-text fs-5">Bagian Upload Administrasi</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-5 mt-2">
@@ -192,14 +192,6 @@
                                             <label for="fp_formulir">Formulir Pendaftaran</label>
                                         </div>
                                     </div>
-                                    @if ($tahap->fp_formulir != null)
-                                        <div class="col-md-6 mb-5">
-                                            <div class="btn btn-info w-100"
-                                                onclick="window.open('/storage/{{ $tahap->fp_formulir }}', '_blank')">
-                                                Formulir Pendaftaran Sebelumnya
-                                            </div>
-                                        </div>
-                                    @endif
                                     <div class="col-md-6 mb-5 mt-2">
                                         <div class="form-floating form-floating-outline">
                                             <input type="file" accept="application/pdf, image/*" name="fp_surat_izin"
@@ -207,15 +199,6 @@
                                             <label for="fp_surat_izin">Surat Izin</label>
                                         </div>
                                     </div>
-                                    @if ($tahap->fp_surat_izin != null)
-                                        <div class="col-md-6 mb-5">
-                                            <div class="btn btn-info w-100"
-                                                onclick="window.open('/storage/{{ $tahap->fp_surat_izin }}', '_blank')">
-                                                Surat
-                                                Izin Sebelumnya
-                                            </div>
-                                        </div>
-                                    @endif
                                     <div class="col-md-6 mb-5 mt-2">
                                         <div class="form-floating form-floating-outline">
                                             <input type="file" accept="application/pdf, image/*"
@@ -224,15 +207,6 @@
                                             <label for="fp_suket_tidak_mampu">Surat Keterangan Tidak Mampu</label>
                                         </div>
                                     </div>
-                                    @if ($tahap->fp_suket_tidak_mampu != null)
-                                        <div class="col-md-6 mb-5">
-                                            <div class="btn btn-info w-100"
-                                                onclick="window.open('/storage/{{ $tahap->fp_suket_tidak_mampu }}', '_blank')">
-                                                Surat
-                                                Keterangan Tidak Mampu Sebelumnya
-                                            </div>
-                                        </div>
-                                    @endif
                                     <div class="col-md-6 mb-5 mt-2">
                                         <div class="form-floating form-floating-outline">
                                             <input type="file" accept="application/pdf, image/*"
@@ -240,15 +214,6 @@
                                             <label for="fp_suket_kematian">Surat Keterangan Kematian</label>
                                         </div>
                                     </div>
-                                    @if ($tahap->fp_suket_kematian != null)
-                                        <div class="col-md-6 mb-5 ">
-                                            <div class="btn btn-info w-100"
-                                                onclick="window.open('/storage/{{ $tahap->fp_suket_kematian }}', '_blank')">
-                                                Surat
-                                                Keterangan Kematian Sebelumnya
-                                            </div>
-                                        </div>
-                                    @endif
                                     <div class="col-md-6 mb-5 mt-2">
                                         <div class="form-floating form-floating-outline">
                                             <input type="file" accept="application/pdf, image/*" name="fp_suket_sehat"
@@ -256,15 +221,6 @@
                                             <label for="fp_suket_sehat">Surat Keterangan Sehat</label>
                                         </div>
                                     </div>
-                                    @if ($tahap->fp_suket_sehat != null)
-                                        <div class="col-md-6 mb-5 ">
-                                            <div class="btn btn-info w-100"
-                                                onclick="window.open('/storage/{{ $tahap->fp_suket_sehat }}', '_blank')">
-                                                Surat
-                                                Keterangan Sehat Sebelumnya
-                                            </div>
-                                        </div>
-                                    @endif
                                     <div class="col-md-6 mb-5 mt-2">
                                         <div class="form-floating form-floating-outline">
                                             <input type="file" accept="application/pdf, image/*" name="fp_ktp"
@@ -272,14 +228,6 @@
                                             <label for="fp_ktp">KTP</label>
                                         </div>
                                     </div>
-                                    @if ($tahap->fp_ktp != null)
-                                        <div class="col-md-6 mb-5 ">
-                                            <div class="btn btn-info w-100"
-                                                onclick="window.open('/storage/{{ $tahap->fp_ktp }}', '_blank')">
-                                                KTP Sebelumnya
-                                            </div>
-                                        </div>
-                                    @endif
                                     <div class="col-md-6 mb-5 mt-2">
                                         <div class="form-floating form-floating-outline">
                                             <input type="file" accept="application/pdf, image/*" name="fp_kk"
@@ -287,14 +235,6 @@
                                             <label for="fp_kk">KK</label>
                                         </div>
                                     </div>
-                                    @if ($tahap->fp_kk != null)
-                                        <div class="col-md-6 mb-5">
-                                            <div class="btn btn-info w-100"
-                                                onclick="window.open('/storage/{{ $tahap->fp_kk }}', '_blank')">
-                                                KK Sebelumnya
-                                            </div>
-                                        </div>
-                                    @endif
                                     <div class="col-md-6 mb-5 mt-2">
                                         <div class="form-floating form-floating-outline">
                                             <input type="file" accept="application/pdf, image/*" name="fp_bpjs"
@@ -302,14 +242,7 @@
                                             <label for="fp_bpjs">BPJS</label>
                                         </div>
                                     </div>
-                                    @if ($tahap->fp_bpjs != null)
-                                        <div class="col-md-6 mb-5 ">
-                                            <div class="btn btn-info w-100"
-                                                onclick="window.open('/storage/{{ $tahap->fp_bpjs }}', '_blank')">
-                                                BPJS Sebelumnya
-                                            </div>
-                                        </div>
-                                    @endif
+
                                     <div class="col-md-6 mb-5 mt-2">
                                         <div class="form-floating form-floating-outline">
                                             <input type="file" accept="application/pdf, image/*" name="fp_akte"
@@ -317,14 +250,6 @@
                                             <label for="fp_akte">Akte Kelahiran Anak</label>
                                         </div>
                                     </div>
-                                    @if ($tahap->fp_akte != null)
-                                        <div class="col-md-6 mb-5 ">
-                                            <div class="btn btn-info w-100"
-                                                onclick="window.open('/storage/{{ $tahap->fp_akte }}', '_blank')">
-                                                Akte Kelahiran Sebelumnya
-                                            </div>
-                                        </div>
-                                    @endif
                                     <div class="col-md-6 mb-5 mt-2">
                                         <div class="form-floating form-floating-outline">
                                             <input type="file" accept="application/pdf, image/*" name="fp_foto"
@@ -332,11 +257,92 @@
                                             <label for="fp_foto">Pas Foto Anak</label>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="divider text-start">
+                                            <div class="divider-text fs-5">Bagian Hasil Upload Administrasi</div>
+                                        </div>
+                                    </div>
+                                    @if ($tahap->fp_formulir != null)
+                                        <div class="col-md-6 mb-5">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $tahap->fp_formulir }}', '_blank')">
+                                                Formulir Pendaftaran
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($tahap->fp_surat_izin != null)
+                                        <div class="col-md-6 mb-5">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $tahap->fp_surat_izin }}', '_blank')">
+                                                Surat
+                                                Izin
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($tahap->fp_suket_tidak_mampu != null)
+                                        <div class="col-md-6 mb-5">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $tahap->fp_suket_tidak_mampu }}', '_blank')">
+                                                Surat
+                                                Keterangan Tidak Mampu
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($tahap->fp_suket_kematian != null)
+                                        <div class="col-md-6 mb-5 ">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $tahap->fp_suket_kematian }}', '_blank')">
+                                                Surat
+                                                Keterangan Kematian
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($tahap->fp_suket_sehat != null)
+                                        <div class="col-md-6 mb-5 ">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $tahap->fp_suket_sehat }}', '_blank')">
+                                                Surat
+                                                Keterangan Sehat
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($tahap->fp_ktp != null)
+                                        <div class="col-md-6 mb-5 ">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $tahap->fp_ktp }}', '_blank')">
+                                                KTP
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($tahap->fp_kk != null)
+                                        <div class="col-md-6 mb-5">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $tahap->fp_kk }}', '_blank')">
+                                                KK
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($tahap->fp_bpjs != null)
+                                        <div class="col-md-6 mb-5 ">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $tahap->fp_bpjs }}', '_blank')">
+                                                BPJS
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($tahap->fp_akte != null)
+                                        <div class="col-md-6 mb-5 ">
+                                            <div class="btn btn-info w-100"
+                                                onclick="window.open('/storage/{{ $tahap->fp_akte }}', '_blank')">
+                                                Akte Kelahiran
+                                            </div>
+                                        </div>
+                                    @endif
                                     @if ($tahap->fp_foto != null)
                                         <div class="col-md-6 mb-5 ">
                                             <div class="btn btn-info w-100"
                                                 onclick="window.open('/storage/{{ $tahap->fp_foto }}', '_blank')">
-                                                Pas Foto Sebelumnya
+                                                Pas Foto
                                             </div>
                                         </div>
                                     @endif
@@ -577,8 +583,8 @@
                                 </div>
                                 <div class="col-md-6 mb-5 mt-2">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="file" accept="image/*" name="fp_foto"
-                                            id="fp_foto" class="form-control" required>
+                                        <input type="file" accept="image/*" name="fp_foto" id="fp_foto"
+                                            class="form-control" required>
                                         <label for="fp_foto">Pas Foto Anak</label>
                                     </div>
                                 </div>
