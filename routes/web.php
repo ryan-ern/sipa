@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 
   Route::get('/pages/pendaftaran-anak', [Pendaftaran::class, 'indexUser'])->name('pendaftaran-anak');
   Route::post('/pendaftaran-anak', [Pendaftaran::class, 'store'])->name('pendaftaran-anak.store');
+  Route::post('/pendaftaran-multi', [Pendaftaran::class, 'indexUser'])->name('pendaftaran-anak.get');
   Route::put('/pendaftaran-anak/{id}', [Pendaftaran::class, 'store'])->name('pendaftaran-anak.update');
 
   Route::get('/pages/kondisi-anak', [KondisiAnak::class, 'index'])->name('kondisi-anak');

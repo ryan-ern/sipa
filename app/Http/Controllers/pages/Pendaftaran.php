@@ -7,7 +7,6 @@ use App\Models\Anak;
 use App\Models\Pendaftaran as ModelsPendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class Pendaftaran extends Controller
@@ -65,11 +64,27 @@ class Pendaftaran extends Controller
   }
 
 
-  public function indexUser()
+  public function indexUser(Request $request)
   {
+    $anak = ModelsPendaftaran::where('user_id', Auth::user()->id)->where('status', '!=', 'lulus')->get();
+    $selectedId = $request->id;
+    $pendaftaran = $selectedId
+      ? ModelsPendaftaran::where('user_id', Auth::user()->id)->where('id', $selectedId)->where('status', '!=', 'lulus')->first()
+      : ModelsPendaftaran::where('user_id', Auth::user()->id)->where('status', '!=', 'lulus')->first();
+
+    if ($pendaftaran) {
+      $tahap = ModelsPendaftaran::where('status', '!=', 'lulus')
+        ->where('id', $pendaftaran->id)
+        ->where('user_id', Auth::user()->id)
+        ->orderBy('updated_at', 'DESC')
+        ->first();
+    } else {
+      $tahap = ModelsPendaftaran::select('*')->where('status', '!=', 'lulus')->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->first();
+    }
+
     $data = ModelsPendaftaran::select('*')->where('user_id', Auth::user()->id)->get();
-    $tahap = ModelsPendaftaran::select('*')->where('status', '!=', 'lulus')->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->first();
     $lulus = ModelsPendaftaran::select('*')->where('status', 'lulus')->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->first();
+
     $processData = function ($item) {
       $splitData = explode('~', $item->biodata);
       $item->biodata = (object) [
@@ -86,17 +101,24 @@ class Pendaftaran extends Controller
       ];
       return $item;
     };
+
+    $anak = $anak->map($processData);
+
     if ($tahap != null) {
       return view('content.pages.user.pendaftaran-anak', [
         'data' => $data,
         'tahap' => $processData($tahap),
-        'lulus' => $lulus != null ? $processData($lulus) : null
+        'lulus' => $lulus != null ? $processData($lulus) : null,
+        'pendaftaran' => $pendaftaran,
+        'anak' => $anak ?? '-'
       ]);
     }
     return view('content.pages.user.pendaftaran-anak', [
       'data' => $data,
       'tahap' => null,
-      'lulus' => $lulus != null ? $processData($lulus) : null
+      'lulus' => $lulus != null ? $processData($lulus) : null,
+      'pendaftaran' => $pendaftaran,
+      'anak' => $anak ?? '-'
     ]);
   }
 
@@ -256,7 +278,7 @@ class Pendaftaran extends Controller
             return back()->with('error', 'Pendaftaran anak gagal ditemukan');
           }
         } else {
-          ModelsPendaftaran::where('id', $id)->update($data);
+          $updateDaftar = ModelsPendaftaran::where('id', $id)->update($data);
           $daftar = ModelsPendaftaran::find($id);
           if ($request->hasFile('files')) {
             foreach ($request->file('files') as $index => $file) {
@@ -271,6 +293,9 @@ class Pendaftaran extends Controller
               ]);
             }
           }
+        }
+        if ($updateDaftar) {
+          return redirect()->route('pendaftaran-anak')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan');
         }
         if ($request->status == 'berlangsung') {
           return back()->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil lulus dan lanjut tahap ' . $request->tahap);
