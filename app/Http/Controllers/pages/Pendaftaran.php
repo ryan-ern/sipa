@@ -272,7 +272,13 @@ class Pendaftaran extends Controller
             }
           }
         }
-        return back()->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil s');
+        if ($request->status == 'berlangsung') {
+          return back()->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil lulus dan lanjut tahap ' . $request->tahap);
+        } else if ($request->status == 'pemberitahuan') {
+          return back()->with('info', 'Pendaftaran anak ' . $request->nama .  ' dalam pemberitahuan di tahap ' . $request->tahap);
+        } else if ($request->status == 'tidak') {
+          return back()->with('error', 'Pendaftaran anak ' . $request->nama .  ' tidak lulus di tahap ' . $request->tahap);
+        }
       } else {
         if ($existingData->contains('nik', $request->nik)) {
           return back()->with('error', 'Pendaftaran anak gagal disimpan: NIK sudah terdaftar');
