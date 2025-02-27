@@ -24,7 +24,7 @@
                     <!-- /Logo -->
 
                     <div class="card-body mt-1">
-                        <p class="mb-5">Selamat datang di {{ config('variables.templateSuffix') }}!</p>
+                        <p class="mb-5 text-center">Selamat datang di {{ config('variables.templateSuffix') }}!</p>
                         <form id="formAuthentication" class="mb-5" action="{{ route('login.store') }}" method="POST">
                             @csrf
                             <div class="form-floating form-floating-outline mb-5">

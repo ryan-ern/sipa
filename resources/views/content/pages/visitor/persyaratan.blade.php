@@ -12,7 +12,7 @@
         <div class="col-md-12 col-lg-12 mb-4">
             <div class="card">
                 <div class="card-body p-7">
-                    <div id="quill-editor" style="height: 300px;">
+                    <div id="quill-editor" style="height: 100%;">
                         {!! $data->isi !!}
                     </div>
                 </div>
