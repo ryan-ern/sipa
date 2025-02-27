@@ -977,7 +977,7 @@
                     )
                     modalForm.innerHTML = `
                     @csrf
-                    @extends('layouts/contentNavbarLayout')
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-12 mb-5">
                           <input type="hidden" name="id" value="${modalId}">
@@ -1013,7 +1013,7 @@
                     )
                     modalForm.innerHTML = `
                     @csrf
-                    @method('PUT')
+                    @method('POST')
                     <div class="row">
                         <div class="col-md-12 mb-5">
                           <input type="hidden" name="anaks_id" value="${modalId}">
@@ -1048,7 +1048,7 @@
                     )
                     modalForm.innerHTML = `
                     @csrf
-                    @method('PUT')
+                    @method('DELETE')
                     <p>Apakah Anda yakin ingin menghapus data <strong>${button.getAttribute('data-nama')}</strong>?</p>
                     <p class="text-danger"><small>Data yang dihapus tidak dapat dikembalikan.</small></p>
                     <div class="d-flex justify-content-end">
@@ -1064,7 +1064,7 @@
                     )
                     modalForm.innerHTML = `
                     @csrf
-                    @method('PUT')
+                    @method('POST')
                     <div class="row">
                         <div class="col-md-12 mb-5">
                           <select name="user_id" class="form-select mb-3" required>

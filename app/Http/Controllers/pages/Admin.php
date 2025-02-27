@@ -67,6 +67,47 @@ class Admin extends Controller
 
     $countForgotPass = User::where('forgot', 1)->count();
 
+    $bulanIndonesia = [
+      1 => "Januari",
+      2 => "Februari",
+      3 => "Maret",
+      4 => "April",
+      5 => "Mei",
+      6 => "Juni",
+      7 => "Juli",
+      8 => "Agustus",
+      9 => "September",
+      10 => "Oktober",
+      11 => "November",
+      12 => "Desember"
+    ];
+
+    $bulanLabels = [];
+    $dataLulus = [];
+    $dataBermasalah = [];
+    $dataPendaftar = [];
+
+    for ($i = 1; $i <= 12; $i++) {
+      $bulan = str_pad($i, 2, '0', STR_PAD_LEFT);
+      $bulanLabels[] = $bulanIndonesia[$i];
+
+      $dataLulus[] = Anak::whereMonth('created_at', $bulan)
+        ->whereYear('created_at', $tahun)
+        ->where('status', 'alumni lulus')
+        ->count();
+
+      $dataBermasalah[] = Anak::whereMonth('created_at', $bulan)
+        ->whereYear('created_at', $tahun)
+        ->where('status', 'alumni keluar')
+        ->count();
+
+      $dataPendaftar[] = Pendaftaran::whereMonth('created_at', $bulan)
+        ->whereYear('created_at', $tahun)
+        ->count();
+    }
+
+
+
     // Return ke view dengan data yang difilter
     return view('content.pages.admin', [
       'countAnakAktif' => $countAnakAktif ?? 0,
@@ -81,6 +122,10 @@ class Admin extends Controller
       'countAnakPerempuan' => $countAnakPerempuan ?? 0,
       'countPendaftaran' => $countPendaftaran ?? 0,
       'countForgotPass' => $countForgotPass ?? 0,
+      'dataLulus' => json_encode($dataLulus ?? 0),
+      'dataBermasalah' => json_encode($dataBermasalah ?? 0),
+      'dataPendaftar' => json_encode($dataPendaftar ?? 0),
+      'bulanLabels' => json_encode($bulanLabels ?? 0),
       'bulan' => $bulan,
       'tahun' => $tahun,
     ]);

@@ -146,5 +146,118 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-12 col-md-6 mb-4">
+            <div class="card p-3">
+                <div class="card-body text-nowrap">
+                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Perbandingan Anak</h5>
+                </div>
+                <div id="chart" style="height: 400px !important">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 mb-4">
+            <div class="card p-3">
+                <div class="card-body text-nowrap text-end">
+                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Keluar Masuk Tahun {{$tahun}}</h5>
+                </div>
+                <div id="linechart" style="height: 400px !important">
+                </div>
+            </div>
+        </div>
     </div>
+@endsection
+@section('page-script')
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var chartElement = document.querySelector("#chart");
+            if (chartElement) {
+                var series = [
+                    parseInt('{{ $countAnakLaki }}'),
+                    parseInt('{{ $countAnakPerempuan }}'),
+                    parseInt('{{ $countAnakYatim }}'),
+                    parseInt('{{ $countAnakYatimPiatu }}'),
+                    parseInt('{{ $countAnakPiatu }}')
+                ];
+
+                var isAllZero = series.every(function (value) {
+                    return value === 0;
+                });
+                var options = {
+                    chart: {
+                        type: 'pie',
+                        height: 400,
+                    },
+                    series: isAllZero ? [] : series,
+                    labels: ['Laki-laki', 'Perempuan', 'Yatim', 'Yatim Piatu', 'Piatu'],
+                    responsive: [{
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 300
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }],
+                    noData: {
+                      text: 'Tidak ada data Bulan ini...',
+                      align: 'center',
+                      verticalAlign: 'middle',
+                      offsetX: 0,
+                      offsetY: 0,
+                      style: {
+                          color: '#999',
+                          fontSize: '16px',
+                          fontFamily: 'Arial'
+                      }
+                  }
+                };
+
+                var chart = new ApexCharts(chartElement, options);
+                chart.render();
+            }
+
+            var linechartElement = document.querySelector("#linechart");
+            if (linechartElement) {
+                var lineOptions = {
+                    chart: {
+                        type: 'line',
+                        height: 400,
+                    },
+                    stroke: {
+                      curve: 'smooth',
+                    },
+                    series: [{
+                        name: 'Alumni Lulus',
+                        data: {{ $dataLulus }}
+                    }, {
+                        name: 'Alumni Keluar',
+                        data: {{ $dataBermasalah }}
+                    }, {
+                        name: 'Pendaftar Baru',
+                        data: {{ $dataPendaftar }}
+                    }],
+                    xaxis: {
+                        categories: {!! $bulanLabels !!}
+                    },
+                    responsive: [{
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 300
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }]
+                };
+
+                var linechart = new ApexCharts(linechartElement, lineOptions);
+                linechart.render();
+            }
+        });
+    </script>
 @endsection

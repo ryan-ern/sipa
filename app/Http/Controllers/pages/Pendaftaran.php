@@ -278,6 +278,8 @@ class Pendaftaran extends Controller
           return back()->with('info', 'Pendaftaran anak ' . $request->nama .  ' dalam pemberitahuan di tahap ' . $request->tahap);
         } else if ($request->status == 'tidak') {
           return back()->with('error', 'Pendaftaran anak ' . $request->nama .  ' tidak lulus di tahap ' . $request->tahap);
+        } else {
+          return back()->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan dan telah lulus di tahap 3');
         }
       } else {
         if ($existingData->contains('nik', $request->nik)) {
