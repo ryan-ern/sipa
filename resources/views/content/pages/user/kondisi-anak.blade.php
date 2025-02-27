@@ -58,7 +58,7 @@
                             class="card-img-top img-fluid"
                             style="height: 200px; object-fit: cover;"
                           data-bs-toggle="modal"
-                          data-bs-target="#imageModal{{ $riwayat->fn_riwayat }}">
+                          data-bs-target="#imageModal{{ $riwayat->id }}">
                           <marquee class="text-info mt-2">Klik gambar untuk melihat lebih jelas</marquee>
                   @endif
                   <div class="card-body text-capitalize text-wrap">
@@ -98,15 +98,15 @@
                                         <td class="text-capitalize">{{ $riwayatAnak->status }}</td>
                                         <td class="text-capitalize truncate">{{ $riwayatAnak->keterangan }}</td>
                                         <td>
-                                          @if(!empty($riwayatAnak->fp_riwayat))
-                                          <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}"
-                                          alt="Gambar Riwayat"
-                                          width="100"
-                                          class="rounded img-thumbnail"
-                                          data-bs-toggle="modal"
-                                          data-bs-target="#imageModal{{ $riwayatAnak->fn_riwayat }}">
+                                          @if (!empty($riwayatAnak->fp_riwayat))
+                                              <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}"
+                                                  alt="Gambar Riwayat"
+                                                  width="100"
+                                                  class="rounded img-thumbnail"
+                                                  data-bs-toggle="modal"
+                                                  data-bs-target="#imageModal{{ $riwayatAnak->id }}">
                                           @else
-                                          -
+                                              -
                                           @endif
                                       </td>
                                         <td class="text-capitalize text-truncate">
@@ -121,20 +121,29 @@
             </div>
         </div>
     </div>
-    @if(!empty($riwayatAnak->fp_riwayat))
-    <div class="modal fade" id="imageModal{{ $riwayatAnak->fn_riwayat }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-              <div class="modal-body text-center">
-                  <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}" class="img-fluid rounded" alt="Gambar Riwayat Anak">
+      @foreach ($data as $riwayatAnak)
+        @if (!empty($riwayatAnak->fp_riwayat))
+          <div class="modal fade" id="imageModal{{ $riwayatAnak->id }}" tabindex="-1" aria-labelledby="imageModalLabel{{ $riwayatAnak->id }}" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="imageModalLabel{{ $riwayatAnak->id }}">Gambar Riwayat Anak</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body text-center">
+                          <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}" class="img-fluid rounded" alt="Gambar Riwayat Anak">
+                      </div>
+                  </div>
               </div>
           </div>
-      </div>
-    @endif
+        @endif
+      @endforeach
     @endif
 @endsection
 @section('page-script')
     <script>
+      if(document.getElementById('add-file')) {
+
         document.getElementById('add-file').addEventListener('click', function() {
             const container = document.getElementById('file-container');
             const newItem = document.createElement('div');
@@ -154,5 +163,7 @@
         `;
             container.appendChild(newItem);
         });
+      }
+
     </script>
 @endsection
