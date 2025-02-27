@@ -22,7 +22,7 @@
                 @if ($tahap && $tahap->status != 'tidak')
                     <div class="card-body p-7">
                         <div class="divider text-center">
-                            <div class="divider-text text-capitalize fs-5 ">
+                            <div class="divider-text text-capitalize fs-3 ">
                                 <span
                                     class="badge  bg-{{ $tahap->status == 'lulus' ? 'success' : ($tahap->status == 'tidak' ? 'danger' : ($tahap->status == 'pemberitahuan' ? 'warning' : 'primary')) }}">
                                     Status Tahap
@@ -33,12 +33,12 @@
                         </div>
                         <div class="row">
                             <div class="col mb-3">
-                                <label class="form-label">Keterangan</label>
+                                <label class="form-label fs-4">Keterangan</label>
                                 <textarea class="form-control text-capitalize fs-5" rows="5" placeholder="Keterangan" readonly>{{ $tahap->keterangan ?? '-' }}</textarea>
                             </div>
                         </div>
                         <div class="divider text-start">
-                            <div class="divider-text fs-5">Data Pendaftaran Tahap 1</div>
+                            <div class="divider-text fs-4">Data Pendaftaran Tahap 1</div>
                         </div>
                         <form id="pendaftaranForm"
                             action="{{ isset($tahap->id) ? route('pendaftaran-anak.update', $tahap->id) : route('pendaftaran-anak.store') }}"
@@ -52,29 +52,29 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="text" class="form-control" id="nama" name="nama"
+                                        <input type="text" class="form-control fs-5" id="nama" name="nama"
                                             placeholder="Nama Anak" value="{{ $tahap->biodata->nama }}"
                                             {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}
                                             required>
-                                        <label for="nama">Nama Anak</label>
+                                        <label class="fs-6"for="nama">Nama Anak</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="text" class="form-control" id="ttl" name="ttl"
+                                        <input type="text" class="form-control fs-5" id="ttl" name="ttl"
                                             placeholder="Tempat, Tanggal Lahir Anak" value="{{ $tahap->biodata->ttl }}"
                                             {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}
                                             required>
-                                        <label for="ttl">Tempat, Tanggal Lahir Anak</label>
+                                        <label class="fs-6"for="ttl">Tempat, Tanggal Lahir Anak</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="number" class="form-control" id="nik" name="nik"
+                                        <input type="number" class="form-control fs-5" id="nik" name="nik"
                                             placeholder="NIK Anak" value="{{ $tahap->biodata->nik }}"
                                             {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}
                                             required>
-                                        <label for="nik">NIK Anak</label>
+                                        <label class="fs-6"for="nik">NIK Anak</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -93,16 +93,16 @@
                                                 Perempuan
                                             </option>
                                         </select>
-                                        <label for="jk">Jenis Kelamin Anak</label>
+                                        <label class="fs-6"for="jk">Jenis Kelamin Anak</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="text" class="form-control" id="pendidikan" name="pendidikan"
+                                        <input type="text" class="form-control fs-5" id="pendidikan" name="pendidikan"
                                             placeholder="Pendidikan/ Kelas Anak"
                                             value="{{ $tahap->biodata->pendidikan ?? '' }}" required
                                             {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}>
-                                        <label for="pendidikan">Pendidikan/ Kelas Anak</label>
+                                        <label class="fs-6"for="pendidikan">Pendidikan/ Kelas Anak</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -137,29 +137,29 @@
                                                 Lainnya
                                             </option>
                                         </select>
-                                        <label for="status_anak">Status Anak</label>
+                                        <label class="fs-6"for="status_anak">Status Anak</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="text" class="form-control" id="ortu" name="ortu"
+                                        <input type="text" class="form-control fs-5" id="ortu" name="ortu"
                                             {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}
                                             value="{{ $tahap->biodata->ortu }}" placeholder="Nama Orang Tua/ Wali">
-                                        <label for="ortu">Nama Orang Tua/ Wali</label>
+                                        <label class="fs-6"for="ortu">Nama Orang Tua/ Wali</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating form-floating-outline">
-                                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
+                                        <input type="text" class="form-control fs-5" id="pekerjaan" name="pekerjaan"
                                             {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }}
                                             placeholder="Pekerjaan Orang Tua/ Wali"
                                             value="{{ $tahap->biodata->pekerjaan }}">
-                                        <label for="pekerjaan">Pekerjaan Orang Tua/ Wali</label>
+                                        <label class="fs-6"for="pekerjaan">Pekerjaan Orang Tua/ Wali</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="alamat">Alamat Anak</label>
-                                    <textarea class="form-control" id="alamat" name="alamat" rows="3"
+                                    <label class="fs-6"for="alamat">Alamat Anak</label>
+                                    <textarea class="form-control fs-5" id="alamat" name="alamat" rows="3"
                                         {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'readonly' : '' }} required>{{ $tahap->biodata->alamat }}</textarea>
                                 </div>
                                 @if ($tahap->status == 'pemberitahuan' && $tahap->tahap == '1')
