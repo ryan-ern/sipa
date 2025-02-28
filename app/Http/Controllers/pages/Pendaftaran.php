@@ -294,7 +294,7 @@ class Pendaftaran extends Controller
             }
           }
           if ($updateDaftar && Auth::user()->role == 'user') {
-            return redirect('/pages/data-pendaftaran')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan');
+            return redirect('/pages/pendaftaran-anak')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan');
           }
         }
         if ($request->status == 'berlangsung') {
