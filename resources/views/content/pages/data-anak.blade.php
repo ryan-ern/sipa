@@ -24,25 +24,22 @@
                     </div>
                     <!-- Tabs Navigation -->
                     <ul class="nav nav-tabs" id="tahapTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="default-tab" data-bs-toggle="tab" data-bs-target="#default"
-                                type="button" role="tab" aria-controls="default" aria-selected="true">Default</button>
-                        </li>
-
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="aktif-tab" data-bs-toggle="tab" data-bs-target="#aktif"
-                                type="button" role="tab" aria-controls="aktif" aria-selected="true">Aktif</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="alumni-tab" data-bs-toggle="tab" data-bs-target="#alumni"
-                                type="button" role="tab" aria-controls="alumni" aria-selected="false">Alumni
-                                Lulus</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="alumniBermasalah-tab" data-bs-toggle="tab"
-                                data-bs-target="#alumniBermasalah" type="button" role="tab"
-                                aria-controls="alumniBermasalah" aria-selected="false">Alumni Keluar</button>
-                        </li>
+                      <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="default-tab" data-bs-toggle="tab" data-bs-target="#default"
+                              type="button" role="tab" aria-controls="default" aria-selected="false">Default</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="aktif-tab" data-bs-toggle="tab" data-bs-target="#aktif"
+                              type="button" role="tab" aria-controls="aktif" aria-selected="false">Aktif</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="alumni-tab" data-bs-toggle="tab" data-bs-target="#alumni"
+                              type="button" role="tab" aria-controls="alumni" aria-selected="false">Alumni Lulus</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="alumniBermasalah-tab" data-bs-toggle="tab" data-bs-target="#alumniBermasalah"
+                              type="button" role="tab" aria-controls="alumniBermasalah" aria-selected="false">Alumni Keluar</button>
+                      </li>
                     </ul>
 
                     <!-- Tabs Content -->
@@ -919,6 +916,31 @@
             const modalContent = document.getElementById('modalContent');
             const modalForm = document.getElementById('dynamicModalForm');
             const closeModal = document.getElementById('closeModal');
+
+            const tabs = document.querySelectorAll('.nav-link');
+            const activeTab = localStorage.getItem('activeTab');
+
+            if (activeTab) {
+                tabs.forEach(tab => {
+                    tab.classList.remove('active');
+                    tab.setAttribute('aria-selected', 'false');
+                });
+                const selectedTab = document.querySelector(`#${activeTab}`);
+                selectedTab.classList.add('active');
+                selectedTab.setAttribute('aria-selected', 'true');
+
+                const target = selectedTab.getAttribute('data-bs-target');
+                document.querySelectorAll('.tab-pane').forEach(tabContent => {
+                    tabContent.classList.remove('show', 'active');
+                });
+                document.querySelector(target).classList.add('show', 'active');
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    localStorage.setItem('activeTab', this.id || 'default-tab');
+                });
+            });
 
             function createDocumentButton(button, attribute, label) {
                 const filePath = button.getAttribute(attribute);

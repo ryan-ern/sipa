@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
+            <div class="card" onclick="localStorage.setItem('activeTab', 'aktif-tab'); window.location.href='{{ route('data-anak') }}'">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap z-1">Data Anak Aktif</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakAktif }}</h3>
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
+            <div class="card" onclick="localStorage.setItem('activeTab', 'alumni-tab'); window.location.href='{{ route('data-anak') }}'">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Alumni Lulus</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakLulus }}</h3>
@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
+            <div class="card" onclick="localStorage.setItem('activeTab', 'alumniBermasalah-tab'); window.location.href='{{ route('data-anak') }}'">
                 <img src="{{ asset('assets/img/illustrations/nakal.png') }}"
                     class="position-absolute bottom-0 start-0 ms-5" width="80" alt="view sales">
                 <div class="card-body text-nowrap text-end">
