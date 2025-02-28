@@ -134,16 +134,19 @@
                 </form>
             </div>
         </div>
-        @if(!empty($donasi->fp_donasi))
-        <div class="modal fade" id="imageModal{{ $donasi->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                  <div class="modal-body text-center">
-                      <img src="{{ asset('storage/' . $donasi->fp_donasi) }}" class="img-fluid rounded" alt="Gambar Donasi">
-                  </div>
-              </div>
+        @foreach ($data as $donasi)
+          @if(!empty($donasi->fp_donasi))
+          <div class="modal fade" id="imageModal{{ $donasi->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <img src="{{ asset('storage/' . $donasi->fp_donasi) }}" class="img-fluid rounded" alt="Gambar Donasi">
+                    </div>
+                </div>
+            </div>
           </div>
           @endif
+        @endforeach
       </div>
     </div>
 @endsection
