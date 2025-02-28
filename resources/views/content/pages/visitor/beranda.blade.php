@@ -87,7 +87,7 @@
 @section('content')
     <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-indicators">
-            @for ($i = 0; $i < 12; $i++)
+            @for ($i = 0; $i < 11; $i++)
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $i }}"
                     class="{{ $i === 0 ? 'active' : '' }}" aria-label="Slide {{ $i + 1 }}"></button>
             @endfor
@@ -175,14 +175,6 @@
                     <h2>Garasi</h2>
                     <p>Area penyimpanan kendaraan operasional untuk mendukung mobilitas dan kelancaran
                         aktivitas harian.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/profil/RumahDinas1.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2>Rumah Dinas</h2>
-                    <p>Hunian bagi staf dan staff, memastikan kenyamanan bagi mereka yang bertugas
-                        di lingkungan UPTD PSA Harapan Bangsa.</p>
                 </div>
             </div>
             <div class="carousel-item">

@@ -293,18 +293,18 @@ class Pendaftaran extends Controller
               ]);
             }
           }
-        }
-        if ($updateDaftar) {
-          return redirect()->route('pendaftaran-anak')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan');
+          if ($updateDaftar && Auth::user()->role == 'user') {
+            return redirect('/pages/data-pendaftaran')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan');
+          }
         }
         if ($request->status == 'berlangsung') {
-          return back()->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil lulus dan lanjut tahap ' . $request->tahap);
+          return redirect('/pages/data-pendaftaran')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil lulus dan lanjut tahap ' . $request->tahap);
         } else if ($request->status == 'pemberitahuan') {
-          return back()->with('info', 'Pendaftaran anak ' . $request->nama .  ' dalam pemberitahuan di tahap ' . $request->tahap);
+          return redirect('/pages/data-pendaftaran')->with('info', 'Pendaftaran anak ' . $request->nama .  ' dalam pemberitahuan di tahap ' . $request->tahap);
         } else if ($request->status == 'tidak') {
-          return back()->with('error', 'Pendaftaran anak ' . $request->nama .  ' tidak lulus di tahap ' . $request->tahap);
+          return redirect('/pages/data-pendaftaran')->with('error', 'Pendaftaran anak ' . $request->nama .  ' tidak lulus di tahap ' . $request->tahap);
         } else {
-          return back()->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan dan telah lulus di tahap 3');
+          return redirect('/pages/data-pendaftaran')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan dan telah lulus di tahap 3');
         }
       } else {
         if ($existingData->contains('nik', $request->nik)) {
