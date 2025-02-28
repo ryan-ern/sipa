@@ -149,13 +149,22 @@
         <div class="col-sm-12 col-md-6 mb-4">
             <div class="card p-3">
                 <div class="card-body text-nowrap">
-                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Perbandingan Anak</h5>
+                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Perbandingan Jenis</h5>
                 </div>
-                <div id="chart" style="height: 400px !important">
+                <div id="genderChart" style="height: 400px !important">
                 </div>
             </div>
         </div>
         <div class="col-sm-12 col-md-6 mb-4">
+            <div class="card p-3">
+                <div class="card-body text-nowrap">
+                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Perbandingan Status</h5>
+                </div>
+                <div id="statusChart" style="height: 400px !important">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 mb-4">
             <div class="card p-3">
                 <div class="card-body text-nowrap text-end">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Keluar Masuk Tahun {{$tahun}}</h5>
@@ -170,54 +179,93 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var chartElement = document.querySelector("#chart");
-            if (chartElement) {
-                var series = [
-                    parseInt('{{ $countAnakLaki }}'),
-                    parseInt('{{ $countAnakPerempuan }}'),
-                    parseInt('{{ $countAnakYatim }}'),
-                    parseInt('{{ $countAnakYatimPiatu }}'),
-                    parseInt('{{ $countAnakPiatu }}')
-                ];
+          var genderChartElement = document.querySelector("#genderChart");
+        var statusChartElement = document.querySelector("#statusChart");
 
-                var isAllZero = series.every(function (value) {
-                    return value === 0;
-                });
-                var options = {
-                    chart: {
-                        type: 'pie',
-                        height: 400,
-                    },
-                    series: isAllZero ? [] : series,
-                    labels: ['Laki-laki', 'Perempuan', 'Yatim', 'Yatim Piatu', 'Piatu'],
-                    responsive: [{
-                        breakpoint: 480,
-                        options: {
-                            chart: {
-                                width: 300
-                            },
-                            legend: {
-                                position: 'bottom'
-                            }
+        var genderSeries = [
+            parseInt('{{ $countAnakLaki }}'),
+            parseInt('{{ $countAnakPerempuan }}')
+        ];
+
+        var statusSeries = [
+            parseInt('{{ $countAnakYatim }}'),
+            parseInt('{{ $countAnakYatimPiatu }}'),
+            parseInt('{{ $countAnakPiatu }}')
+        ];
+
+        var isGenderZero = genderSeries.every(function (value) {
+            return value === 0;
+        });
+
+        var isStatusZero = statusSeries.every(function (value) {
+            return value === 0;
+        });
+
+        if (genderChartElement) {
+            var genderOptions = {
+                chart: {
+                    type: 'pie',
+                    height: 400,
+                },
+                series: isGenderZero ? [] : genderSeries,
+                labels: ['Laki-laki', 'Perempuan'],
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 300
+                        },
+                        legend: {
+                            position: 'bottom'
                         }
-                    }],
-                    noData: {
-                      text: 'Tidak ada data Bulan ini...',
-                      align: 'center',
-                      verticalAlign: 'middle',
-                      offsetX: 0,
-                      offsetY: 0,
-                      style: {
-                          color: '#999',
-                          fontSize: '16px',
-                          fontFamily: 'Arial'
-                      }
-                  }
-                };
+                    }
+                }],
+                noData: {
+                    text: 'Tidak ada data...',
+                    align: 'center',
+                    style: {
+                        color: '#999',
+                        fontSize: '16px'
+                    }
+                }
+            };
 
-                var chart = new ApexCharts(chartElement, options);
-                chart.render();
-            }
+            var genderChart = new ApexCharts(genderChartElement, genderOptions);
+            genderChart.render();
+        }
+
+        if (statusChartElement) {
+            var statusOptions = {
+                chart: {
+                    type: 'pie',
+                    height: 400,
+                },
+                series: isStatusZero ? [] : statusSeries,
+                labels: ['Yatim', 'Yatim Piatu', 'Piatu'],
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 300
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }],
+                noData: {
+                    text: 'Tidak ada data...',
+                    align: 'center',
+                    style: {
+                        color: '#999',
+                        fontSize: '16px'
+                    }
+                }
+            };
+
+            var statusChart = new ApexCharts(statusChartElement, statusOptions);
+            statusChart.render();
+        }
 
             var linechartElement = document.querySelector("#linechart");
             if (linechartElement) {
