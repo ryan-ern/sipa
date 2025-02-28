@@ -55,7 +55,7 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-floating form-floating-outline">
                                     <input type="number" class="form-control" id="nik" name="nik"
-                                        placeholder="NIK Anak" value="{{ $info->nik }}" required>
+                                        placeholder="NIK Anak" value="{{ $info->nik }}" readonly>
                                     <label for="nik">NIK Anak</label>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
                                 <div class="col-md-6 mb-5 mt-2">
                                     <div class="form-floating form-floating-outline">
                                         <input type="file" accept="application/pdf, image/*" name="fp_formulir"
-                                            id="fp_formulir" class="form-control" required>
+                                            id="fp_formulir" class="form-control">
                                         <label for="fp_formulir">Formulir Pendaftaran</label>
                                     </div>
                                 </div>
