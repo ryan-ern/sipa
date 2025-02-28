@@ -230,6 +230,9 @@
                       curve: 'smooth',
                     },
                     series: [{
+                      name: 'Anak Aktif',
+                      data: {{ $dataAktif }}
+                    },{
                         name: 'Alumni Lulus',
                         data: {{ $dataLulus }}
                     }, {

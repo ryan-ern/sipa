@@ -86,6 +86,7 @@ class Admin extends Controller
     $dataLulus = [];
     $dataBermasalah = [];
     $dataPendaftar = [];
+    $dataAktif = [];
 
     for ($i = 1; $i <= 12; $i++) {
       $bulan = str_pad($i, 2, '0', STR_PAD_LEFT);
@@ -103,6 +104,11 @@ class Admin extends Controller
 
       $dataPendaftar[] = Pendaftaran::whereMonth('created_at', $bulan)
         ->whereYear('created_at', $tahun)
+        ->count();
+
+      $dataAktif[] = Anak::whereMonth('created_at', $bulan)
+        ->whereYear('created_at', $tahun)
+        ->where('status', 'aktif')
         ->count();
     }
 
@@ -125,6 +131,7 @@ class Admin extends Controller
       'dataLulus' => json_encode($dataLulus ?? 0),
       'dataBermasalah' => json_encode($dataBermasalah ?? 0),
       'dataPendaftar' => json_encode($dataPendaftar ?? 0),
+      'dataAktif' => json_encode($dataAktif ?? 0),
       'bulanLabels' => json_encode($bulanLabels ?? 0),
       'bulan' => $bulan,
       'tahun' => $tahun,
