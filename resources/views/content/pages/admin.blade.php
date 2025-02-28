@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="window.location.href='{{ route('data-anak') }}'">
+            <div class="card" onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
                 <img src="{{ asset('assets/img/illustrations/yatimpiatu.png') }}"
                     class="position-absolute bottom-0 start-0 ms-5" width="70" alt="view sales">
                 <div class="card-body text-nowrap text-end">
