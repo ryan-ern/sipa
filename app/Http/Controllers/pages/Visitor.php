@@ -35,7 +35,7 @@ class Visitor extends Controller
 
   public function Artikel()
   {
-    $data = Artikel::latest()->paginate(10);
+    $data = Artikel::latest()->paginate(6);
     return view('content.pages.visitor.artikel', compact('data'));
   }
 
