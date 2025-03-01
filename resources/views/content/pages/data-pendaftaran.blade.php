@@ -664,7 +664,7 @@
             if (form) {
                 form.submit();
             }
-        }, 1000); // Delay for WhatsApp window to open
+        }, 1000); 
     } else {
                 const form = button.closest('form');
                 if (form) {

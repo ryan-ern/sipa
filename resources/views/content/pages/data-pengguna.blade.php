@@ -144,7 +144,7 @@
                 - Username: ${username}
                 - Nama Lengkap: ${nama}
                 - Status: ${status === '1' ? 'Aktif' : 'Tidak Aktif'}
-                Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
+                Silahkan kunjungi hubungi kami kembali untuk informasi lebih lanjut.`;
 
                 const whatsappUrl = `https://wa.me/${noTel}?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
