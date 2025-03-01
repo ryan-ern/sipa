@@ -2,6 +2,13 @@
 
 @section('title', 'Kondisi Anak')
 
+@section('page-style')
+    <style>
+        .buttons-pdf {
+            display: none;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="row gy-6 mb-5">
         <div class="col">

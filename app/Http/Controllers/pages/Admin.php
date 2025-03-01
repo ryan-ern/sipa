@@ -14,11 +14,15 @@ class Admin extends Controller
 {
   public function index(Request $request)
   {
-    $bulan = $request->input('bulan') ? date('m', strtotime($request->input('bulan'))) : now()->format('m');
-    $tahun = $request->input('bulan') ? date('Y', strtotime($request->input('bulan'))) : now()->format('Y');
-    $filteredData = Anak::whereMonth('created_at', $bulan)
-      ->whereYear('created_at', $tahun)
-      ->get();
+    $bulan = $request->input('bulan') ? date('m', strtotime($request->input('bulan'))) : null;
+    $tahun = $request->input('bulan') ? date('Y', strtotime($request->input('bulan'))) : null;
+    if (!$bulan || !$tahun) {
+      $filteredData = Anak::all();
+    } else {
+      $filteredData = Anak::whereMonth('created_at', $bulan)
+        ->whereYear('created_at', $tahun)
+        ->get();
+    }
 
     $existingData = $filteredData->map(function ($item) {
       $splitData = explode('~', $item->biodata);
@@ -46,6 +50,9 @@ class Admin extends Controller
     })->count();
     $countAnakPiatu = $existingData->filter(function ($item) {
       return $item->status_anak === 'Anak Piatu';
+    })->count();
+    $countAnakTidakMampu = $existingData->filter(function ($item) {
+      return $item->status_anak === 'Anak Tidak Mampu';
     })->count();
     $countAnakLaki = $existingData->filter(function ($item) {
       return strtolower($item->jk) === 'laki-laki';
@@ -88,26 +95,28 @@ class Admin extends Controller
     $dataPendaftar = [];
     $dataAktif = [];
 
+    $bulan2 = $request->input('bulan') ? date('m', strtotime($request->input('bulan'))) : now()->format('m');
+    $tahun2 = $request->input('bulan') ? date('Y', strtotime($request->input('bulan'))) : now()->format('Y');
     for ($i = 1; $i <= 12; $i++) {
-      $bulan = str_pad($i, 2, '0', STR_PAD_LEFT);
+      $bulan2 = str_pad($i, 2, '0', STR_PAD_LEFT);
       $bulanLabels[] = $bulanIndonesia[$i];
 
-      $dataLulus[] = Anak::whereMonth('created_at', $bulan)
-        ->whereYear('created_at', $tahun)
+      $dataLulus[] = Anak::whereMonth('created_at', $bulan2)
+        ->whereYear('created_at', $tahun2)
         ->where('status', 'alumni lulus')
         ->count();
 
-      $dataBermasalah[] = Anak::whereMonth('created_at', $bulan)
-        ->whereYear('created_at', $tahun)
+      $dataBermasalah[] = Anak::whereMonth('created_at', $bulan2)
+        ->whereYear('created_at', $tahun2)
         ->where('status', 'alumni keluar')
         ->count();
 
-      $dataPendaftar[] = Pendaftaran::whereMonth('created_at', $bulan)
-        ->whereYear('created_at', $tahun)
+      $dataPendaftar[] = Pendaftaran::whereMonth('created_at', $bulan2)
+        ->whereYear('created_at', $tahun2)
         ->count();
 
-      $dataAktif[] = Anak::whereMonth('created_at', $bulan)
-        ->whereYear('created_at', $tahun)
+      $dataAktif[] = Anak::whereMonth('created_at', $bulan2)
+        ->whereYear('created_at', $tahun2)
         ->where('status', 'aktif')
         ->count();
     }
@@ -121,6 +130,7 @@ class Admin extends Controller
       'countAnakYatim' => $countAnakYatim ?? 0,
       'countAnakPiatu' => $countAnakPiatu ?? 0,
       'countAnakLulus' => $countAnakLulus ?? 0,
+      'countAnakTidakMampu' => $countAnakTidakMampu ?? 0,
       'countAnakBermasalah' => $countAnakBermasalah ?? 0,
       'countDataDonasi' => $countDataDonasi ?? 0,
       'countDataArtikel' => $countDataArtikel ?? 0,
@@ -134,7 +144,7 @@ class Admin extends Controller
       'dataAktif' => json_encode($dataAktif ?? 0),
       'bulanLabels' => json_encode($bulanLabels ?? 0),
       'bulan' => $bulan,
-      'tahun' => $tahun,
+      'tahun' => $tahun ?? now()->format('Y'),
     ]);
   }
 }

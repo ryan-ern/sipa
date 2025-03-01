@@ -111,7 +111,6 @@
                                         <option value="Anak Piatu">Anak Piatu</option>
                                         <option value="Anak Yatim Piatu">Anak Yatim Piatu</option>
                                         <option value="Anak Tidak Mampu">Anak Tidak Mampu</option>
-                                        <option value="Lainnya">Lainnya</option>
                                     </select>
                                     <label for="status_anak">Status Anak</label>
                                 </div>
@@ -381,12 +380,7 @@
                                                 {{ $tahap->biodata->status_anak == 'Anak Tidak Mampu' ? 'selected' : '' }}
                                                 {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
                                                 Anak Tidak Mampu</option>
-                                            <option value="Lainnya"
-                                                {{ $tahap->biodata->status_anak == 'Lainnya' ? 'selected' : '' }}
-                                                {{ $tahap->status != 'pemberitahuan' || $tahap->tahap != '1' ? 'disabled' : '' }}>
-                                                Lainnya
-                                            </option>
-                                        </select>
+                                          </select>
                                         <label class="fs-6"for="status_anak">Status Anak</label>
                                     </div>
                                 </div>
@@ -722,7 +716,6 @@
                                             <option value="Anak Piatu">Anak Piatu</option>
                                             <option value="Anak Yatim Piatu">Anak Yatim Piatu</option>
                                             <option value="Anak Tidak Mampu">Anak Tidak Mampu</option>
-                                            <option value="Lainnya">Lainnya</option>
                                         </select>
                                         <label for="status_anak">Status Anak</label>
                                     </div>

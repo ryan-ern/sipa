@@ -133,6 +133,41 @@
 
 @section('page-script')
     <script>
+        function handleConfirmation(event, noTel, nama, username, status) {
+            event.preventDefault();
+
+            const button = event.target;
+            const confirmation = confirm('Apakah anda ingin mengabarkan orang tua?');
+
+            if (confirmation) {
+                const message = `Halo, saya dari UPTD PSAA Harapan Bangsa. Data anda atas nama ${nama} telah diubah. Dengan rincian:
+                - Username: ${username}
+                - Nama Lengkap: ${nama}
+                - Status: ${status === '1' ? 'Aktif' : 'Tidak Aktif'}
+                Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
+
+                const whatsappUrl = `https://wa.me/${noTel}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+                setTimeout(() => {
+                    const form = button.closest('form');
+                    if (form) {
+                        form.submit();
+                    }
+                }, 1000);
+            } else {
+                const form = button.closest('form');
+                if (form) {
+                    form.submit();
+                }
+            }
+        }
+
+        document.querySelectorAll('[data-action="confirm"]').forEach(button => {
+            button.addEventListener('click', handleConfirmation);
+        });
+
+
         document.addEventListener('DOMContentLoaded', function() {
             const dynamicModal = document.getElementById('dynamicModal');
             const modalTitle = dynamicModal.querySelector('.modal-title');
@@ -148,6 +183,13 @@
                     modalTitle.textContent = 'Edit Data';
                     modalForm.action = `/pages/data-pengguna/${userId}`;
                     modalForm.method = 'POST';
+                    const noTel = button.getAttribute('data-no_tel');
+                    const nama = button.getAttribute('data-nama_lengkap');
+                    const username = button.getAttribute('data-username');
+                    const status = button.getAttribute('data-status');
+                    modalForm.onsubmit = function (event) {
+                        handleConfirmation(event, noTel, nama, username, status);
+                    };
                     modalContent.innerHTML = `
                     @csrf
                     @method('PUT')

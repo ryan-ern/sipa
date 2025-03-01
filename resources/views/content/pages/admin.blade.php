@@ -190,7 +190,8 @@
         var statusSeries = [
             parseInt('{{ $countAnakYatim }}'),
             parseInt('{{ $countAnakYatimPiatu }}'),
-            parseInt('{{ $countAnakPiatu }}')
+            parseInt('{{ $countAnakPiatu }}'),
+            parseInt('{{ $countAnakTidakMampu}}')
         ];
 
         var isGenderZero = genderSeries.every(function (value) {
@@ -241,7 +242,7 @@
                     height: 400,
                 },
                 series: isStatusZero ? [] : statusSeries,
-                labels: ['Yatim', 'Yatim Piatu', 'Piatu'],
+                labels: ['Yatim', 'Yatim Piatu', 'Piatu', 'Tidak Mampu'],
                 responsive: [{
                     breakpoint: 480,
                     options: {

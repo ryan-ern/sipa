@@ -902,7 +902,7 @@
                     `Halo, saya dari UPTD PSAA Harapan Bangsa. Ada update terbaru atas kondisi anak anda ${anak}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
 
                 const whatsappUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
+                 window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
             }
 
             const form = button.closest('form');
@@ -1126,7 +1126,6 @@
                             <option value="Anak Piatu">Anak Piatu</option>
                             <option value="Anak Yatim Piatu">Anak Yatim Piatu</option>
                             <option value="Anak Tidak Mampu">Anak Tidak Mampu</option>
-                            <option value="Lainnya">Lainnya</option>
                           </select>
                           <div class="form-floating mb-3 form-floating-outline">
                             <input type="text" name="pendidikan" class="form-control" placeholder="Pendidikan" required>

@@ -654,22 +654,28 @@
                 const status = button.getAttribute('data-status');
 
                 const message =
-                    `Halo, saya dari UPTD PSAA Harapan Bangsa. Pendaftaran anak anda atas nama ${nama} berada di tahap ${tahap} dengan status ${status === 'tidak' ? 'tidak lulus' : status}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
+                    `Halo, saya dari UPTD PSAA Harapan Bangsa. Pendaftaran anak anda atas nama ${nama} berada di tahap ${tahap} dengan status ${status === 'tidak' ? 'tidak lulus' : status}. Silahkan kunjungi website kami untuk informasi lebih lanjut.`;
 
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-                window.open(whatsappUrl, '_blank');
-                const form = button.closest('form');
-                if (form) {
-                    form.submit();
-                }
-            } else {
+                 window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+              setTimeout(() => {
+            const form = button.closest('form');
+            if (form) {
+                form.submit();
+            }
+        }, 1000); // Delay for WhatsApp window to open
+    } else {
                 const form = button.closest('form');
                 if (form) {
                     form.submit();
                 }
             }
         }
+
+        document.querySelectorAll('[data-action="confirm"]').forEach(button => {
+            button.addEventListener('click', handleConfirmation);
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
             const dynamicModal = document.getElementById('dynamicModal');

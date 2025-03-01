@@ -81,10 +81,6 @@
                                         <option value="Anak Tidak Mampu"
                                             {{ $info->biodata->status_anak == 'Anak Tidak Mampu' ? 'selected' : '' }}>
                                             Anak Tidak Mampu</option>
-                                        <option value="Lainnya"
-                                            {{ $info->biodata->status_anak == 'Lainnya' ? 'selected' : '' }}>
-                                            Lainnya
-                                        </option>
                                     </select>
                                     <label for="status_anak">Status Anak</label>
                                 </div>

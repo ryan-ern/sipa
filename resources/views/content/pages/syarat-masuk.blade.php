@@ -13,7 +13,7 @@
                         @method('PUT')
                         <input type="hidden" name="id" value="{{ $data->id }}">
                         <div id="form-article">
-                            <label for="isi" class="form-label fs-5 mb-5">Data Syarat Masuk</label>
+                            <label for="isi" class="form-label fs-5 mb-5">Data Persyaratan</label>
                             <div id="toolbar-container">
                                 <span class="ql-formats">
                                     <select class="ql-font"></select>
