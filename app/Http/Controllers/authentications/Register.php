@@ -23,7 +23,7 @@ class Register extends Controller
       'jenis_kelamin' => ['required', 'string', 'in:Laki-laki,Perempuan'],
       'alamat' => ['required', 'string'],
       'sebagai' => ['required', 'string', 'in:ortu,wali'],
-      'password' => ['required', 'string', 'min:6', 'confirmed'],
+      'password' => ['required', 'string', 'min:8', 'confirmed'],
     ], [
       'username.required' => 'Username harus diisi.',
       'username.unique' => 'Username sudah terdaftar.',
