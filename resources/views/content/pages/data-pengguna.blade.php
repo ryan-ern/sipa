@@ -133,18 +133,20 @@
 
 @section('page-script')
     <script>
-        function handleConfirmation(event, noTel, nama, username, status) {
+        function handleConfirmation(event, noTel, nama, username, password, status) {
             event.preventDefault();
 
             const button = event.target;
             const confirmation = confirm('Apakah anda ingin mengabarkan orang tua?');
-
+            console.log(password);
+            password = password ?? '';
             if (confirmation) {
                 const message = `Halo, saya dari UPTD PSAA Harapan Bangsa. Data anda atas nama ${nama} telah diubah. Dengan rincian:
-                - Username: ${username}
                 - Nama Lengkap: ${nama}
                 - Status: ${status === '1' ? 'Aktif' : 'Tidak Aktif'}
-                Silahkan kunjungi hubungi kami kembali untuk informasi lebih lanjut.`;
+                - Username: ${username}
+                ${password ? `- Password: ${password}` : ''}
+                Silahkan hubungi kami kembali untuk informasi lebih lanjut.`;
 
                 const whatsappUrl = `https://wa.me/${noTel}?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
@@ -183,13 +185,7 @@
                     modalTitle.textContent = 'Edit Data';
                     modalForm.action = `/pages/data-pengguna/${userId}`;
                     modalForm.method = 'POST';
-                    const noTel = button.getAttribute('data-no_tel');
-                    const nama = button.getAttribute('data-nama_lengkap');
-                    const username = button.getAttribute('data-username');
-                    const status = button.getAttribute('data-status');
-                    modalForm.onsubmit = function (event) {
-                        handleConfirmation(event, noTel, nama, username, status);
-                    };
+
                     modalContent.innerHTML = `
                     @csrf
                     @method('PUT')
@@ -309,6 +305,42 @@
                     </div>
                 `;
                 setTimeout(() => {
+                    const noTelInput = document.getElementById('no_tel');
+                    const namaInput = document.getElementById('nama_lengkap');
+                    const usernameInput = document.getElementById('username');
+                    const statusInput = document.getElementById('status');
+                    const passwordInput = document.getElementById('password');
+
+                    let noTel = noTelInput.value;
+                    let nama = namaInput.value;
+                    let username = usernameInput.value;
+                    let status = statusInput.value;
+                    let password = passwordInput.value || null;
+
+                    passwordInput.addEventListener('input', function () {
+                        password = this.value || null;
+                    });
+
+                    noTelInput.addEventListener('input', function () {
+                        noTel = this.value;
+                    });
+
+                    namaInput.addEventListener('input', function () {
+                        nama = this.value;
+                    });
+
+                    usernameInput.addEventListener('input', function () {
+                        username = this.value;
+                    });
+
+                    statusInput.addEventListener('change', function () {
+                        status = this.value;
+                    });
+
+                    modalForm.onsubmit = function (event) {
+                        handleConfirmation(event, noTel, nama, username, password, status);
+                    };
+
                     document.getElementById('togglePassword').addEventListener('click', function () {
                         let passwordInput = document.getElementById('password');
                         passwordInput.type = passwordInput.type === "password" ? "text" : "password";
