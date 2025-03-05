@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
       'role' => 'user',
       'sebagai' => 'ortu',
       'status' => '1',
+      'password' => '#123Password',
     ]);
 
     User::factory()->create([
@@ -40,9 +41,7 @@ class DatabaseSeeder extends Seeder
       'status' => '0',
     ]);
 
-    User::factory(10)->create();
-
-    Saran::factory(10)->create();
-    Kegiatan::factory(10)->create();
+    Saran::factory(1)->create();
+    Kegiatan::factory(1)->create();
   }
 }

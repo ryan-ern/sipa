@@ -102,9 +102,6 @@
                                         <option value="Anak Tidak Mampu"
                                             {{ $info->status_anak == 'Anak Tidak Mampu' ? 'selected' : '' }}>
                                             Anak Tidak Mampu</option>
-                                        <option value="Lainnya" {{ $info->status_anak == 'Lainnya' ? 'selected' : '' }}>
-                                            Lainnya
-                                        </option>
                                     </select>
                                     <label for="status_anak">Status Anak</label>
                                 </div>
@@ -140,7 +137,7 @@
                                 <label for="alamat">Alamat Anak</label>
                                 <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $info->alamat }}</textarea>
                             </div>
-                            @if ($info->fp_formulir != null || $info->fp_izin != null)
+                            @if ($info->fp_formulir != null || $info->fp_surat_izin != null)
                                 <div class="col-md-12">
                                     <div class="divider text-start">
                                         <div class="divider-text fs-5">Bagian Administrasi</div>

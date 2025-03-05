@@ -119,7 +119,7 @@
                                 <label for="alamat">Alamat Anak</label>
                                 <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $info->biodata->alamat }}</textarea>
                             </div>
-                            @if ($info->fp_formulir != null || $info->fp_izin != null)
+                            @if ($info->fp_formulir != null || $info->fp_surat_izin != null)
                                 <div class="col-md-12">
                                     <div class="divider text-start">
                                         <div class="divider-text fs-5">Bagian Administrasi</div>

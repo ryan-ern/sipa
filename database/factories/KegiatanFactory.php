@@ -20,8 +20,8 @@ class KegiatanFactory extends Factory
     return [
       'id' => Str::uuid(),
       'kegiatan' => $this->faker->sentence(),
-      'waktu_mulai' => $this->faker->dateTimeBetween('-1 year', 'now'),
-      'waktu_selesai' => $this->faker->dateTimeBetween('-1 year', 'now'),
+      'waktu_mulai' => $this->faker->dateTimeBetween('-1 day', 'now'),
+      'waktu_selesai' => $this->faker->dateTimeBetween('-2 day', 'now'),
       'keterangan' => $this->faker->text(),
     ];
   }

@@ -27,7 +27,7 @@ class UserFactory extends Factory
       'id' => Str::uuid(),
       'nama_lengkap' => fake()->name(),
       'username' => fake()->unique()->userName(),
-      'password' => static::$password ??= Hash::make('123'),
+      'password' => static::$password ??= Hash::make('Password123#'),
       'no_tel' => fake()->phoneNumber(),
       'alamat' => fake()->address(),
       'jenis_kelamin' => fake()->randomElement(['Laki-laki', 'Perempuan']),
