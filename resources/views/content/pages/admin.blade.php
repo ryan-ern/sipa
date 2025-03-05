@@ -67,7 +67,7 @@
           </div>
       </div>
       <div class="col-md-12 col-lg-6 mb-4">
-        <div class="card" onclick="localStorage.setItem('activeTab', 'alumniBermasalah-tab'); window.location.href='{{ route('data-anak') }}'">
+        <div class="card" onclick="localStorage.setItem('activeTab', 'default-tab'); window.location.href='{{ route('data-anak') }}'">
           <div class="card-body text-nowrap">
             <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Tidak Mampu</h5>
             <h3 class="text-primary mb-0">{{ $countAnakTidakMampu }}</h3>
