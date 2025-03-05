@@ -57,32 +57,32 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
+          <div class="card" onclick="localStorage.setItem('activeTab', 'alumni-tab'); window.location.href='{{ route('data-anak') }}'">
+            <img src="{{ asset('assets/img/illustrations/lulus.png') }}" class="position-absolute bottom-0 start-0 ms-5 "
+                width="100" alt="view sales">
+              <div class="card-body text-nowrap text-end">
+                  <h5 class="card-title mb-0 flex-wrap text-nowrap">Alumni Lulus</h5>
+                  <h3 class="text-primary mb-0">{{ $countAnakLulus }}</h3>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-12 col-lg-6 mb-4">
+        <div class="card" onclick="localStorage.setItem('activeTab', 'alumniBermasalah-tab'); window.location.href='{{ route('data-anak') }}'">
+          <div class="card-body text-nowrap">
+            <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Tidak Mampu</h5>
+            <h3 class="text-primary mb-0">{{ $countAnakTidakMampu }}</h3>
+          </div>
+          <img src="{{ asset('assets/img/illustrations/nakal.png') }}"
+              class="position-absolute bottom-0 end-0 me-5" width="80" alt="view sales">
+        </div>
+    </div>
+        <div class="col-md-12 col-lg-6 mb-4">
             <div class="card" onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
                 <img src="{{ asset('assets/img/illustrations/yatimpiatu.png') }}"
                     class="position-absolute bottom-0 start-0 ms-5" width="70" alt="view sales">
                 <div class="card-body text-nowrap text-end">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Yatim Piatu</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakYatimPiatu }}</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="localStorage.setItem('activeTab', 'alumni-tab'); window.location.href='{{ route('data-anak') }}'">
-                <div class="card-body text-nowrap">
-                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Alumni Lulus</h5>
-                    <h3 class="text-primary mb-0">{{ $countAnakLulus }}</h3>
-                </div>
-                <img src="{{ asset('assets/img/illustrations/lulus.png') }}" class="position-absolute bottom-0 end-0 me-5 "
-                    width="100" alt="view sales">
-            </div>
-        </div>
-        <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="localStorage.setItem('activeTab', 'alumniBermasalah-tab'); window.location.href='{{ route('data-anak') }}'">
-                <img src="{{ asset('assets/img/illustrations/nakal.png') }}"
-                    class="position-absolute bottom-0 start-0 ms-5" width="80" alt="view sales">
-                <div class="card-body text-nowrap text-end">
-                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Alumni Keluar</h5>
-                    <h3 class="text-primary mb-0">{{ $countAnakBermasalah }}</h3>
                 </div>
             </div>
         </div>
