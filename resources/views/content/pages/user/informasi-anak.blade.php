@@ -133,10 +133,16 @@
                                   <label for="status">Status Keaktifan</label>
                               </div>
                           </div>
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-{{ $info->keterangan != null && $info->keterangan != '-' ? '6' : '12' }} mb-3">
                                 <label for="alamat">Alamat Anak</label>
                                 <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $info->alamat }}</textarea>
                             </div>
+                            @if($info->keterangan != null && $info->keterangan != '-')
+                              <div class="col-md-{{ $info->keterangan != null || $info->keterangan != '-' ? '6' : '12' }} mb-3">
+                                <label for="keterangan">Keterangan Keluar</label>
+                                <textarea class="form-control" id="keterangan" rows="3" readonly>{{ $info->keterangan }}</textarea>
+                              </div>
+                            @endif
                             @if ($info->fp_formulir != null || $info->fp_surat_izin != null)
                                 <div class="col-md-12">
                                     <div class="divider text-start">

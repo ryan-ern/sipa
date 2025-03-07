@@ -16,6 +16,7 @@ class Admin extends Controller
   {
     $bulan = $request->input('bulan') ? date('m', strtotime($request->input('bulan'))) : null;
     $tahun = $request->input('bulan') ? date('Y', strtotime($request->input('bulan'))) : null;
+
     if (!$bulan || !$tahun) {
       $filteredData = Anak::all();
     } else {
@@ -62,12 +63,6 @@ class Admin extends Controller
     })->count();
     $countAnakLulus = $filteredData->where('status', 'alumni lulus')->count();
     $countAnakBermasalah = $filteredData->where('status', 'alumni keluar')->count();
-    $countDataDonasi = Donasi::whereMonth('created_at', $bulan)
-      ->whereYear('created_at', $tahun)
-      ->count();
-    $countDataArtikel = Artikel::whereMonth('created_at', $bulan)
-      ->whereYear('created_at', $tahun)
-      ->count();
 
     $countPendaftaran = Pendaftaran::where('status', '!=', 'lulus')
       ->count();
@@ -97,6 +92,14 @@ class Admin extends Controller
 
     $bulan2 = $request->input('bulan') ? date('m', strtotime($request->input('bulan'))) : now()->format('m');
     $tahun2 = $request->input('bulan') ? date('Y', strtotime($request->input('bulan'))) : now()->format('Y');
+
+    $countDataDonasi = Donasi::whereMonth('created_at', $bulan2)
+      ->whereYear('created_at', $tahun2)
+      ->count();
+    $countDataArtikel = Artikel::whereMonth('created_at', $bulan2)
+      ->whereYear('created_at', $tahun2)
+      ->count();
+
     for ($i = 1; $i <= 12; $i++) {
       $bulan2 = str_pad($i, 2, '0', STR_PAD_LEFT);
       $bulanLabels[] = $bulanIndonesia[$i];
