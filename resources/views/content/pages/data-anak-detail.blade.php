@@ -115,15 +115,17 @@
                                     <label for="status">Status Keaktifan</label>
                                 </div>
                             </div>
-                            <div class="col-md-{{ $info->keterangan != null && $info->keterangan != '-' ? '6' : '12' }} mb-3">
-                              <label for="alamat">Alamat Anak</label>
-                              <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $info->alamat }}</textarea>
+                            <div
+                                class="col-md-{{ $info->keterangan != null && $info->keterangan != '-' ? '6' : '12' }} mb-3">
+                                <label for="alamat">Alamat Anak</label>
+                                <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $info->biodata->alamat }}</textarea>
                             </div>
-                            @if($info->keterangan != null && $info->keterangan != '-')
-                              <div class="col-md-{{ $info->keterangan != null || $info->keterangan != '-' ? '6' : '12' }} mb-3">
-                                <label for="keterangan">Keterangan Keluar</label>
-                                <textarea class="form-control" id="keterangan" name="keterangan" rows="3" required>{{ $info->keterangan }}</textarea>
-                              </div>
+                            @if ($info->keterangan != null && $info->keterangan != '-')
+                                <div
+                                    class="col-md-{{ $info->keterangan != null || $info->keterangan != '-' ? '6' : '12' }} mb-3">
+                                    <label for="keterangan">Keterangan Keluar</label>
+                                    <textarea class="form-control" id="keterangan" name="keterangan" rows="3" required>{{ $info->keterangan }}</textarea>
+                                </div>
                             @endif
                             @if ($info->fp_formulir != null || $info->fp_surat_izin != null)
                                 <div class="col-md-12">
@@ -154,14 +156,14 @@
                                         <div class="divider-text fs-5">Bagian Administrasi</div>
                                     </div>
                                 </div>
-                              @endif
-                                <div class="col-md-6 mb-5 mt-2">
-                                    <div class="form-floating form-floating-outline">
-                                        <input type="file" accept="application/pdf, image/*" name="fp_formulir"
-                                            id="fp_formulir" class="form-control">
-                                        <label for="fp_formulir">Formulir Pendaftaran</label>
-                                    </div>
+                            @endif
+                            <div class="col-md-6 mb-5 mt-2">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" accept="application/pdf, image/*" name="fp_formulir"
+                                        id="fp_formulir" class="form-control">
+                                    <label for="fp_formulir">Formulir Pendaftaran</label>
                                 </div>
+                            </div>
                             <div class="col-md-6 mb-5 mt-2">
                                 <div class="form-floating form-floating-outline">
                                     <input type="file" accept="application/pdf, image/*" name="fp_surat_izin"
