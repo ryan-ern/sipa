@@ -85,6 +85,17 @@
 @endsection
 
 @section('content')
+    <section class="text-center my-5 py-5 bg-white border rounded">
+        <div class="container">
+            <h2 class="display-5 fw-bold text-dark">Bantu Mereka dengan penuh kasih sayang</h2>
+            <p class="lead text-dark">Daftarkan anak yatim, piatu, yatim piatu, dan anak dari keluarga yang tidak mampu atau
+                berdonasi untuk masa depan mereka yang lebih cerah.</p>
+            <div class="mt-4">
+                <a href="/auth/register" class="btn btn-primary btn-lg me-2">Daftar Sekarang</a>
+                <a href="https://wa.me/+6283829751860" class="btn btn-info btn-lg">Berdonasi Sekarang</a>
+            </div>
+        </div>
+    </section>
     <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-indicators">
             @for ($i = 0; $i < 11; $i++)
