@@ -309,6 +309,7 @@ class DataAnak extends Controller
         ]);
         if ($daftarBaru) {
           Anak::create([
+            'id' => $daftarBaru->id,
             'user_id' => $request->user_id,
             'pendaftarans_id' => $daftarBaru->id,
             'biodata' => $biodata,
