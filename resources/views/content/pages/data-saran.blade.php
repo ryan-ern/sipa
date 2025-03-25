@@ -7,6 +7,19 @@
         <div class="col-md-12 col-lg-12 mb-4">
             <div class="card">
                 <div class="card-body p-7">
+                  <div class="col">
+                    <div class="d-flex gap-3">
+                        <div class="form-floating form-floating-outline ">
+                            <input type="text" id="min" name="min" class="form-control"
+                                placeholder="Tanggal Minimal">
+                            <label for="min">Tanggal Minimal</label>
+                        </div>
+                        <div class="form-floating form-floating-outline ">
+                            <input type="text" id="max" name="max" class="form-control"
+                                placeholder="Tanggal Maximal"">
+                            <label for="max">Tanggal Maximal</label>
+                        </div>
+                    </div>
                     <div class="divider text-start">
                         <div class="divider-text ms-3 fs-5">Data Saran</div>
                     </div>

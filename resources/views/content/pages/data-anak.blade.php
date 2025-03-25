@@ -15,6 +15,20 @@
         <div class="col-md-12 col-lg-12 mb-4">
             <div class="card">
                 <div class="card-body p-7">
+                  <div class="col">
+                    <div class="d-flex gap-3">
+                        <div class="form-floating form-floating-outline ">
+                            <input type="text" id="min" name="min" class="form-control"
+                                placeholder="Tanggal Minimal">
+                            <label for="min">Tanggal Minimal</label>
+                        </div>
+                        <div class="form-floating form-floating-outline ">
+                            <input type="text" id="max" name="max" class="form-control"
+                                placeholder="Tanggal Maximal"">
+                            <label for="max">Tanggal Maximal</label>
+                        </div>
+                    </div>
+                </div>
                     <button class="btn btn-primary float-end me-3 mt-3" data-bs-toggle="modal" data-bs-target="#dynamicModal"
                         data-modal-type="tambah">
                         Tambah Data
@@ -62,6 +76,7 @@
                                             <th>Pekerjaan</th>
                                             <th>No. Telp</th>
                                             <th>Status</th>
+                                            <th>Diperbarui</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -96,6 +111,7 @@
                                                         {{ $dataAnak->status }}
                                                     </span>
                                                 </td>
+                                                <td>{{ $dataAnak->updated_at->format('Y-m-d H:i') }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-3">
                                                         <div class="dropdown">
@@ -290,6 +306,7 @@
                                             <th>Pekerjaan</th>
                                             <th>No. Telp</th>
                                             <th>Status</th>
+                                            <th>Diperbarui</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -319,6 +336,7 @@
                                                         {{ $dataAnak->status }}
                                                     </span>
                                                 </td>
+                                                <td>{{ $dataAnak->updated_at->format('Y-m-d H:i') }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-3">
                                                         <div class="dropdown">
@@ -465,6 +483,7 @@
                                             <th>Pekerjaan</th>
                                             <th>No. Telp</th>
                                             <th>Status</th>
+                                            <th>Diperbarui</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -494,6 +513,7 @@
                                                         {{ $dataAnak->status }}
                                                     </span>
                                                 </td>
+                                                <td>{{ $dataAnak->updated_at->format('Y-m-d H:i') }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-3">
                                                         <div class="dropdown">
@@ -642,6 +662,7 @@
                                             <th>No. Telp</th>
                                             <th>Status</th>
                                             <th>Keterangan</th>
+                                            <th>Diperbarui</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -672,6 +693,7 @@
                                                     </span>
                                                 </td>
                                                 <td class="text-capitalize truncate">{{ $dataAnak->keterangan }}</td>
+                                                <td>{{ $dataAnak->updated_at->format('Y-m-d H:i') }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-3">
                                                         <div class="dropdown">
@@ -822,8 +844,8 @@
                                     <th scope="col">Keterangan</th>
                                     <th scope="col">Nama Ortu / Wali</th>
                                     <th scope="col">No. Telp</th>
-                                    <th scope="col">File Pendukung</th>
                                     <th scope="col">Tanggal</th>
+                                    <th scope="col">File Pendukung</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -841,6 +863,8 @@
                                                 {{ $riwayatAnak->biodata->no_tel }}
                                             </a>
                                         </td>
+                                        <td class="text-capitalize">{{ $riwayatAnak->updated_at->format('Y-m-d H:i') }}
+                                        </td>
                                         <td>
                                             @if (!empty($riwayatAnak->fp_riwayat))
                                                 <img src="{{ asset('storage/' . $riwayatAnak->fp_riwayat) }}"
@@ -852,8 +876,6 @@
                                             @else
                                                 -
                                             @endif
-                                        </td>
-                                        <td class="text-capitalize">{{ $riwayatAnak->updated_at->format('Y-m-d H:i') }}
                                         </td>
                                     </tr>
                                 @endforeach

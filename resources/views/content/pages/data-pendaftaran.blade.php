@@ -7,6 +7,20 @@
         <div class="col-md-12 col-lg-12 mb-4">
             <div class="card">
                 <div class="card-body p-7">
+                    <div class="col">
+                        <div class="d-flex gap-3">
+                            <div class="form-floating form-floating-outline ">
+                                <input type="text" id="min" name="min" class="form-control"
+                                    placeholder="Tanggal Minimal">
+                                <label for="min">Tanggal Minimal</label>
+                            </div>
+                            <div class="form-floating form-floating-outline ">
+                                <input type="text" id="max" name="max" class="form-control"
+                                    placeholder="Tanggal Maximal"">
+                                <label for="max">Tanggal Maximal</label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="divider text-start">
                         <div class="divider-text ms-3 fs-5">Data Pendaftaran</div>
                     </div>
@@ -43,6 +57,7 @@
                                             <th>Pekerjaan</th>
                                             <th>No. Telp</th>
                                             <th>Status</th>
+                                            <th>Diperbarui</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -68,6 +83,7 @@
                                                         {{ $daftar->status }}
                                                     </span>
                                                 </td>
+                                                <td>{{ $daftar->updated_at->format('Y-m-d H:i') }}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button"
@@ -193,6 +209,7 @@
                                             <th>Pekerjaan</th>
                                             <th>No. Telp</th>
                                             <th>Status</th>
+                                            <th>Diperbarui</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -218,6 +235,7 @@
                                                         {{ $daftar->status }}
                                                     </span>
                                                 </td>
+                                                <td>{{ $daftar->updated_at->format('Y-m-d') }}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button"
@@ -343,6 +361,7 @@
                                             <th>Pekerjaan</th>
                                             <th>No. Telp</th>
                                             <th>Status</th>
+                                            <th>Diperbarui</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -368,6 +387,7 @@
                                                         {{ $daftar->status }}
                                                     </span>
                                                 </td>
+                                                <td>{{ $daftar->updated_at->format('Y-m-d H:i') }}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button"
@@ -539,6 +559,7 @@
                                     <th scope="col">No. Telp</th>
                                     <th scope="col">Tahap</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Tanggal</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -568,7 +589,7 @@
                                                 {{ $daftar->status }}
                                             </span>
                                         </td>
-
+                                        <td>{{ $daftar->updated_at->format('Y-m-d H:i') }}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn btn-primary p-2" data-bs-toggle="modal"
@@ -658,14 +679,14 @@
 
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-                 window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-              setTimeout(() => {
-            const form = button.closest('form');
-            if (form) {
-                form.submit();
-            }
-        }, 1000); 
-    } else {
+                window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+                setTimeout(() => {
+                    const form = button.closest('form');
+                    if (form) {
+                        form.submit();
+                    }
+                }, 1000);
+            } else {
                 const form = button.closest('form');
                 if (form) {
                     form.submit();

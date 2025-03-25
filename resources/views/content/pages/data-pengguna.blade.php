@@ -7,8 +7,22 @@
         <div class="col-md-12 col-lg-12 mb-4">
             <div class="card">
                 <div class="card-body p-7">
-                    <button class="btn btn-primary float-end me-3 mt-3" data-bs-toggle="modal" data-bs-target="#dynamicModal"
-                        data-modal-type="tambah">
+                    <div class="col">
+                        <div class="d-flex gap-3">
+                            <div class="form-floating form-floating-outline ">
+                                <input type="text" id="min" name="min" class="form-control"
+                                    placeholder="Tanggal Minimal">
+                                <label for="min">Tanggal Minimal</label>
+                            </div>
+                            <div class="form-floating form-floating-outline ">
+                                <input type="text" id="max" name="max" class="form-control"
+                                    placeholder="Tanggal Maximal"">
+                                <label for="max">Tanggal Maximal</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary float-end me-3 mt-3" data-bs-toggle="modal"
+                        data-bs-target="#dynamicModal" data-modal-type="tambah">
                         Tambah Data
                     </button>
                     <div class="divider text-start">
@@ -61,7 +75,7 @@
                                                 <span class="badge rounded-pill bg-label-info me-1">Tidak</span>
                                             @endif
                                         </td>
-                                        <td class="text-start">{{ $user->updated_at->format('Y-m-d H:i') }}</td>
+                                        <td class="text-start">{{ $user->updated_at->format('Y-m-d') }}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button"
@@ -304,48 +318,50 @@
                       </div>
                     </div>
                 `;
-                setTimeout(() => {
-                    const noTelInput = document.getElementById('no_tel');
-                    const namaInput = document.getElementById('nama_lengkap');
-                    const usernameInput = document.getElementById('username');
-                    const statusInput = document.getElementById('status');
-                    const passwordInput = document.getElementById('password');
+                    setTimeout(() => {
+                        const noTelInput = document.getElementById('no_tel');
+                        const namaInput = document.getElementById('nama_lengkap');
+                        const usernameInput = document.getElementById('username');
+                        const statusInput = document.getElementById('status');
+                        const passwordInput = document.getElementById('password');
 
-                    let noTel = noTelInput.value;
-                    let nama = namaInput.value;
-                    let username = usernameInput.value;
-                    let status = statusInput.value;
-                    let password = passwordInput.value || null;
+                        let noTel = noTelInput.value;
+                        let nama = namaInput.value;
+                        let username = usernameInput.value;
+                        let status = statusInput.value;
+                        let password = passwordInput.value || null;
 
-                    passwordInput.addEventListener('input', function () {
-                        password = this.value || null;
-                    });
+                        passwordInput.addEventListener('input', function() {
+                            password = this.value || null;
+                        });
 
-                    noTelInput.addEventListener('input', function () {
-                        noTel = this.value;
-                    });
+                        noTelInput.addEventListener('input', function() {
+                            noTel = this.value;
+                        });
 
-                    namaInput.addEventListener('input', function () {
-                        nama = this.value;
-                    });
+                        namaInput.addEventListener('input', function() {
+                            nama = this.value;
+                        });
 
-                    usernameInput.addEventListener('input', function () {
-                        username = this.value;
-                    });
+                        usernameInput.addEventListener('input', function() {
+                            username = this.value;
+                        });
 
-                    statusInput.addEventListener('change', function () {
-                        status = this.value;
-                    });
+                        statusInput.addEventListener('change', function() {
+                            status = this.value;
+                        });
 
-                    modalForm.onsubmit = function (event) {
-                        handleConfirmation(event, noTel, nama, username, password, status);
-                    };
+                        modalForm.onsubmit = function(event) {
+                            handleConfirmation(event, noTel, nama, username, password, status);
+                        };
 
-                    document.getElementById('togglePassword').addEventListener('click', function () {
-                        let passwordInput = document.getElementById('password');
-                        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
-                    });
-                }, 100);
+                        document.getElementById('togglePassword').addEventListener('click',
+                            function() {
+                                let passwordInput = document.getElementById('password');
+                                passwordInput.type = passwordInput.type === "password" ?
+                                    "text" : "password";
+                            });
+                    }, 100);
                 } else if (modalType === 'delete') {
                     modalTitle.textContent = 'Hapus Data';
                     modalForm.action = `/pages/data-pengguna/${userId}`;
