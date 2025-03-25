@@ -67,7 +67,7 @@ class Admin extends Controller
     $countPendaftaran = Pendaftaran::where('status', '!=', 'lulus')
       ->count();
 
-    $countForgotPass = User::where('forgot', 1)->count();
+    $countForgotPass = User::where('role', 'user')->count();
 
     $bulanIndonesia = [
       1 => "Januari",

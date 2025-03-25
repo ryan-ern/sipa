@@ -41,13 +41,14 @@
                 <img src="{{ asset('assets/img/illustrations/pass.jpg') }}" class="position-absolute bottom-0 start-0 ms-5"
                     width="100" alt="view sales">
                 <div class="card-body text-nowrap text-end">
-                    <h5 class="card-title mb-0 flex-wrap text-nowrap z-1">Lupa Password</h5>
+                    <h5 class="card-title mb-0 flex-wrap text-nowrap z-1">Data Pengguna</h5>
                     <h3 class="text-primary mb-0">{{ $countForgotPass }}</h3>
                 </div>
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="localStorage.setItem('activeTab', 'aktif-tab'); window.location.href='{{ route('data-anak') }}'">
+            <div class="card"
+                onclick="localStorage.setItem('activeTab', 'aktif-tab'); window.location.href='{{ route('data-anak') }}'">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap z-1">Data Anak Aktif</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakAktif }}</h3>
@@ -57,27 +58,30 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-          <div class="card" onclick="localStorage.setItem('activeTab', 'alumni-tab'); window.location.href='{{ route('data-anak') }}'">
-            <img src="{{ asset('assets/img/illustrations/lulus.png') }}" class="position-absolute bottom-0 start-0 ms-5 "
-                width="100" alt="view sales">
-              <div class="card-body text-nowrap text-end">
-                  <h5 class="card-title mb-0 flex-wrap text-nowrap">Alumni Lulus</h5>
-                  <h3 class="text-primary mb-0">{{ $countAnakLulus }}</h3>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-12 col-lg-6 mb-4">
-        <div class="card" onclick="localStorage.setItem('activeTab', 'default-tab'); window.location.href='{{ route('data-anak') }}'">
-          <div class="card-body text-nowrap">
-            <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Tidak Mampu</h5>
-            <h3 class="text-primary mb-0">{{ $countAnakTidakMampu }}</h3>
-          </div>
-          <img src="{{ asset('assets/img/illustrations/nakal.png') }}"
-              class="position-absolute bottom-0 end-0 me-5" width="80" alt="view sales">
+            <div class="card"
+                onclick="localStorage.setItem('activeTab', 'alumni-tab'); window.location.href='{{ route('data-anak') }}'">
+                <img src="{{ asset('assets/img/illustrations/lulus.png') }}"
+                    class="position-absolute bottom-0 start-0 ms-5 " width="100" alt="view sales">
+                <div class="card-body text-nowrap text-end">
+                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Alumni Lulus</h5>
+                    <h3 class="text-primary mb-0">{{ $countAnakLulus }}</h3>
+                </div>
+            </div>
         </div>
-    </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
+            <div class="card"
+                onclick="localStorage.setItem('activeTab', 'default-tab'); window.location.href='{{ route('data-anak') }}'">
+                <div class="card-body text-nowrap">
+                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Tidak Mampu</h5>
+                    <h3 class="text-primary mb-0">{{ $countAnakTidakMampu }}</h3>
+                </div>
+                <img src="{{ asset('assets/img/illustrations/nakal.png') }}" class="position-absolute bottom-0 end-0 me-5"
+                    width="80" alt="view sales">
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6 mb-4">
+            <div class="card"
+                onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
                 <img src="{{ asset('assets/img/illustrations/yatimpiatu.png') }}"
                     class="position-absolute bottom-0 start-0 ms-5" width="70" alt="view sales">
                 <div class="card-body text-nowrap text-end">
@@ -87,7 +91,8 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
+            <div class="card"
+                onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Yatim</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakYatim }}</h3>
@@ -97,7 +102,8 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
+            <div class="card"
+                onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
                 <img src="{{ asset('assets/img/illustrations/piatu.png') }}"
                     class="position-absolute bottom-0 start-0 ms-5" width="90" alt="view sales">
                 <div class="card-body text-nowrap text-end">
@@ -127,7 +133,8 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
+            <div class="card"
+                onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
                 <div class="card-body text-nowrap">
                     <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Laki-laki</h5>
                     <h3 class="text-primary mb-0">{{ $countAnakLaki }}</h3>
@@ -137,7 +144,8 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-            <div class="card" onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
+            <div class="card"
+                onclick="localStorage.setItem('activeTab', 'default-tab');window.location.href='{{ route('data-anak') }}'">
                 <img src="{{ asset('assets/img/illustrations/perempuan.png') }}"
                     class="position-absolute bottom-0 start-0 ms-5" width="83" alt="view sales">
                 <div class="card-body text-nowrap text-end">
@@ -167,7 +175,7 @@
         <div class="col-sm-12 col-md-12 mb-4">
             <div class="card p-3">
                 <div class="card-body text-nowrap text-end">
-                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Keluar Masuk Tahun {{$tahun}}</h5>
+                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Anak Keluar Masuk Tahun {{ $tahun }}</h5>
                 </div>
                 <div id="linechart" style="height: 400px !important">
                 </div>
@@ -179,94 +187,94 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-          var genderChartElement = document.querySelector("#genderChart");
-        var statusChartElement = document.querySelector("#statusChart");
+            var genderChartElement = document.querySelector("#genderChart");
+            var statusChartElement = document.querySelector("#statusChart");
 
-        var genderSeries = [
-            parseInt('{{ $countAnakLaki }}'),
-            parseInt('{{ $countAnakPerempuan }}')
-        ];
+            var genderSeries = [
+                parseInt('{{ $countAnakLaki }}'),
+                parseInt('{{ $countAnakPerempuan }}')
+            ];
 
-        var statusSeries = [
-            parseInt('{{ $countAnakYatim }}'),
-            parseInt('{{ $countAnakYatimPiatu }}'),
-            parseInt('{{ $countAnakPiatu }}'),
-            parseInt('{{ $countAnakTidakMampu}}')
-        ];
+            var statusSeries = [
+                parseInt('{{ $countAnakYatim }}'),
+                parseInt('{{ $countAnakYatimPiatu }}'),
+                parseInt('{{ $countAnakPiatu }}'),
+                parseInt('{{ $countAnakTidakMampu }}')
+            ];
 
-        var isGenderZero = genderSeries.every(function (value) {
-            return value === 0;
-        });
+            var isGenderZero = genderSeries.every(function(value) {
+                return value === 0;
+            });
 
-        var isStatusZero = statusSeries.every(function (value) {
-            return value === 0;
-        });
+            var isStatusZero = statusSeries.every(function(value) {
+                return value === 0;
+            });
 
-        if (genderChartElement) {
-            var genderOptions = {
-                chart: {
-                    type: 'pie',
-                    height: 400,
-                },
-                series: isGenderZero ? [] : genderSeries,
-                labels: ['Laki-laki', 'Perempuan'],
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 300
-                        },
-                        legend: {
-                            position: 'bottom'
+            if (genderChartElement) {
+                var genderOptions = {
+                    chart: {
+                        type: 'pie',
+                        height: 400,
+                    },
+                    series: isGenderZero ? [] : genderSeries,
+                    labels: ['Laki-laki', 'Perempuan'],
+                    responsive: [{
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 300
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }],
+                    noData: {
+                        text: 'Tidak ada data...',
+                        align: 'center',
+                        style: {
+                            color: '#999',
+                            fontSize: '16px'
                         }
                     }
-                }],
-                noData: {
-                    text: 'Tidak ada data...',
-                    align: 'center',
-                    style: {
-                        color: '#999',
-                        fontSize: '16px'
-                    }
-                }
-            };
+                };
 
-            var genderChart = new ApexCharts(genderChartElement, genderOptions);
-            genderChart.render();
-        }
+                var genderChart = new ApexCharts(genderChartElement, genderOptions);
+                genderChart.render();
+            }
 
-        if (statusChartElement) {
-            var statusOptions = {
-                chart: {
-                    type: 'pie',
-                    height: 400,
-                },
-                series: isStatusZero ? [] : statusSeries,
-                labels: ['Yatim', 'Yatim Piatu', 'Piatu', 'Tidak Mampu'],
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 300
-                        },
-                        legend: {
-                            position: 'bottom'
+            if (statusChartElement) {
+                var statusOptions = {
+                    chart: {
+                        type: 'pie',
+                        height: 400,
+                    },
+                    series: isStatusZero ? [] : statusSeries,
+                    labels: ['Yatim', 'Yatim Piatu', 'Piatu', 'Tidak Mampu'],
+                    responsive: [{
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 300
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }],
+                    noData: {
+                        text: 'Tidak ada data...',
+                        align: 'center',
+                        style: {
+                            color: '#999',
+                            fontSize: '16px'
                         }
                     }
-                }],
-                noData: {
-                    text: 'Tidak ada data...',
-                    align: 'center',
-                    style: {
-                        color: '#999',
-                        fontSize: '16px'
-                    }
-                }
-            };
+                };
 
-            var statusChart = new ApexCharts(statusChartElement, statusOptions);
-            statusChart.render();
-        }
+                var statusChart = new ApexCharts(statusChartElement, statusOptions);
+                statusChart.render();
+            }
 
             var linechartElement = document.querySelector("#linechart");
             if (linechartElement) {
@@ -276,12 +284,12 @@
                         height: 400,
                     },
                     stroke: {
-                      curve: 'smooth',
+                        curve: 'smooth',
                     },
                     series: [{
-                      name: 'Anak Aktif',
-                      data: {{ $dataAktif }}
-                    },{
+                        name: 'Anak Aktif',
+                        data: {{ $dataAktif }}
+                    }, {
                         name: 'Alumni Lulus',
                         data: {{ $dataLulus }}
                     }, {
