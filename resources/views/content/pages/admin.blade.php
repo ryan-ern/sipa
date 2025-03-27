@@ -29,7 +29,7 @@
         <div class="col-md-12 col-lg-6 mb-4">
             <div class="card" onclick="window.location.href='{{ route('data-pendaftaran') }}'">
                 <div class="card-body text-nowrap">
-                    <h6 class="card-title mb-0 flex-wrap text-nowrap">Pendaftar Berlangsung</h6>
+                    <h5 class="card-title mb-0 flex-wrap text-nowrap">Pendaftar Berlangsung</h5>
                     <h3 class="text-primary mb-0">{{ $countPendaftaran }}</h3>
                 </div>
                 <img src="{{ asset('assets/img/illustrations/daftar.jpg') }}" class="position-absolute bottom-0 end-0 me-3"

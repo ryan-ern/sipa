@@ -21,14 +21,14 @@ class DataDonasi extends Controller
     {
         $validated = Validator::make($request->all(), [
             'nama' => ['required', 'string', 'max:255'],
-            'tujuan' => ['required', 'string'],
+            'alamat' => ['required', 'string'],
             'jenis' => ['required', 'string', 'in:makanan,barang,lainnya'],
             'keterangan' => ['required', 'string', 'max:255'],
             'kegunaan' => ['required', 'string'],
             'fp_donasi' => ['nullable', 'file', 'mimes:jpeg,png,jpg'],
         ], [
             'nama.required' => 'Nama harus diisi.',
-            'tujuan.required' => 'Nomor telepon harus diisi.',
+            'alamat.required' => 'Nomor telepon harus diisi.',
             'jenis.required' => 'Jenis donasi harus diisi.',
             'keterangan.required' => 'Keterangan harus diisi.',
             'kegunaan.required' => 'Kegunaan harus diisi.',
@@ -62,14 +62,14 @@ class DataDonasi extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama' => ['required', 'string', 'max:255'],
-            'tujuan' => ['required', 'string'],
+            'alamat' => ['required', 'string'],
             'jenis' => ['required', 'string', 'in:makanan,barang,lainnya'],
             'keterangan' => ['required', 'string', 'max:255'],
             'kegunaan' => ['required', 'string'],
             'fp_donasi' => ['nullable', 'file', 'mimes:jpeg,png,jpg', 'max:2048'],
         ], [
             'nama.required' => 'Nama harus diisi.',
-            'tujuan.required' => 'Nomor telepon harus diisi.',
+            'alamat.required' => 'Nomor telepon harus diisi.',
             'jenis.required' => 'Jenis donasi harus diisi.',
             'keterangan.required' => 'Keterangan harus diisi.',
             'kegunaan.required' => 'Kegunaan harus diisi.',

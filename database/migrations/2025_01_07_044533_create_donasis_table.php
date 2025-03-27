@@ -14,7 +14,7 @@ return new class extends Migration
     Schema::create('donasis', function (Blueprint $table) {
       $table->uuid('id')->primary();
       $table->string('nama');
-      $table->string('tujuan');
+      $table->string('alamat');
       $table->enum('jenis', ['makanan', 'barang', 'lainnya']);
       $table->text('keterangan');
       $table->text('kegunaan');

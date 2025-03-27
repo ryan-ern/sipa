@@ -82,6 +82,20 @@
         <div class="col md-12 sm-12 mb-4">
             <div class="card">
                 <div class="card-body p-7">
+                  <div class="col">
+                    <div class="d-flex gap-3">
+                        <div class="form-floating form-floating-outline ">
+                            <input type="text" id="min" name="min" class="form-control"
+                                placeholder="Tanggal Minimal">
+                            <label for="min">Tanggal Minimal</label>
+                        </div>
+                        <div class="form-floating form-floating-outline ">
+                            <input type="text" id="max" name="max" class="form-control"
+                                placeholder="Tanggal Maximal"">
+                            <label for="max">Tanggal Maximal</label>
+                        </div>
+                    </div>
+                </div>
                     <div class="divider text-start">
                         <div class="divider-text ms-3 fs-5">Data Riwayat Anak</div>
                     </div>

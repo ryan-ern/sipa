@@ -48,7 +48,7 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">Alamat</th>
                                     <th scope="col">Jenis</th>
-                                    <th scope="col">Keterangan</th>
+                                    <th scope="col">Keterangan (Jumlah)</th>
                                     <th scope="col">Kegunaan</th>
                                     <th scope="col">Foto</th>
                                     <th scope="col">Tanggal</th>
@@ -61,7 +61,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="text-capitalize">{{ $donasi->nama }}</td>
                                         <td>
-                                           {{ $donasi->tujuan }}
+                                           {{ $donasi->alamat }}
                                         </td>
                                         <td>{{ $donasi->jenis }}</td>
                                         <td class="truncate">{{ $donasi->keterangan }}</td>
@@ -91,7 +91,7 @@
                                                         <button class="dropdown-item" data-bs-toggle="modal"
                                                             data-bs-target="#dynamicModal" data-modal-type="edit"
                                                             data-id="{{ $donasi->id }}" data-nama="{{ $donasi->nama }}"
-                                                            data-tujuan="{{ $donasi->tujuan }}"
+                                                            data-alamat="{{ $donasi->alamat }}"
                                                             data-jenis="{{ $donasi->jenis }}"
                                                             data-keterangan="{{ $donasi->keterangan }}"
                                                             data-kegunaan="{{ $donasi->kegunaan }}"
@@ -188,8 +188,8 @@
                         </div>
                         <div class="col-md-6 mb-3">
                           <div class="form-floating form-floating-outline">
-                            <input type="text" class="form-control" id="tujuan" name="tujuan" placeholder="Alamat" value="${button.getAttribute('data-tujuan')}" required>
-                            <label for="tujuan" >Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" value="${button.getAttribute('data-alamat')}" required>
+                            <label for="alamat" >Alamat</label>
                           </div>
                         </div>
                         <div class="col-md-12 mb-3">
@@ -206,7 +206,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12 mb-3">
-                          <textarea class="form-control" id="keterangan" name="keterangan" rows="3" placeholder="Keterangan" required>${button.getAttribute('data-keterangan')}</textarea>
+                          <textarea class="form-control" id="keterangan" name="keterangan" rows="3" placeholder="Keterangan (Jumlah)" required>${button.getAttribute('data-keterangan')}</textarea>
                         </div>
                       </div>
                       <div class="row">
@@ -249,8 +249,8 @@
                         </div>
                         <div class="col-md-6 mb-3">
                           <div class="form-floating form-floating-outline">
-                            <input type="text" placeholder="Alamat" class="form-control" id="tujuan" name="tujuan" required>
-                            <label for="tujuan" >Alamat</label>
+                            <input type="text" placeholder="Alamat" class="form-control" id="alamat" name="alamat" required>
+                            <label for="alamat" >Alamat</label>
                           </div>
                         </div>
                         <div class="col-md-12 mb-3">
@@ -268,7 +268,7 @@
 
                       <div class="row">
                         <div class="col-md-12 mb-3">
-                          <textarea class="form-control" id="keterangan" name="keterangan" rows="3" placeholder="Keterangan" required></textarea>
+                          <textarea class="form-control" id="keterangan" name="keterangan" rows="3" placeholder="Keterangan (Jumlah)" required></textarea>
                         </div>
                       </div>
                        <div class="row">

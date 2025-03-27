@@ -87,13 +87,16 @@
 @section('content')
     <section class="text-center my-5 py-5 bg-white border rounded">
         <div class="container">
-            <h2 class="display-5 fw-bold text-dark">Bantu Mereka dengan penuh kasih sayang</h2>
-            <p class="lead text-dark">Daftarkan anak yatim, piatu, yatim piatu, dan anak dari keluarga yang tidak mampu atau
-                berdonasi untuk masa depan mereka yang lebih cerah.</p>
+            <h2 class="display-5 fw-bold text-dark">Bantu Mereka Yang Membutuhkan</h2>
+            <p class="lead text-dark">Untuk Anak Yatim, Piatu, Yatim Piatu, dan Anak Dari Keluarga Yang Tidak Mampu Di Dalam Provinsi Lampung.
+            </p>
             <div class="mt-4">
-                <a href="/auth/register" class="btn btn-primary btn-lg me-2">Daftar Sekarang</a>
-                <a href="https://wa.me/+6283829751860" class="btn btn-info btn-lg">Berdonasi Sekarang</a>
-            </div>
+                <a href="/auth/register" class="btn btn-primary btn-lg me-2">Daftarkan Anak Sekarang</a>
+                <a href="https://wa.me/+6283829751860" class="btn btn-primary btn-lg">Berdonasi Sekarang</a>
+              </div>
+              <div class="mt-2">
+                <a href="#" class="btn btn-info btn-lg">Tonton Cara Pendaftaran</a>
+              </div>
         </div>
     </section>
     <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6000">
@@ -107,7 +110,7 @@
             <div class="carousel-item active">
                 <img src="/assets/profil/anak.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2>Selamat Datang di UPTD PSSA Harapan Bangsa Dinas Sosial Provinsi Lampung
+                    <h2>Selamat Datang di <br> UPTD PSSA Harapan Bangsa <br> Dinas Sosial Provinsi Lampung
                     </h2>
                     <p>Sasaran UPTD PSAA Harapan Bangsa dalam pelayanan, pembinaan dan rehabilitasi
                         pelayanan sosial asuhan anak meliputi anak yatim, piatu, yatim piatu, dan anak dari
