@@ -95,7 +95,7 @@
                 <a href="https://wa.me/+6283829751860" class="btn btn-primary btn-lg">Berdonasi Sekarang</a>
               </div>
               <div class="mt-2">
-                <a href="#" class="btn btn-info btn-lg">Tonton Cara Pendaftaran</a>
+                <a href="https://youtu.be/PGfJqrivp6Q" target="_blank" class="btn btn-info btn-lg">Tonton Cara Pendaftaran</a>
               </div>
         </div>
     </section>

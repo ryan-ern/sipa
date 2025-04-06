@@ -54,7 +54,10 @@
                                         <td class="text-capitalize">{{ $artikel->judul }}</td>
                                         <td class="truncate">{{ $artikel->jenis }}</td>
                                         <td><img src="{{ asset('storage/' . $artikel->fp_cover) }}" alt=""
-                                                width="100"></td>
+                                                width="100"
+                                                 data-bs-toggle="modal"
+                                          data-bs-target="#imageModal{{ $artikel->id }}"
+                                                ></td>
                                         <td class="truncate">{!! strip_tags($artikel->isi) !!}</td>
                                         <td class="text-truncate text-start">{{ $artikel->created_at->format('Y-m-d H:i') }}
                                         </td>
@@ -95,6 +98,20 @@
                 </div>
             </div>
         </div>
+        {{-- modal detail image --}}
+        @foreach ($data as $artikel)
+        @if(!empty($artikel->fp_cover))
+        <div class="modal fade" id="imageModal{{ $artikel->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-body text-center">
+                      <img src="{{ asset('storage/' . $artikel->fp_cover) }}" class="img-fluid rounded" alt="Gambar Artikel">
+                  </div>
+              </div>
+          </div>
+        </div>
+        @endif
+      @endforeach
         <!-- Modal Create, Update, Delete -->
         <div class="modal fade" id="dynamicModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="ModalLabel">
             <div class="modal-dialog modal-xl">
