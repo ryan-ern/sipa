@@ -158,7 +158,7 @@ class Pendaftaran extends Controller
       ]);
 
       if ($validator->fails()) {
-        return back()->with('error', 'Pendaftaran anak gagal disimpan: ' . $validator->errors()->first());
+        return redirect()->route('pendaftaran-anak')->with('error', 'Pendaftaran anak gagal disimpan: ' . $validator->errors()->first());
       }
     }
 
@@ -275,7 +275,7 @@ class Pendaftaran extends Controller
               }
             }
           } else {
-            return back()->with('error', 'Pendaftaran anak gagal ditemukan');
+            return redirect()->route('pendaftaran-anak')->with('error', 'Pendaftaran anak gagal ditemukan');
           }
         } else {
           $updateDaftar = ModelsPendaftaran::where('id', $id)->update($data);
@@ -294,21 +294,21 @@ class Pendaftaran extends Controller
             }
           }
           if ($updateDaftar && Auth::user()->role == 'user') {
-            return redirect('/pages/pendaftaran-anak')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan');
+            return redirect()->route('pendaftaran-anak')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan');
           }
         }
         if ($request->status == 'berlangsung') {
-          return redirect('/pages/data-pendaftaran')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil lulus dan lanjut tahap ' . $request->tahap);
+          return redirect()->route('pendaftaran-anak')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil lulus dan lanjut tahap ' . $request->tahap);
         } else if ($request->status == 'pemberitahuan') {
-          return redirect('/pages/data-pendaftaran')->with('info', 'Pendaftaran anak ' . $request->nama .  ' dalam pemberitahuan di tahap ' . $request->tahap);
+          return redirect()->route('pendaftaran-anak')->with('info', 'Pendaftaran anak ' . $request->nama .  ' dalam pemberitahuan di tahap ' . $request->tahap);
         } else if ($request->status == 'tidak') {
-          return redirect('/pages/data-pendaftaran')->with('error', 'Pendaftaran anak ' . $request->nama .  ' tidak lulus di tahap ' . $request->tahap);
+          return redirect()->route('pendaftaran-anak')->with('error', 'Pendaftaran anak ' . $request->nama .  ' tidak lulus di tahap ' . $request->tahap);
         } else {
-          return redirect('/pages/data-pendaftaran')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan dan telah lulus di tahap 3');
+          return redirect()->route('pendaftaran-anak')->with('success', 'Pendaftaran anak ' . $request->nama .  ' berhasil disimpan dan telah lulus di tahap 3');
         }
       } else {
         if ($existingData->contains('nik', $request->nik)) {
-          return back()->with('error', 'Pendaftaran anak gagal disimpan: NIK sudah terdaftar');
+          return redirect()->route('pendaftaran-anak')->with('error', 'Pendaftaran anak gagal disimpan: NIK sudah terdaftar');
         }
         $daftar = ModelsPendaftaran::create($data);
         if ($request->hasFile('files')) {
@@ -324,10 +324,10 @@ class Pendaftaran extends Controller
             ]);
           }
         }
-        return back()->with('success', 'Pendaftaran anak berhasil disimpan');
+        return redirect()->route('pendaftaran-anak')->with('success', 'Pendaftaran anak berhasil disimpan');
       }
     } catch (\Exception $e) {
-      return back()->with('error', 'Pendaftaran anak gagal disimpan: ' . $e->getMessage());
+      return redirect()->route('pendaftaran-anak')->with('error', 'Pendaftaran anak gagal disimpan: ' . $e->getMessage());
     }
   }
 
