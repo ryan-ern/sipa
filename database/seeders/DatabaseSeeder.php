@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
     User::factory()->create([
       'nama_lengkap' => 'Test Admin',
       'username' => 'eki',
+      'nik' => '123456789',
       'role' => 'admin',
       'sebagai' => 'staff',
       'status' => '1',
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
     User::factory()->create([
       'nama_lengkap' => 'Test User',
       'username' => 'user',
+      'nik' => '0987654321',
       'role' => 'user',
       'sebagai' => 'ortu',
       'status' => '1',
@@ -36,6 +38,7 @@ class DatabaseSeeder extends Seeder
     User::factory()->create([
       'nama_lengkap' => 'Test Wali',
       'username' => 'wali',
+      'nik' => '1239864321',
       'role' => 'user',
       'sebagai' => 'wali',
       'status' => '0',

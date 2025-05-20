@@ -14,9 +14,9 @@
                 <!-- Logo -->
                 <div class="app-brand justify-content-center">
                     <a href="{{ url('/') }}" class="app-brand-link gap-3">
-                      <span class="app-brand-logo demo">
-                        <img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo" width="100">
-                      </span>
+                        <span class="app-brand-logo demo">
+                            <img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo" width="100">
+                        </span>
                     </a>
                 </div>
                 <!-- /Logo -->
@@ -31,6 +31,16 @@
                                 value="{{ old('username') }}" autofocus>
                             <label for="username">Username</label>
                             @error('username')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        {{-- nik --}}
+                        <div class="form-floating form-floating-outline mb-4">
+                            <input type="number" class="form-control @error('nik') is-invalid @enderror" id="nik"
+                                name="nik" placeholder="Isi NIK untuk kepemilikan akun" value="{{ old('nik') }}"
+                                autofocus>
+                            <label for="nik">NIK</label>
+                            @error('nik')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
