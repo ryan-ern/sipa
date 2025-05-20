@@ -29,14 +29,16 @@ class DataKegiatan extends Controller
     $validated = Validator::make($request->all(), [
       'kegiatan' => ['required', 'string', 'max:255'],
       'waktu_mulai' => ['required', 'date'],
-      'waktu_selesai' => ['required', 'date'],
+      'waktu_selesai' => ['required', 'date', 'after_or_equal:waktu_mulai'],
       'keterangan' => ['required', 'string'],
     ], [
       'kegiatan.required' => 'Kegiatan harus diisi.',
       'waktu_mulai.required' => 'Waktu mulai harus diisi.',
       'waktu_selesai.required' => 'Waktu selesai harus diisi.',
+      'waktu_selesai.after_or_equal' => 'Waktu selesai tidak boleh lebih awal dari waktu mulai.',
       'keterangan.required' => 'Keterangan harus diisi.',
     ]);
+
 
     if ($validated->fails()) {
       return back()->with('error', 'Kegiatan ' . $request->kegiatan . ' gagal ditambahkan: ' . $validated->errors()->first());
