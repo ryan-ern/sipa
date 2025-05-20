@@ -29,6 +29,7 @@ class Artikel extends Model
     'isi',
     'fp_cover',
     'fn_cover',
+    'tgl_berlaku'
   ];
 
   public function user()

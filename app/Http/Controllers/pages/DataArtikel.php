@@ -24,6 +24,7 @@ class DataArtikel extends Controller
     $validated = Validator::make($request->all(), [
       'judul' => ['required', 'string', 'max:255'],
       'jenis' => ['required', 'string', 'in:artikel,informasi'],
+      'tgl_berlaku' => ['nullable', 'string', 'max:255'],
       'isi' => ['required', 'string'],
       'fp_cover' => ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:2048'],
     ], [
@@ -69,6 +70,7 @@ class DataArtikel extends Controller
       'judul' => ['required', 'string', 'max:255'],
       'jenis' => ['required', 'string', 'in:artikel,informasi'],
       'isi' => ['required', 'string'],
+      'tgl_berlaku' => ['nullable', 'string', 'max:255'],
       'fp_cover' => ['nullable', 'file', 'mimes:jpg,jpeg,png'],
     ], [
       'judul.required' => 'Judul harus diisi.',

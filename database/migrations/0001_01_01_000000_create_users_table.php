@@ -16,7 +16,7 @@ return new class extends Migration
       $table->uuid('id')->primary();
       $table->string('nama_lengkap');
       $table->string('nik')->unique();
-      $table->string('username')->unique();
+      $table->string('username');
       $table->enum('role', ['admin', 'user'])->default('user');
       $table->string('password');
       $table->string('no_tel');

@@ -128,11 +128,20 @@ class Pendaftaran extends Controller
       $validator = Validator::make($request->all(), [
         'user_id' => ['nullable', 'string'],
         'nama' => ['required', 'string', 'max:255'],
-        'ttl' => ['required', 'string', 'max:255'],
+        'ttl' => [
+          'required',
+          'string',
+          'max:255',
+          'regex:/^[A-Za-z\s]+,\s*\d{2}-\d{2}-\d{4}$/'
+        ],
         'nik' => ['required', 'string', 'max:255'],
         'jk' => ['required', 'string'],
         'status_anak' => ['required', 'string'],
-        'pendidikan' => ['required', 'string'],
+        'pendidikan' => [
+          'required',
+          'string',
+          'regex:/^(TK|SD|SMP|SMA|SMK|MA|PAUD|Perguruan Tinggi)\s*-\s*.+$/'
+        ],
         'alamat' => ['required', 'string'],
         'ortu' => ['required', 'string'],
         'pekerjaan' => ['required', 'string'],
@@ -155,6 +164,30 @@ class Pendaftaran extends Controller
         '*.required' => ':attribute harus diisi.',
         '*.mimes' => 'Format file :attribute harus pdf, jpg, jpeg, atau png.',
         '*.max' => 'Ukuran file :attribute maksimal 2MB.',
+        'ttl.regex' => 'Format TTL harus: Nama Kota, dd-mm-yyyy (misal: Jakarta, 17-08-2005).',
+        'pendidikan.regex' => 'Format pendidikan harus: Jenjang - Nama Sekolah (misal: SMA - SMA Negeri 1 Bandung).',
+      ]);
+
+      if ($validator->fails()) {
+        return redirect()->route('pendaftaran-anak')->with('error', 'Pendaftaran anak gagal disimpan: ' . $validator->errors()->first());
+      }
+    } else {
+      $validator = Validator::make($request->all(), [
+        'ttl' => [
+          'required',
+          'string',
+          'max:255',
+          'regex:/^[A-Za-z\s]+,\s*\d{2}-\d{2}-\d{4}$/'
+        ],
+        'pendidikan' => [
+          'required',
+          'string',
+          'regex:/^(TK|SD|SMP|SMA|SMK|MA|PAUD|Perguruan Tinggi)\s*-\s*.+$/'
+        ],
+        [
+          'ttl.regex' => 'Format TTL harus: Nama Kota, dd-mm-yyyy (misal: Jakarta, 17-08-2005).',
+          'pendidikan.regex' => 'Format pendidikan harus: Jenjang - Nama Sekolah (misal: SMA - SMA Negeri 1 Bandung).',
+        ]
       ]);
 
       if ($validator->fails()) {

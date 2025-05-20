@@ -17,8 +17,8 @@ class Register extends Controller
   public function store(Request $request): RedirectResponse
   {
     $validated = $request->validate([
-      'username' => ['required', 'string', 'max:255', 'unique:users'],
-      'nik' => ['required', 'integer', 'max:255', 'unique:users'],
+      'username' => ['required', 'string', 'max:255'],
+      'nik' => ['required', 'string', 'regex:/^\d{16}$/', 'unique:users'],
       'nama_lengkap' => ['required', 'string', 'max:255'],
       'no_tel' => ['required', 'regex:/^\+628\d{9,15}$/'],
       'jenis_kelamin' => ['required', 'string', 'in:Laki-laki,Perempuan'],
@@ -27,7 +27,6 @@ class Register extends Controller
       'password' => ['required', 'string', 'min:8', 'confirmed'],
     ], [
       'username.required' => 'Username harus diisi.',
-      'username.unique' => 'Username sudah terdaftar.',
       'nik.required' => 'NIK harus diisi.',
       'nik.unique' => 'NIK sudah terdaftar.',
       'nik.integer' => 'NIK harus berupa angka.',

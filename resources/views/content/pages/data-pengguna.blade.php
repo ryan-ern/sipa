@@ -390,6 +390,13 @@
                         </div>
                       </div>
                       <div class="col-md-4">
+                        <!-- username -->
+                        <div class="form-floating form-floating-outline mb-4">
+                            <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK" autofocus required>
+                            <label for="nik">NIK</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
                           <!-- Nama Lengkap -->
                           <div class="form-floating form-floating-outline mb-4">
                               <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Nama Lengkap" required>

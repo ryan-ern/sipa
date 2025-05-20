@@ -18,6 +18,7 @@ return new class extends Migration
       $table->string('judul');
       $table->enum('jenis', ['artikel', 'informasi']);
       $table->longText('isi');
+      $table->string('tgl_berlaku')->nullable();
       $table->string('fp_cover')->nullable();
       $table->string('fn_cover')->nullable();
       $table->timestamps();

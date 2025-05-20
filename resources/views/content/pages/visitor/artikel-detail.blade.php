@@ -17,7 +17,10 @@
 
                 <div class="card-body">
                     <h2 class="card-title text-center">{{ $artikel->judul }}</h2>
-                    <p class="text-muted">Kategori: {{ $artikel->jenis }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-muted">Kategori: {{ $artikel->jenis }}</p>
+                        <p class="text-muted">Tanggal Berlaku / Dilaksanakan: {{ $artikel->tgl_berlaku }}</p>
+                    </div>
                     <p class="card-text">
                     <div id="quill-editor">
                         {!! $artikel->isi !!}

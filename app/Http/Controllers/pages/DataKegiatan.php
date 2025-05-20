@@ -39,9 +39,17 @@ class DataKegiatan extends Controller
       'keterangan.required' => 'Keterangan harus diisi.',
     ]);
 
-
     if ($validated->fails()) {
       return back()->with('error', 'Kegiatan ' . $request->kegiatan . ' gagal ditambahkan: ' . $validated->errors()->first());
+    }
+
+    // Cek apakah waktu_mulai atau waktu_selesai sudah digunakan kegiatan lain
+    $conflict = Kegiatan::where('waktu_mulai', $request->waktu_mulai)
+      ->orWhere('waktu_selesai', $request->waktu_selesai)
+      ->exists();
+
+    if ($conflict) {
+      return back()->with('error', 'Waktu mulai atau waktu selesai sudah digunakan oleh kegiatan lain.');
     }
 
     try {
@@ -51,6 +59,7 @@ class DataKegiatan extends Controller
       return back()->with('error', 'Kegiatan ' . $request->kegiatan . ' gagal ditambahkan: ' . $e->getMessage());
     }
   }
+
 
   public function update(Request $request, $id)
   {
@@ -71,6 +80,18 @@ class DataKegiatan extends Controller
       return back()->with('error', 'Kegiatan ' . $request->kegiatan . ' gagal diubah: ' . $validator->errors()->first());
     }
 
+    // Cek apakah waktu_mulai atau waktu_selesai sudah digunakan oleh kegiatan lain
+    $conflict = Kegiatan::where(function ($query) use ($request) {
+      $query->where('waktu_mulai', $request->waktu_mulai)
+        ->orWhere('waktu_selesai', $request->waktu_selesai);
+    })
+      ->where('id', '!=', $id)
+      ->exists();
+
+    if ($conflict) {
+      return back()->with('error', 'Waktu mulai atau waktu selesai sudah digunakan oleh kegiatan lain.');
+    }
+
     try {
       $kegiatan = Kegiatan::findOrFail($id);
       $kegiatan->update($validator->validated());
@@ -79,6 +100,7 @@ class DataKegiatan extends Controller
       return back()->with('error', 'Kegiatan ' . $request->kegiatan . ' gagal diubah: ' . $e->getMessage());
     }
   }
+
 
   public function destroy($id)
   {
