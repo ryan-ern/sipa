@@ -34,6 +34,7 @@
                                 <tr class="text-center">
                                     <th scope="col">No</th>
                                     <th scope="col">Nama</th>
+                                    <th scope="col">NIK</th>
                                     <th scope="col">Sebagai</th>
                                     <th scope="col">No. Telp</th>
                                     <th scope="col">Alamat</th>
@@ -52,6 +53,7 @@
                                         <td class="text-capitalize">
                                             {{ $user->nama_lengkap }}
                                         </td>
+                                        <td>{{ $user->nik }}</td>
                                         <td>{{ ucfirst($user->sebagai) }}</td>
                                         <td>
                                             <a class="text-primary" href="https://wa.me/{{ $user->no_tel }}"
