@@ -18,7 +18,7 @@ class Register extends Controller
   {
     $validated = $request->validate([
       'username' => ['required', 'string', 'max:255'],
-      'nik' => ['required', 'string', 'regex:/^\d{16}$/', 'unique:users'],
+      'nik' => ['required', 'string', 'regex:/^\d{10,20}$/', 'unique:users'],
       'nama_lengkap' => ['required', 'string', 'max:255'],
       'no_tel' => ['required', 'regex:/^\+628\d{9,15}$/'],
       'jenis_kelamin' => ['required', 'string', 'in:Laki-laki,Perempuan'],
@@ -30,6 +30,7 @@ class Register extends Controller
       'nik.required' => 'NIK harus diisi.',
       'nik.unique' => 'NIK sudah terdaftar.',
       'nik.integer' => 'NIK harus berupa angka.',
+      'nik.regex' => 'NIK harus berupa 16 angka.',
       'nama_lengkap.required' => 'Nama lengkap harus diisi.',
       'no_tel.required' => 'Nomor telepon harus diisi.',
       'no_tel.regex' => 'Format nomor telepon tidak valid (harus diawali +628 dan diikuti 9-15 digit angka).',

@@ -17,7 +17,7 @@ class Forgot extends Controller
   public function update(Request $request)
   {
     $validator = Validator::make($request->all(), [
-      'username' => ['required', 'string', 'max:255', 'exists:users,username'],
+      'nik' => ['required', 'string', 'regex:/^\d{10,20}$/', 'exists:users,nik'],
     ], [
       '*.required' => ':attribute harus diisi.',
       '*.exists' => ':attribute tidak ditemukan.',
@@ -29,7 +29,7 @@ class Forgot extends Controller
     }
 
     try {
-      $user = User::where('username', $request->username)->first();
+      $user = User::where('nik', $request->nik)->first();
       $user->update([
         'forgot' => 1,
       ]);

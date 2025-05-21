@@ -17,22 +17,22 @@
                     <div class="app-brand justify-content-center mt-5">
                         <a href="{{ url('/') }}" class="app-brand-link gap-3">
                             <span class="app-brand-logo demo">
-                              <img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo" width="100">
+                                <img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo" width="100">
                             </span>
                         </a>
                     </div>
                     <!-- /Logo -->
                     <div class="card-body mt-1">
                         <h4 class="mb-1">Lupa Password? 🔒</h4>
-                        <p class="mb-5 text-capitalize">masukkan username anda dan kami akan mengirimkan password baru untuk
+                        <p class="mb-5 text-capitalize">masukkan NIK anda dan kami akan mengirimkan password baru untuk
                             anda</p>
                         <form id="formAuthentication" class="mb-5" action="{{ route('forgot.update') }}" method="POST">
-                          @csrf
-                          @method('PUT')
+                            @csrf
+                            @method('PUT')
                             <div class="form-floating form-floating-outline mb-5">
-                                <input type="text" class="form-control" id="username" name="username"
-                                    placeholder="Masukkan username terdaftar" autofocus>
-                                <label>Username</label>
+                                <input type="text" class="form-control" id="nik" name="nik"
+                                    placeholder="Masukkan NIK terdaftar" autofocus>
+                                <label>NIK</label>
                             </div>
                             <button type="submit" class="btn btn-primary d-grid w-100 mb-5">Kirim</button>
                         </form>
