@@ -22,6 +22,7 @@ class Forgot extends Controller
       '*.required' => ':attribute harus diisi.',
       '*.exists' => ':attribute tidak ditemukan.',
       '*.max' => ':attribute maksimal :max karakter.',
+      '*.regex' => ':attribute harus berupa 16 angka atau nik yang terdaftar.',
     ]);
 
     if ($validator->fails()) {
